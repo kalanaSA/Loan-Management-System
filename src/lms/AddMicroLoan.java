@@ -1,14 +1,40 @@
 package lms;
 
+import java.awt.Toolkit;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.UIManager;
 
 
 public class AddMicroLoan extends javax.swing.JFrame {
+    
+    Connection conn;
+    PreparedStatement pst;
+    ResultSet rs;
 
    
     public AddMicroLoan() {
         initComponents();
+        conn = DBconnect.connect();
+        setIcon();
+                
         jLabel18.setText(String.valueOf(User.username));
+    }
+    
+    public void clearAll(){
+        txt_search.setText("");
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jTextField3.setText("");
+        jTextField4.setText("");
+        jTextField5.setText("");
+        jTextField6.setText("");
+        jTextField7.setText("");
+        jTextField8.setText("");
+        jTextField9.setText("");
     }
 
     @SuppressWarnings("unchecked")
@@ -38,7 +64,7 @@ public class AddMicroLoan extends javax.swing.JFrame {
         jTextField9 = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jTextField11 = new javax.swing.JTextField();
+        txt_search = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -52,6 +78,7 @@ public class AddMicroLoan extends javax.swing.JFrame {
         jDateChooser2 = new com.toedter.calendar.JDateChooser();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -115,23 +142,49 @@ public class AddMicroLoan extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel13.setText("Customer Details :");
 
+        txt_search.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_searchKeyReleased(evt);
+            }
+        });
+
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton1.setText("Add Loan");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton2.setText("Clear");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton3.setText("Cancel");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "7%", "8%", "9%", "10%", "11%", "12%", "13%", "14%", "15%" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "7", "8", "9", "10", "11", "12", "13", "14", "15" }));
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel14.setText("Loan Type");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Monthly", "Daily", "Year" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Monthly", "Daily", "Annually" }));
 
         jButton4.setText("Calculate");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel15.setText("Issue date ");
@@ -143,6 +196,9 @@ public class AddMicroLoan extends javax.swing.JFrame {
 
         jLabel18.setText("username");
 
+        jLabel19.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel19.setText("%");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -152,8 +208,8 @@ public class AddMicroLoan extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txt_search, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -200,7 +256,10 @@ public class AddMicroLoan extends javax.swing.JFrame {
                                             .addComponent(jTextField8)
                                             .addComponent(jTextField9)
                                             .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel19))
                                             .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(18, 18, 18)
                                         .addComponent(jButton4)))))
@@ -231,7 +290,7 @@ public class AddMicroLoan extends javax.swing.JFrame {
                 .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -263,7 +322,7 @@ public class AddMicroLoan extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -282,7 +341,8 @@ public class AddMicroLoan extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel19))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel10)
@@ -314,6 +374,197 @@ public class AddMicroLoan extends javax.swing.JFrame {
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        //Daily------------------------------------------------------------------
+        if(jComboBox2.getSelectedItem().toString()== "Daily"){
+            
+            String sql = "INSERT INTO microloandaily(customerId,name,nic,address,contactNo,gender,amountOfLoan,interestRate"
+                    + ",numberOfInstallement,loanType,installementAmount,issueDate,dueDate) VALUES(?,?,?,?,?,?,?,"
+                    + "?,?,?,?,?,?)";
+           
+            try{   
+                pst = conn.prepareStatement(sql);
+                pst.setString(1 , jTextField1.getText());
+                pst.setString(2 , jTextField2.getText());
+                pst.setString(3 , jTextField3.getText());
+                pst.setString(4 , jTextField4.getText());
+                pst.setString(5 , jTextField5.getText());
+                pst.setString(6 , jTextField6.getText());
+                pst.setString(7 , jTextField7.getText());
+                pst.setString(8 , jComboBox1.getSelectedItem().toString());
+                pst.setString(9 , jTextField8.getText());
+                pst.setString(10 , jComboBox2.getSelectedItem().toString());
+                pst.setString(11 , jTextField9.getText());
+                pst.setString(12, ((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText());
+                pst.setString(13, ((JTextField)jDateChooser2.getDateEditor().getUiComponent()).getText());
+                pst.execute();
+                
+                JOptionPane.showMessageDialog(null, "Daily Micro-loan Added!");
+                clearAll();
+                
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, e);
+            }finally{
+                try{
+                    rs.close();
+                    pst.close();
+                }catch(Exception e){
+                    
+                }
+            }
+    }    
+
+        
+        //Monthly----------------------------------------------------------------------------------------
+        if(jComboBox2.getSelectedItem().toString()== "Monthly"){
+            
+            String sql = "INSERT INTO microloanmonthly(customerId,name,nic,address,contactNo,gender,amountOfLoan,interestRate"
+                    + ",numberOfInstallement,loanType,installementAmount,issueDate,dueDate) VALUES(?,?,?,?,?,?,?,"
+                    + "?,?,?,?,?,?)";
+            
+            try{
+                pst = conn.prepareStatement(sql);
+                pst.setString(1 , jTextField1.getText());
+                pst.setString(2 , jTextField2.getText());
+                pst.setString(3 , jTextField3.getText());
+                pst.setString(4 , jTextField4.getText());
+                pst.setString(5 , jTextField5.getText());
+                pst.setString(6 , jTextField6.getText());
+                pst.setString(7 , jTextField7.getText());
+                pst.setString(8 , jComboBox1.getSelectedItem().toString());
+                pst.setString(9 , jTextField8.getText());
+                pst.setString(10 , jComboBox2.getSelectedItem().toString());
+                pst.setString(11 , jTextField9.getText());
+                pst.setString(12, ((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText());
+                pst.setString(13, ((JTextField)jDateChooser2.getDateEditor().getUiComponent()).getText());
+                pst.execute();
+                
+                JOptionPane.showMessageDialog(null, "Monthly Micro-loan Added!");
+                clearAll();
+                
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, e);
+            }finally{
+                try{
+                    rs.close();
+                    pst.close();
+                }catch(Exception e){
+                    
+                }
+            } 
+        }
+            
+            
+        //Annually------------------------------------------------------------------------------------------
+        if(jComboBox2.getSelectedItem().toString()== "Annually"){
+            
+            String sql = "INSERT INTO microloanannually(customerId,name,nic,address,contactNo,gender,amountOfLoan,interestRate"
+                    + ",numberOfInstallement,loanType,installementAmount,issueDate,dueDate) VALUES(?,?,?,?,?,?,?,"
+                    + "?,?,?,?,?,?)";
+            
+            try{
+                pst = conn.prepareStatement(sql);
+                pst.setString(1 , jTextField1.getText());
+                pst.setString(2 , jTextField2.getText());
+                pst.setString(3 , jTextField3.getText());
+                pst.setString(4 , jTextField4.getText());
+                pst.setString(5 , jTextField5.getText());
+                pst.setString(6 , jTextField6.getText());
+                pst.setString(7 , jTextField7.getText());
+                pst.setString(8 , jComboBox1.getSelectedItem().toString());
+                pst.setString(9 , jTextField8.getText());
+                pst.setString(10 , jComboBox2.getSelectedItem().toString());
+                pst.setString(11 , jTextField9.getText());
+                pst.setString(12, ((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText());
+                pst.setString(13, ((JTextField)jDateChooser2.getDateEditor().getUiComponent()).getText());
+                pst.execute();
+                
+                JOptionPane.showMessageDialog(null, "Annually Micro-loan Added!");
+                clearAll();
+                
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, e);
+            }finally{
+                try{
+                    rs.close();
+                    pst.close();
+                }catch(Exception e){
+                    
+                }
+            } 
+        }        
+
+        
+        
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+       
+        double interest;
+        double amountOfLoan = Double.parseDouble(jTextField7.getText());
+        double interestRate = Double.parseDouble(jComboBox1.getSelectedItem().toString());
+        double installementAmount;
+        int numberOfInstallemet = Integer.parseInt(jTextField8.getText());
+  
+        interest = amountOfLoan*(interestRate/100);
+        installementAmount = (amountOfLoan + interest)/numberOfInstallemet;
+        
+        String f= String.valueOf(installementAmount);
+        jTextField9.setText(f);
+        
+        
+        
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void txt_searchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_searchKeyReleased
+    
+               String sql = "SELECT * FROM customerdetails WHERE name=? ";
+        
+        try{
+            pst = conn.prepareStatement(sql);
+            pst.setString(1 , txt_search.getText());
+            rs = pst.executeQuery();
+            
+            if(rs.next()){
+                
+                String add1 = rs.getString("id");
+                jTextField1.setText(add1);
+                String add2 = rs.getString("name");
+                jTextField2.setText(add2);
+                String add3 = rs.getString("nic");
+                jTextField3.setText(add3);
+                String add4 = rs.getString("address");
+                jTextField4.setText(add4);
+                String add5 = rs.getString("contactNo");
+                jTextField5.setText(add5);
+                String add6 = rs.getString("gender");
+                jTextField6.setText(add6);
+
+            }
+            
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }finally{
+            try{
+                rs.close();
+                pst.close();
+            }catch(Exception e){
+                
+            }
+        }
+        
+    }//GEN-LAST:event_txt_searchKeyReleased
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        clearAll();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
    
     public static void main(String args[]) {
@@ -370,6 +621,7 @@ public class AddMicroLoan extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -380,7 +632,6 @@ public class AddMicroLoan extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
@@ -389,5 +640,10 @@ public class AddMicroLoan extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField txt_search;
     // End of variables declaration//GEN-END:variables
+
+    private void setIcon() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("img/loan.png")));
+    }
 }

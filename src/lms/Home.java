@@ -1,5 +1,8 @@
 package lms;
 
+import com.jtattoo.plaf.acryl.AcrylLookAndFeel;
+import java.awt.Toolkit;
+import java.util.Properties;
 import javax.swing.UIManager;
 
 public class Home extends javax.swing.JFrame {
@@ -7,6 +10,7 @@ public class Home extends javax.swing.JFrame {
  
     public Home() {
         initComponents();
+        setIcon();
         
         jLabel5.setText(String.valueOf(User.username));
     }
@@ -54,14 +58,14 @@ public class Home extends javax.swing.JFrame {
 
         jButton3.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lms/img/Allowance.png"))); // NOI18N
-        jButton3.setText("Add Micro Loan");
+        jButton3.setText("Micro Loan Service");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
         jPanel1.add(jButton3);
-        jButton3.setBounds(830, 410, 190, 60);
+        jButton3.setBounds(810, 410, 200, 60);
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lms/img/Add_Employee.png"))); // NOI18N
@@ -72,7 +76,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(400, 410, 200, 60);
+        jButton1.setBounds(380, 410, 200, 60);
 
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lms/img/Search_1.png"))); // NOI18N
@@ -83,17 +87,17 @@ public class Home extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton2);
-        jButton2.setBounds(610, 410, 210, 60);
+        jButton2.setBounds(590, 410, 210, 60);
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lms/img/Allowance.png"))); // NOI18N
-        jButton4.setText("Add Fix Loan");
+        jButton4.setText("Fix Loan Service");
         jPanel1.add(jButton4);
-        jButton4.setBounds(400, 480, 200, 60);
+        jButton4.setBounds(380, 480, 200, 60);
 
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lms/img/Update.png"))); // NOI18N
         jButton5.setText("Progress");
         jPanel1.add(jButton5);
-        jButton5.setBounds(610, 480, 210, 60);
+        jButton5.setBounds(590, 480, 210, 60);
 
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lms/img/Payment.png"))); // NOI18N
         jButton6.setText("Statistic");
@@ -103,7 +107,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton6);
-        jButton6.setBounds(830, 480, 190, 60);
+        jButton6.setBounds(810, 480, 200, 60);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lms/img/logout.png"))); // NOI18N
         jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -266,6 +270,11 @@ public class Home extends javax.swing.JFrame {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }*/
+                
+                Properties props = new Properties();
+                props.put("logoString", "");
+                AcrylLookAndFeel.setCurrentTheme(props);
+                
                 UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
 
             }
@@ -320,4 +329,8 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
+
+    private void setIcon() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("img/loan.png")));
+    }
 }

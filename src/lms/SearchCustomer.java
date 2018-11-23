@@ -1,6 +1,7 @@
 package lms;
 
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,6 +19,7 @@ public class SearchCustomer extends javax.swing.JFrame {
     public SearchCustomer() {
         initComponents();
         conn = DBconnect.connect();
+        setIcon();
         
         jLabel12.setText(String.valueOf(User.username));
     }
@@ -337,7 +339,7 @@ public class SearchCustomer extends javax.swing.JFrame {
         int x = JOptionPane.showConfirmDialog(null, "Are you sure want update this Record?");
         if(x==0){
         String sql = "UPDATE customerdetails SET name=? , nic=? , address=? , contactNo=? , gender=? , img1=? , img2=? "
-                + "wHERE id=?";
+                + "WHERE id=?";
         
         try{
             
@@ -480,5 +482,9 @@ public class SearchCustomer extends javax.swing.JFrame {
     private ImageIcon format2=null;
     String filename2=null;
     byte[] person_image2=null;
+
+    private void setIcon() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("img/loan.png")));
+    }
 
 }

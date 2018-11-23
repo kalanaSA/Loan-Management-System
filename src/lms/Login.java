@@ -1,10 +1,13 @@
 package lms;
 
+import com.jtattoo.plaf.acryl.AcrylLookAndFeel;
+import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Properties;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
@@ -18,6 +21,7 @@ public class Login extends javax.swing.JFrame {
         super("Login");
         initComponents();
         conn = DBconnect.connect();
+        setIcon();
         
         currentDate();
     }
@@ -101,12 +105,12 @@ public class Login extends javax.swing.JFrame {
         jPanel1.add(jLabel3);
         jLabel3.setBounds(70, 400, 80, 30);
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.add(jTextField1);
         jTextField1.setBounds(170, 350, 200, 30);
 
-        jPasswordField1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jPasswordField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jPasswordField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.add(jPasswordField1);
         jPasswordField1.setBounds(170, 400, 200, 30);
@@ -215,6 +219,10 @@ public class Login extends javax.swing.JFrame {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }*/
+                Properties props = new Properties();
+                props.put("logoString", "");
+                AcrylLookAndFeel.setCurrentTheme(props);
+                
                 UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
 
             }
@@ -253,4 +261,9 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+
+    private void setIcon() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("img/loan.png")));
+        
+    }
 }

@@ -1,6 +1,7 @@
 package lms;
 
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -21,6 +22,7 @@ public class AddCustomer extends javax.swing.JFrame {
     public AddCustomer() {
         initComponents();
         conn = DBconnect.connect();
+        setIcon();
         
         jLabel12.setText(String.valueOf(User.username));
     }
@@ -280,11 +282,11 @@ public class AddCustomer extends javax.swing.JFrame {
                             .addComponent(jLabel6)
                             .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jRadioButton1)
-                                .addComponent(jRadioButton2)))
+                                .addComponent(jRadioButton2))
+                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(64, 64, 64)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -328,7 +330,8 @@ public class AddCustomer extends javax.swing.JFrame {
         
         int x = JOptionPane.showConfirmDialog(null, "Are you sure want add this record !");
         if(x==0){
-            String sql = "INSERT INTO customerdetails(name,nic,address,contactNo,gender,img1,img2) VALUES(?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO customerdetails(name,nic,address,contactNo,gender,img1,img2) "
+                    + "VALUES(?,?,?,?,?,?,?)";
             
         try{
             pst = conn.prepareStatement(sql);
@@ -507,5 +510,9 @@ public class AddCustomer extends javax.swing.JFrame {
     private ImageIcon format2=null;
     String filename2=null;
     byte[] person_image2=null;
+
+    private void setIcon() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("img/loan.png")));
+    }
 
 }
