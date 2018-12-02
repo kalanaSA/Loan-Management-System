@@ -170,11 +170,13 @@ public class Login extends javax.swing.JFrame {
                 count=count+1;
                 String un=rs.getString("username");
                 User.username=un;
+                String userid=rs.getString("id");
+                User.userid=userid;
             }
             
             if(count == 1){
                 
-                JOptionPane.showMessageDialog(null, "Success Login !");
+                //JOptionPane.showMessageDialog(null, "Success Login !");
                 Home hm= new Home();
                 hm.setVisible(true);
                 this.dispose();

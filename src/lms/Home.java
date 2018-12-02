@@ -32,9 +32,11 @@ public class Home extends javax.swing.JFrame {
 
  
     public Home() {
+        super("Welcome Loan Management System");
         initComponents();
         conn = DBconnect.connect();
         setIcon();
+        
         
         jLabel5.setText(String.valueOf(User.username));
     }
@@ -126,19 +128,24 @@ public class Home extends javax.swing.JFrame {
         jButton4.setBounds(820, 330, 210, 60);
 
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lms/img/Update.png"))); // NOI18N
-        jButton5.setText("Progress");
+        jButton5.setText("Repayments");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton5);
-        jButton5.setBounds(610, 400, 200, 60);
+        jButton5.setBounds(820, 400, 210, 60);
 
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lms/img/Payment.png"))); // NOI18N
-        jButton6.setText("Statistic");
+        jButton6.setText("Loan Details");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
             }
         });
         jPanel1.add(jButton6);
-        jButton6.setBounds(610, 470, 200, 60);
+        jButton6.setBounds(610, 400, 200, 60);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lms/img/logout.png"))); // NOI18N
         jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -174,12 +181,23 @@ public class Home extends javax.swing.JFrame {
 
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lms/img/Search_1.png"))); // NOI18N
         jButton7.setText("Profit Share");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton7);
-        jButton7.setBounds(820, 400, 210, 60);
+        jButton7.setBounds(820, 470, 210, 60);
 
-        jButton8.setText("About");
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lms/img/Payment.png"))); // NOI18N
+        jButton8.setText("Repayments Details");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton8);
-        jButton8.setBounds(820, 470, 210, 60);
+        jButton8.setBounds(610, 470, 200, 60);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lms/img/loan.jpeg"))); // NOI18N
         jPanel1.add(jLabel1);
@@ -330,13 +348,13 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
-        Statistic s = new Statistic();
-        s.setVisible(true);
+        LoanDetails ls = new LoanDetails();
+        ls.setVisible(true);
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        Statistic s = new Statistic();
-        s.setVisible(true);
+        LoanDetails ls = new LoanDetails();
+        ls.setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -542,6 +560,21 @@ public class Home extends javax.swing.JFrame {
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        RepaymentDetails rd = new RepaymentDetails();
+        rd.setVisible(true);
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        Repayment r = new Repayment();
+        r.setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        ProfitShare ps = new ProfitShare();
+        ps.setVisible(true);
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
