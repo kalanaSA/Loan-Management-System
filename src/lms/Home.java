@@ -39,6 +39,7 @@ public class Home extends javax.swing.JFrame {
         
         
         jLabel5.setText(String.valueOf(User.username));
+        
     }
 
 

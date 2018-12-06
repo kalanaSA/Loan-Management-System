@@ -4,6 +4,7 @@ import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Date;
 import java.util.Random;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -25,6 +26,9 @@ public class Repayment extends javax.swing.JFrame {
         fixLoanTable();
         
         setIcon();
+        jDateChooser1.setDate(new Date());
+        jDateChooser2.setDate(new Date());
+                
 
     }
     
@@ -743,16 +747,17 @@ public class Repayment extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
-        String sql = "INSERT INTO microloanrepayment(installementNo,payDate,customerId,microLoanId,userId) "
-                + "VALUES(?,?,?,?,?)";
+        String sql = "INSERT INTO microloanrepayment(installementNo,payDate,payedAmount,customerId,microLoanId,userId) "
+                + "VALUES(?,?,?,?,?,?)";
 
         try{
             pst =conn.prepareStatement(sql);
             pst.setString(1, txt_minstallementNo.getText());
             pst.setString(2, ((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText());
-            pst.setString(3, jTextField1.getText());
-            pst.setString(4, jTextField5.getText());
-            pst.setString(5, User.userid);
+            pst.setString(3, jTextField8.getText());
+            pst.setString(4, jTextField1.getText());
+            pst.setString(5, jTextField5.getText());
+            pst.setString(6, User.userid);
             pst.execute();
             
             JOptionPane.showMessageDialog(null, "pay record added successfully!");
@@ -888,7 +893,7 @@ public class Repayment extends javax.swing.JFrame {
             pst = conn.prepareStatement(sq);
             pst.setString(1, jTextField5.getText());
             pst.setString(2, jTextField1.getText());
-            pst.setString(2, User.userid);
+            pst.setString(3, User.userid);
             pst.execute();
             
             
@@ -901,20 +906,21 @@ public class Repayment extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         
-        String sql = "INSERT INTO fixloanrepayment(installementNo,payDate,customerId,fixLoanId,userId) "
-                + "VALUES(?,?,?,?,?)";
+        String sql = "INSERT INTO fixloanrepayment(installementNo,payDate,payedAmount,customerId,fixLoanId,userId) "
+                + "VALUES(?,?,?,?,?,?)";
         
         try{
             pst = conn.prepareStatement(sql);
             pst.setString(1, txt_finstallementNo.getText());
             pst.setString(2, ((JTextField)jDateChooser2.getDateEditor().getUiComponent()).getText());
-            pst.setString(3, jTextField9.getText());
-            pst.setString(4, jTextField13.getText());
-            pst.setString(5, User.userid);
+            pst.setString(3, jTextField14.getText());
+            pst.setString(4, jTextField9.getText());
+            pst.setString(5, jTextField13.getText());
+            pst.setString(6, User.userid);
             pst.execute();
             
             JOptionPane.showMessageDialog(null, "Repayment record added successfully!");
-            mclearAll(); 
+            fclearAll(); 
             
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);

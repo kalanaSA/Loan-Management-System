@@ -666,7 +666,24 @@ public class LoanDetails extends javax.swing.JFrame {
         
         int x = JOptionPane.showConfirmDialog(null, "Are you sure you want delete this record?");
         if(x==0){
+         
         int r = jTable3.getSelectedRow();
+        //before delete the record of microloan table delete microloanrepayment table records to belong to this id
+        String sq = "DELETE FROM microloanrepayment WHERE microLoanId=? AND customerId=? AND userId=?";
+        
+        try{
+            pst = conn.prepareStatement(sq);
+            pst.setString(1, jTable3.getValueAt(r , 0).toString());
+            pst.setString(2, jTable3.getValueAt(r , 8).toString());
+            pst.setString(3, User.userid);
+            pst.execute();
+            
+            
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+                    
+        }    
+        
         
         String sql = "DELETE FROM microloan WHERE microLoanId=? AND customerId=? AND userId=?";
         
@@ -685,8 +702,9 @@ public class LoanDetails extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e);
             
         }
-        }
-                 
+        
+        
+        }         
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -694,6 +712,22 @@ public class LoanDetails extends javax.swing.JFrame {
         int x = JOptionPane.showConfirmDialog(null, "Are you sure you want delete this record?");
         if(x==0){
         int r = jTable4.getSelectedRow();
+        
+        //before delete the record of microloan table delete microloanrepayment table records to belong to this id
+        String sq = "DELETE FROM microloanrepayment WHERE microLoanId=? AND customerId=? AND userId=?";
+        
+        try{
+            pst = conn.prepareStatement(sq);
+            pst.setString(1, jTable4.getValueAt(r , 0).toString());
+            pst.setString(2, jTable4.getValueAt(r , 8).toString());
+            pst.setString(3, User.userid);
+            pst.execute();
+            
+            
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+                    
+        } 
         
         String sql = "DELETE FROM microloan WHERE microLoanId=? AND customerId=? AND userId=? ";
         
@@ -721,6 +755,22 @@ public class LoanDetails extends javax.swing.JFrame {
         if(x==0){
         int r = jTable5.getSelectedRow();
         
+        //before delete the record of microloan table delete microloanrepayment table records to belong to this id
+        String sq = "DELETE FROM microloanrepayment WHERE microLoanId=? AND customerId=? AND userId=?";
+        
+        try{
+            pst = conn.prepareStatement(sq);
+            pst.setString(1, jTable5.getValueAt(r , 0).toString());
+            pst.setString(2, jTable5.getValueAt(r , 8).toString());
+            pst.setString(3, User.userid);
+            pst.execute();
+            
+            
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+                    
+        } 
+        
         String sql = "DELETE FROM microloan WHERE microLoanId=? AND customerId=? AND userId=?";
         
         try{
@@ -746,6 +796,22 @@ public class LoanDetails extends javax.swing.JFrame {
         int x = JOptionPane.showConfirmDialog(null, "Are you sure you want delete this record?");
         if(x==0){
         int r = jTable6.getSelectedRow();
+        
+        //before delete the record of fixloan table delete fixloanrepayment table records to belong to this id
+        String sq = "DELETE FROM fixloanrepayment WHERE fixLoanId=? AND customerId=? AND userId=?";
+        
+        try{
+            pst = conn.prepareStatement(sq);
+            pst.setString(1, jTable6.getValueAt(r , 0).toString());
+            pst.setString(2, jTable6.getValueAt(r , 5).toString());
+            pst.setString(3, User.userid);
+            pst.execute();
+            
+            
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+                    
+        } 
         
         String sql = "DELETE FROM fixloan WHERE fixLoanId=? AND customerId=? And userId=? ";
         

@@ -4,6 +4,7 @@ import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Date;
 import java.util.Random;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -22,7 +23,8 @@ public class AddFixLoan extends javax.swing.JFrame {
         setIcon();
         Random();
         
-        jLabel18.setText(String.valueOf(User.username));         
+        jLabel18.setText(String.valueOf(User.username));    
+        jDateChooser1.setDate(new Date());
     }
     
     public void Random(){
@@ -40,6 +42,7 @@ public class AddFixLoan extends javax.swing.JFrame {
         jTextField6.setText("");
         jTextField7.setText("");
         jTextField8.setText("");
+        jComboBox1.setSelectedItem("1");
         jTextField9.setText("");
     }
 

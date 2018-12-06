@@ -4,6 +4,7 @@ import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Date;
 import java.util.Random;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -25,11 +26,13 @@ public class AddMicroLoan extends javax.swing.JFrame {
         Random();
                 
         jLabel18.setText(String.valueOf(User.username));
+        jDateChooser1.setDate(new Date());
     }
     
     public void Random(){
         Random rd = new Random();
-        jLabel22.setText(""+rd.nextInt(1000+1));
+        int n1 = rd.nextInt(5)+5;
+        jLabel22.setText(""+n1);
     }
     
     
@@ -43,8 +46,11 @@ public class AddMicroLoan extends javax.swing.JFrame {
         jTextField6.setText("");
         jTextField7.setText("");
         jTextField8.setText("");
+        jComboBox1.setSelectedItem("1");
         jTextField9.setText("");
+        jComboBox2.setSelectedItem("Daily");  
         jTextField10.setText("");
+        jDateChooser2.setCalendar(null);
     }
 
     @SuppressWarnings("unchecked")
