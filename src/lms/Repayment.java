@@ -724,6 +724,9 @@ public class Repayment extends javax.swing.JFrame {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         
+        //for null installement no
+        jLabel12.setText("");
+        
         int r = jTable1.getSelectedRow();
         
         String customerid = jTable1.getValueAt(r, 8).toString();
@@ -865,29 +868,11 @@ public class Repayment extends javax.swing.JFrame {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         
-        int x = JOptionPane.showConfirmDialog(null, "Are You Sure to Pay & Close This Loan?");
+        int x = JOptionPane.showConfirmDialog(null, "Are you sure you want delete this record?");
         if(x==0){
-        String sql = "DELETE FROM microloanrepayment WHERE microLoanId=? and customerId=? and userId=?";
+
         
-        try{
-            pst = conn.prepareStatement(sql);
-            pst.setString(1, jTextField5.getText());
-            pst.setString(2, jTextField1.getText());
-            pst.setString(3, User.userid);
-            pst.execute();
-            
-            JOptionPane.showMessageDialog(null, "This Customer Payed All Installements Successfully!");
-            microLoanTable();
-            mclearAll();
-            
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
-        }
-        
-        }
-        
-        //for also delete microloan details
-        String sq = "DELETE FROM microloan WHERE microLoanId=? and customerId=? and userId=?";
+        String sq = "DELETE FROM microloanrepayment WHERE microLoanId=? AND customerId=? AND userId=?";
         
         try{
             pst = conn.prepareStatement(sq);
@@ -897,11 +882,31 @@ public class Repayment extends javax.swing.JFrame {
             pst.execute();
             
             
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);           
+        } 
+        
+        
+        //also deltemicroloan details
+        String sql = "DELETE FROM microloan WHERE microLoanId=? AND customerId=? AND userId=? ";
+        
+        try{
+            pst = conn.prepareStatement(sql);
+            pst.setString(1, jTextField5.getText());
+            pst.setString(2, jTextField1.getText());
+            pst.setString(3, User.userid);
+            pst.execute();
+            
+            microLoanTable();
+            JOptionPane.showMessageDialog(null, "This customer payed all installement successfully!");
             
         }catch(Exception e){
+            
             JOptionPane.showMessageDialog(null, e);
+            
         }
- 
+        }
+
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -939,9 +944,27 @@ public class Repayment extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         
-        int x = JOptionPane.showConfirmDialog(null, "Are You Sure to Pay & Close This Loan?");
+        int x = JOptionPane.showConfirmDialog(null, "Are you sure you want delete this record?");
         if(x==0){
-        String sql = "DELETE FROM fixloanrepayment WHERE fixLoanId=? and customerId=? and userId=?";
+  
+
+        String sq = "DELETE FROM fixloanrepayment WHERE fixLoanId=? AND customerId=? AND userId=?";
+        
+        try{
+            pst = conn.prepareStatement(sq);
+            pst.setString(1, jTextField13.getText());
+            pst.setString(2, jTextField9.getText());
+            pst.setString(3, User.userid);
+            pst.execute();
+            
+            
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+                    
+        } 
+        
+        //also delete fixloan details
+        String sql = "DELETE FROM fixloan WHERE fixLoanId=? AND customerId=? AND userId=? ";
         
         try{
             pst = conn.prepareStatement(sql);
@@ -950,29 +973,15 @@ public class Repayment extends javax.swing.JFrame {
             pst.setString(3, User.userid);
             pst.execute();
             
-            JOptionPane.showMessageDialog(null, "This Customer Payed All Installements Successfully!");
             fixLoanTable();
-            fclearAll();
+            JOptionPane.showMessageDialog(null, "this customer payed all installement successfully!");
             
         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
-        }
-        
-        }
-        
-        //for also delete the fixloan details
-         String sq = "DELETE FROM fixloan WHERE fixLoanId=? and customerId=? and userId=?";
-        
-        try{
-            pst = conn.prepareStatement(sq);
-            pst.setString(1, jTextField13.getText());
-            pst.setString(2, jTextField9.getText());
-            pst.setString(3, User.userid);
-            pst.execute();
-
             
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, e); 
+        }
+        
+        
         }
     }//GEN-LAST:event_jButton7ActionPerformed
 
@@ -983,7 +992,7 @@ public class Repayment extends javax.swing.JFrame {
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         
         try{
-            String sql = "SELECT * FROM fixloan WHERE fixLoanId=? and customerId=? and userId=?";
+            String sql = "SELECT * FROM fixloan WHERE fixLoanId=? AND customerId=? AND userId=? ";
             
             pst = conn.prepareStatement(sql);
             pst.setString(1, jTextField13.getText());
@@ -999,14 +1008,20 @@ public class Repayment extends javax.swing.JFrame {
             String im = jTextField14.getText();
             Double installementamount = Double.parseDouble(im);
             
-            Double newinstallementamount =  (amountofloan+installementamount)*interestrate/100;
+            Double newamountofloan = amountofloan+installementamount;
+            Double newinstallementamount =  newamountofloan * interestrate/100;
             String n = String.valueOf(newinstallementamount);
             
-            String sq = "UPDATE fixloan SET installementAmount='"+n+"' "
-                + "WHERE fixLoanId='"+jTextField13.getText()+"'? and customerId='"+jTextField9.getText()+"' and userId='"+User.userid+"' " ;
+            String sq = "UPDATE fixloan SET installementAmount='"+n+"' , amountOfLoan = '"+newamountofloan+"' "
+                + "WHERE fixLoanId='"+jTextField13.getText()+"' AND customerId='"+jTextField9.getText()+"' AND userId='"+User.userid+"' " ;
+            
+            pst = conn.prepareStatement(sq);
+            pst.execute();
             
             JOptionPane.showMessageDialog(null, "Noticed & update installement amount and amount of loan!");
             fixLoanTable();
+            fclearAll();
+            
             }
             
         }catch(Exception e){

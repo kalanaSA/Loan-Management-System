@@ -28,8 +28,8 @@ public class RepaymentDetails extends javax.swing.JFrame {
     public void microLoanRepaymentDetailsTable(){
         
         String sql = "SELECT customerdetails.id,customerdetails.name,customerdetails.nic,"
-                + "microloan.microLoanId,microloan.numberOfInstallement,microloan.installementAmount,"
-                + "installementNo,payDate "
+                + "microloan.microLoanId,microloan.numberOfInstallement,"
+                + "installementNo,payedAmount,payDate "
                 + "FROM microloanrepayment "
                 + "INNER JOIN customerdetails ON (microloanrepayment.customerId=customerdetails.id) "
                 + "INNER JOIN microloan ON (microloanrepayment.microLoanId=microloan.microLoanId)"
@@ -58,8 +58,8 @@ public class RepaymentDetails extends javax.swing.JFrame {
     public void fixLoanRepaymentDetailsTable(){
         
         String sql = "SELECT customerdetails.id,customerdetails.name,customerdetails.nic,"
-                + "fixloan.fixLoanId,fixloan.installementAmount,"
-                + "installementNo,payDate "
+                + "fixloan.fixLoanId,"
+                + "installementNo,payedAmount,payDate "
                 + "FROM fixloanrepayment "
                 + "INNER JOIN customerdetails ON (fixloanrepayment.customerId=customerdetails.id) "
                 + "INNER JOIN fixloan ON (fixloanrepayment.fixLoanId=fixloan.fixLoanId)"
@@ -116,8 +116,8 @@ public class RepaymentDetails extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel1.setText("Search Loan ID");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel1.setText("Search Name");
 
         jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -167,7 +167,7 @@ public class RepaymentDetails extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jTable2);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel2.setText("Search Name");
 
         jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {

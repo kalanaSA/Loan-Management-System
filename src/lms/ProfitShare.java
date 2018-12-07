@@ -51,8 +51,8 @@ public class ProfitShare extends javax.swing.JFrame {
             rs = pst.executeQuery();
             
             if(rs.next()){
-                String add1 = rs.getString("totalAmountOfInvested");
-                jTextField2.setText(add1);
+                String add2 = rs.getString("totalAmountOfInvested");
+                jTextField2.setText(add2);
             }
             
         }catch(Exception e){
