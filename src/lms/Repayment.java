@@ -764,7 +764,8 @@ public class Repayment extends javax.swing.JFrame {
             pst.execute();
             
             JOptionPane.showMessageDialog(null, "pay record added successfully!");
-
+            jDateChooser1.setDate(new Date());
+        
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
         }
@@ -926,6 +927,7 @@ public class Repayment extends javax.swing.JFrame {
             
             JOptionPane.showMessageDialog(null, "Repayment record added successfully!");
             fclearAll(); 
+            jDateChooser2.setDate(new Date());
             
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);

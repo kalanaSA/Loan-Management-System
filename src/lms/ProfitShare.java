@@ -370,19 +370,25 @@ public class ProfitShare extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         
-        String sql = "SELECT SUM(payedAmount) FROM micrloanrepayment WHERE payDate BETWEEN payDate=? AND payDate=? ";
-        try{
+        
+        String start_date = ((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText();
+        String end_date = ((JTextField)jDateChooser2.getDateEditor().getUiComponent()).getText();
+       
+         String sql = "SELECT SUM(payedAmount) FROM microloanrepayment WHERE payDate AND payDate >= '"+start_date+"' "
+         + "AND payDate <= '"+end_date+"' ";
+        
+         try{
             pst = conn.prepareStatement(sql);
-            pst.setString(1 , ((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText());
-            pst.setString(2 , ((JTextField)jDateChooser2.getDateEditor().getUiComponent()).getText());
+            //pst.setString(1 , ((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText());
+            //pst.setString(2 , ((JTextField)jDateChooser2.getDateEditor().getUiComponent()).getText());
+            
+            
             rs = pst.executeQuery();
             
             if(rs.next()){
                 
                 String add1 = rs.getString("SUM(payedAmount)");
                 jTextField5.setText(add1);
-
                         
             }
             
@@ -391,17 +397,18 @@ public class ProfitShare extends javax.swing.JFrame {
         }
         
         
-        String sq = "SELECT SUM(payedAmount) FROM fixloanrepayment WHERE payDate BETWEEN payDate=? AND payDate=? ";
+        String sq = "SELECT SUM(payedAmount) FROM fixloanrepayment WHERE payDate AND payDate >= '"+start_date+"' "
+                + "AND payDate <= '"+end_date+"' ";
         try{
             
-            pst = conn.prepareStatement(sql);
-            pst.setString(1 , ((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText());
-            pst.setString(2 , ((JTextField)jDateChooser2.getDateEditor().getUiComponent()).getText());
+            pst = conn.prepareStatement(sq);
+            //pst.setString(1 , ((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText());
+            //pst.setString(2 , ((JTextField)jDateChooser2.getDateEditor().getUiComponent()).getText());
             rs = pst.executeQuery();
             
             if(rs.next()){
                 
-                String add2 = rs.getString("payedAmount");
+                String add2 = rs.getString("SUM(payedAmount)");
                 jTextField8.setText(add2);
              
 
