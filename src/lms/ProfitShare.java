@@ -374,15 +374,13 @@ public class ProfitShare extends javax.swing.JFrame {
         String start_date = ((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText();
         String end_date = ((JTextField)jDateChooser2.getDateEditor().getUiComponent()).getText();
        
-         String sql = "SELECT SUM(payedAmount) FROM microloanrepayment WHERE payDate AND payDate >= '"+start_date+"' "
+         String sql = "SELECT SUM(payedAmount) FROM microloanrepayment WHERE payDate BETWEEN payDate >= '"+start_date+"' "
          + "AND payDate <= '"+end_date+"' ";
         
          try{
             pst = conn.prepareStatement(sql);
             //pst.setString(1 , ((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText());
             //pst.setString(2 , ((JTextField)jDateChooser2.getDateEditor().getUiComponent()).getText());
-            
-            
             rs = pst.executeQuery();
             
             if(rs.next()){
@@ -397,7 +395,7 @@ public class ProfitShare extends javax.swing.JFrame {
         }
         
         
-        String sq = "SELECT SUM(payedAmount) FROM fixloanrepayment WHERE payDate AND payDate >= '"+start_date+"' "
+        String sq = "SELECT SUM(payedAmount) FROM fixloanrepayment WHERE payDate BETWEEN payDate >= '"+start_date+"' "
                 + "AND payDate <= '"+end_date+"' ";
         try{
             
