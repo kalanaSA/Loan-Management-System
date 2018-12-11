@@ -371,16 +371,17 @@ public class ProfitShare extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
-        String start_date = ((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText();
-        String end_date = ((JTextField)jDateChooser2.getDateEditor().getUiComponent()).getText();
-       
-         String sql = "SELECT SUM(payedAmount) FROM microloanrepayment WHERE payDate BETWEEN payDate >= '"+start_date+"' "
-         + "AND payDate <= '"+end_date+"' ";
+//        String start_date = ((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText();
+//        String end_date = ((JTextField)jDateChooser2.getDateEditor().getUiComponent()).getText();
+
+         String sql = "SELECT SUM(payedAmount) FROM microloanrepayment WHERE (time_stamp BETWEEN TIMESTAMP = ? "
+         + "AND TIMESTAMP = ? ) AND WHERE userId=? ";
         
          try{
             pst = conn.prepareStatement(sql);
-            //pst.setString(1 , ((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText());
-            //pst.setString(2 , ((JTextField)jDateChooser2.getDateEditor().getUiComponent()).getText());
+            pst.setString(1 , ((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText());
+            pst.setString(2 , ((JTextField)jDateChooser2.getDateEditor().getUiComponent()).getText());
+            pst.setString(3, User.userid);
             rs = pst.executeQuery();
             
             if(rs.next()){
@@ -395,13 +396,14 @@ public class ProfitShare extends javax.swing.JFrame {
         }
         
         
-        String sq = "SELECT SUM(payedAmount) FROM fixloanrepayment WHERE payDate BETWEEN payDate >= '"+start_date+"' "
-                + "AND payDate <= '"+end_date+"' ";
+        String sq = "SELECT SUM(payedAmount) FROM fixloanrepayment WHERE (time_stamp BETWEEN TIMESTAMP = ? "
+                + "AND TIMESTAMP = ? ) AND WHERE userId= ? ";
         try{
             
             pst = conn.prepareStatement(sq);
-            //pst.setString(1 , ((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText());
-            //pst.setString(2 , ((JTextField)jDateChooser2.getDateEditor().getUiComponent()).getText());
+            pst.setString(1 , ((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText());
+            pst.setString(2 , ((JTextField)jDateChooser2.getDateEditor().getUiComponent()).getText());
+            pst.setString(1, User.userid);
             rs = pst.executeQuery();
             
             if(rs.next()){
@@ -415,6 +417,8 @@ public class ProfitShare extends javax.swing.JFrame {
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
         }
+        
+        
         
         //total profit calculation
         double totalProfitFromMicroLoan = Double.parseDouble(jTextField5.getText());

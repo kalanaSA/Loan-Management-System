@@ -27,9 +27,9 @@ public class RepaymentDetails extends javax.swing.JFrame {
     
     public void microLoanRepaymentDetailsTable(){
         
-        String sql = "SELECT customerdetails.id,customerdetails.name,customerdetails.nic,"
-                + "microloan.microLoanId,microloan.numberOfInstallement,"
-                + "installementNo,payedAmount,payDate "
+        String sql = "SELECT microloan.microLoanId AS Micro_Loan_ID , microloan.numberOfInstallement AS Number_of_Installement,"
+                + "installementNo AS Installement_No , payedAmount AS Payed_Amount , payDate AS Pay_Date ,"
+                + "customerdetails.id AS Customer_ID , customerdetails.name AS Customer_Name "
                 + "FROM microloanrepayment "
                 + "INNER JOIN customerdetails ON (microloanrepayment.customerId=customerdetails.id) "
                 + "INNER JOIN microloan ON (microloanrepayment.microLoanId=microloan.microLoanId)"
@@ -57,12 +57,12 @@ public class RepaymentDetails extends javax.swing.JFrame {
     
     public void fixLoanRepaymentDetailsTable(){
         
-        String sql = "SELECT customerdetails.id,customerdetails.name,customerdetails.nic,"
-                + "fixloan.fixLoanId,"
-                + "installementNo,payedAmount,payDate "
+        String sql = "SELECT fixloan.fixLoanId AS Fix_Loan_ID , installementNo AS Installement_No ,"
+                + "payedAmount AS Payed_Amount , payDate AS Pay_Date ,"
+                + "customerdetails.id AS Customer_ID , customerdetails.name AS Customer_Name "
                 + "FROM fixloanrepayment "
                 + "INNER JOIN customerdetails ON (fixloanrepayment.customerId=customerdetails.id) "
-                + "INNER JOIN fixloan ON (fixloanrepayment.fixLoanId=fixloan.fixLoanId)"
+                + "INNER JOIN fixloan ON (fixloanrepayment.fixLoanId=fixloan.fixLoanId) "
                 + "WHERE fixloanrepayment.userId=?";
         
         try{
@@ -248,13 +248,13 @@ public class RepaymentDetails extends javax.swing.JFrame {
 
     private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
          
-        String sql = "SELECT customerdetails.id,customerdetails.name,customerdetails.nic,"
-                + "microloan.microLoanId,microloan.numberOfInstallement,"
-                + "installementNo,payedAmount,payDate "
+        String sql = "SELECT microloan.microLoanId AS Micro_Loan_ID , microloan.numberOfInstallement AS Number_of_Installement,"
+                + "installementNo AS Installement_No , payedAmount AS Payed_Amount , payDate AS Pay_Date ,"
+                + "customerdetails.id AS Customer_ID , customerdetails.name AS Customer_Name "
                 + "FROM microloanrepayment "
                 + "INNER JOIN customerdetails ON (microloanrepayment.customerId=customerdetails.id) "
-                + "INNER JOIN microloan ON (microloanrepayment.microLoanId=microloan.microLoanId)"
-                + "WHERE name=? and microloanrepayment.userId=?";
+                + "INNER JOIN microloan ON (microloanrepayment.microLoanId=microloan.microLoanId) "
+                + "WHERE name=? AND microloanrepayment.userId=?";
         
         try{
             pst = conn.prepareStatement(sql);
@@ -280,12 +280,13 @@ public class RepaymentDetails extends javax.swing.JFrame {
 
     private void jTextField2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyReleased
         
-        String sql = "SELECT customerdetails.id,customerdetails.name,customerdetails.nic,"
-                + "fixloan.fixLoanId ,installementNo,payedAmount,payDate "
+        String sql = "SELECT fixloan.fixLoanId AS Fix_Loan_ID , installementNo AS Installement_No ,"
+                + "payedAmount AS Payed_Amount , payDate AS Pay_Date ,"
+                + "customerdetails.id AS Customer_ID , customerdetails.name AS Customer_Name "
                 + "FROM fixloanrepayment "
                 + "INNER JOIN customerdetails ON (fixloanrepayment.customerId=customerdetails.id) "
-                + "INNER JOIN fixloan ON (fixloanrepayment.fixLoanId=fixloan.fixLoanId)"
-                + "WHERE name=? and fixloanrepayment.userId=?";
+                + "INNER JOIN fixloan ON (fixloanrepayment.fixLoanId=fixloan.fixLoanId) "
+                + "WHERE name = ? AND fixloanrepayment.userId=? ";
         
         try{
             pst = conn.prepareStatement(sql);

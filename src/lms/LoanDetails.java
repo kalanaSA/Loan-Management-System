@@ -25,16 +25,28 @@ public class LoanDetails extends javax.swing.JFrame {
         microLoanAnnuallyTable();
         fixLoanTable();
         customerDetailsTable();
+        
+        //set column width jtable 1
+//        jTable3.getColumnModel().getColumn(0).setPreferredWidth(10);
+//        jTable3.getColumnModel().getColumn(1).setPreferredWidth(60);
+//        jTable3.getColumnModel().getColumn(2).setPreferredWidth(10);
+//        jTable3.getColumnModel().getColumn(3).setPreferredWidth(30);
+//        jTable3.getColumnModel().getColumn(4).setPreferredWidth(25);
+//        jTable3.getColumnModel().getColumn(6).setPreferredWidth(25);
+//        jTable3.getColumnModel().getColumn(7).setPreferredWidth(25);
+//        jTable3.getColumnModel().getColumn(8).setPreferredWidth(10);
+//        jTable3.getColumnModel().getColumn(9).setPreferredWidth(100);
                 
     }
 
     public void microLoanDailyTable(){
         
         try{
-            String sql = "SELECT microLoanId,amountOfLoan,interestRate,numberOfInstallement,loanType,"
-                    + "installementAmount,issueDate,dueDate,customerdetails.id,customerdetails.name,"
-                    + "customerdetails.nic,customerdetails.address,customerdetails.resistance,"
-                    + "customerdetails.contactNo,customerdetails.gender FROM microloan "
+            String sql = "SELECT microLoanId AS Micro_Loan_ID , amountOfLoan AS Amount_of_Loan,"
+                    + "interestRate AS Interest_Rate , numberOfInstallement AS No_of_Installement , loanType AS Loan_Type,"
+                    + "installementAmount AS Installement_Amount ,issueDate AS Issue_Date , dueDate AS Due_Date ,"
+                    + "customerdetails.id AS Customer_ID,customerdetails.name AS Customer_Name "
+                    + "FROM microloan "
                     + "INNER JOIN customerdetails ON (microloan.customerId=customerdetails.id) "
                     + "WHERE loanType='Daily' and microloan.userId=?";
             
@@ -60,10 +72,11 @@ public class LoanDetails extends javax.swing.JFrame {
     public void microLoanMonthlyTable(){
         
         try{
-            String sql = "SELECT microLoanId,amountOfLoan,interestRate,numberOfInstallement,loanType,"
-                    + "installementAmount,issueDate,dueDate,customerdetails.id,customerdetails.name,"
-                    + "customerdetails.nic,customerdetails.address,customerdetails.resistance,"
-                    + "customerdetails.contactNo,customerdetails.gender FROM microloan "
+            String sql = "SELECT microLoanId AS Micro_Loan_ID , amountOfLoan AS Amount_of_Loan,"
+                    + "interestRate AS Interest_Rate , numberOfInstallement AS No_of_Installement , loanType AS Loan_Type,"
+                    + "installementAmount AS Installement_Amount ,issueDate AS Issue_Date , dueDate AS Due_Date ,"
+                    + "customerdetails.id AS Customer_ID,customerdetails.name AS Customer_Name "
+                    + "FROM microloan "
                     + "INNER JOIN customerdetails ON (microloan.customerId=customerdetails.id) "
                     + "WHERE loanType='Monthly' and microloan.userId=?";
             
@@ -88,12 +101,13 @@ public class LoanDetails extends javax.swing.JFrame {
     public void microLoanAnnuallyTable(){
         
         try{
-            String sql = "SELECT microLoanId,amountOfLoan,interestRate,numberOfInstallement,loanType,"
-                    + "installementAmount,issueDate,dueDate,customerdetails.id,customerdetails.name,"
-                    + "customerdetails.nic,customerdetails.address,customerdetails.resistance,"
-                    + "customerdetails.contactNo,customerdetails.gender FROM microloan "
+            String sql = "SELECT microLoanId AS Micro_Loan_ID , amountOfLoan AS Amount_of_Loan,"
+                    + "interestRate AS Interest_Rate , numberOfInstallement AS No_of_Installement , loanType AS Loan_Type,"
+                    + "installementAmount AS Installement_Amount ,issueDate AS Issue_Date , dueDate AS Due_Date ,"
+                    + "customerdetails.id AS Customer_ID,customerdetails.name AS Customer_Name "
+                    + "FROM microloan "
                     + "INNER JOIN customerdetails ON (microloan.customerId=customerdetails.id) "
-                    + "WHERE loanType='Annually' and microloan.userId=? ";
+                    + "WHERE loanType='Anually' and microloan.userId=?";
             
             pst = conn.prepareStatement(sql);
             pst.setString(1 , User.userid);
@@ -116,12 +130,12 @@ public class LoanDetails extends javax.swing.JFrame {
         public void fixLoanTable(){
         
         try{
-            String sql = "SELECT fixLoanId,amountOfLoan,interestRate,installementAmount,issueDate"
-                    + ",customerdetails.id,customerdetails.name,"
-                    + "customerdetails.nic,customerdetails.address,customerdetails.resistance,"
-                    + "customerdetails.contactNo,customerdetails.gender FROM fixloan "
-                    + "INNER JOIN customerdetails ON (fixloan.customerId=customerdetails.id) "
-                    + "WHERE fixloan.userId=?";
+            String sql = "SELECT fixLoanId AS Fix_Loan_ID , amountOfLoan AS Amount_of_Loan , interestRate AS Interest_Rate,"
+                + "installementAmount AS Installement_Amount , issueDate AS Issue_Date,"
+                + "customerdetails.id AS Customer_ID , customerdetails.name AS Customer_Name "
+                + "FROM fixloan "
+                + "INNER JOIN customerdetails ON (fixloan.customerId=customerdetails.id) "
+                + "WHERE fixloan.userId=?";
             
             
             pst = conn.prepareStatement(sql);
@@ -591,12 +605,14 @@ public class LoanDetails extends javax.swing.JFrame {
 
     private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
         
-        String sql = "SELECT microLoanId,amountOfLoan,interestRate,numberOfInstallement,loanType,"
-                    + "installementAmount,issueDate,dueDate,customerdetails.id,customerdetails.name,"
-                    + "customerdetails.nic,customerdetails.address,customerdetails.resistance,"
-                    + "customerdetails.contactNo,customerdetails.gender FROM microloan "
+        String sql = "SELECT microLoanId AS Micro_Loan_ID , amountOfLoan AS Amount_of_Loan,"
+                    + "interestRate AS Interest_Rate , numberOfInstallement AS No_of_Installement , loanType AS Loan_Type,"
+                    + "installementAmount AS Installement_Amount ,issueDate AS Issue_Date , dueDate AS Due_Date ,"
+                    + "customerdetails.id AS Customer_ID,customerdetails.name AS Customer_Name "
+                    + "FROM microloan "
                     + "INNER JOIN customerdetails ON (microloan.customerId=customerdetails.id) "
-                    + "WHERE name=? and loanType='Daily' and microloan.userId=?";
+                    + "WHERE name=? AND loanType='Daily' AND microloan.userId=? ";
+                    
         try{
             pst = conn.prepareStatement(sql);
             pst.setString(1 , jTextField1.getText());
@@ -620,12 +636,13 @@ public class LoanDetails extends javax.swing.JFrame {
 
     private void jTextField2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyReleased
         
-        String sql = "SELECT microLoanId,amountOfLoan,interestRate,numberOfInstallement,loanType,"
-                    + "installementAmount,issueDate,dueDate,customerdetails.id,customerdetails.name,"
-                    + "customerdetails.nic,customerdetails.address,customerdetails.resistance,"
-                    + "customerdetails.contactNo,customerdetails.gender FROM microloan "
+        String sql = "SELECT microLoanId AS Micro_Loan_ID , amountOfLoan AS Amount_of_Loan,"
+                    + "interestRate AS Interest_Rate , numberOfInstallement AS No_of_Installement , loanType AS Loan_Type,"
+                    + "installementAmount AS Installement_Amount ,issueDate AS Issue_Date , dueDate AS Due_Date ,"
+                    + "customerdetails.id AS Customer_ID,customerdetails.name AS Customer_Name "
+                    + "FROM microloan "
                     + "INNER JOIN customerdetails ON (microloan.customerId=customerdetails.id) "
-                    + "WHERE name=? and loanType='Monthly' and microloan.userId=? ";
+                    + "WHERE name=? AND loanType='Monthly' AND microloan.userId=? ";
         try{
             pst = conn.prepareStatement(sql);
             pst.setString(1 , jTextField2.getText());
@@ -648,12 +665,13 @@ public class LoanDetails extends javax.swing.JFrame {
 
     private void jTextField3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyReleased
               
-        String sql = "SELECT microLoanId,amountOfLoan,interestRate,numberOfInstallement,loanType,"
-                    + "installementAmount,issueDate,dueDate,customerdetails.id,customerdetails.name,"
-                    + "customerdetails.nic,customerdetails.address,customerdetails.resistance,"
-                    + "customerdetails.contactNo,customerdetails.gender FROM microloan "
+        String sql = "SELECT microLoanId AS Micro_Loan_ID , amountOfLoan AS Amount_of_Loan,"
+                    + "interestRate AS Interest_Rate , numberOfInstallement AS No_of_Installement , loanType AS Loan_Type,"
+                    + "installementAmount AS Installement_Amount ,issueDate AS Issue_Date , dueDate AS Due_Date ,"
+                    + "customerdetails.id AS Customer_ID,customerdetails.name AS Customer_Name "
+                    + "FROM microloan "
                     + "INNER JOIN customerdetails ON (microloan.customerId=customerdetails.id) "
-                    + "WHERE name=? and loanType='Annually' and microloan.userId=?";
+                    + "WHERE name=? AND loanType='Anually' AND microloan.userId=? ";
         try{
             pst = conn.prepareStatement(sql);
             pst.setString(1 , jTextField3.getText());
@@ -677,10 +695,10 @@ public class LoanDetails extends javax.swing.JFrame {
 
     private void jTextField4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyReleased
         
-        String sql = "SELECT fixLoanId,amountOfLoan,interestRate,installementAmount,issueDate"
-                + ",customerdetails.id,customerdetails.name,"
-                + "customerdetails.nic,customerdetails.address,customerdetails.resistance,"
-                + "customerdetails.contactNo,customerdetails.gender FROM fixloan "
+        String sql = "SELECT fixLoanId AS Fix_Loan_ID , amountOfLoan AS Amount_of_Loan , interestRate AS Interest_Rate,"
+                + "installementAmount AS Installement_Amount , issueDate AS Issue_Date,"
+                + "customerdetails.id AS Customer_ID , customerdetails.name AS Customer_Name "
+                + "FROM fixloan "
                 + "INNER JOIN customerdetails ON (fixloan.customerId=customerdetails.id) "
                 + "WHERE name=? and fixloan.userId=?";
         try{

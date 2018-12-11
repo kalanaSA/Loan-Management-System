@@ -657,9 +657,8 @@ public class Home extends javax.swing.JFrame {
            
         try {
 
-            String sql = "SELECT customerdetails.id,customerdetails.name,customerdetails.nic,"
-                + "fixloan.fixLoanId,"
-                + "installementNo,payedAmount,payDate "
+            String sql = "SELECT fixLoanRepaymentId ,fixloan.fixLoanId,"
+                + "installementNo , payedAmount,payDate , customerdetails.id,customerdetails.name "
                 + "FROM fixloanrepayment "
                 + "INNER JOIN customerdetails ON (fixloanrepayment.customerId=customerdetails.id) "
                 + "INNER JOIN fixloan ON (fixloanrepayment.fixLoanId=fixloan.fixLoanId)"
@@ -685,13 +684,13 @@ public class Home extends javax.swing.JFrame {
           myDocument.add(new Paragraph("Fix Loan Repayment Report ",FontFactory.getFont(FontFactory.TIMES_BOLD,20,Font.BOLD )));
           myDocument.add(new Paragraph(new Date().toString()));
           myDocument.add(new Paragraph("-------------------------------------------------------------------------------------------"));
-          table.addCell(new PdfPCell(new Paragraph("customerId",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));      
-          table.addCell(new PdfPCell(new Paragraph("name",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
-          table.addCell(new PdfPCell(new Paragraph("nic",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
-          table.addCell(new PdfPCell(new Paragraph("fixLoanId",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
-          table.addCell(new PdfPCell(new Paragraph("installementNo",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
-          table.addCell(new PdfPCell(new Paragraph("payedAmount",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
-          table.addCell(new PdfPCell(new Paragraph("payDate",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
+          table.addCell(new PdfPCell(new Paragraph("F-Loan Repayment ID",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));      
+          table.addCell(new PdfPCell(new Paragraph("Fix Loan ID",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
+          table.addCell(new PdfPCell(new Paragraph("Installement Number",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
+          table.addCell(new PdfPCell(new Paragraph("Pay Amount",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
+          table.addCell(new PdfPCell(new Paragraph("Pay Date",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
+          table.addCell(new PdfPCell(new Paragraph("Customer ID",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
+          table.addCell(new PdfPCell(new Paragraph("Customer Name",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
          
           
           while(rs.next()){
@@ -763,9 +762,8 @@ public class Home extends javax.swing.JFrame {
         try {
 
             String sql = "SELECT fixLoanId,amountOfLoan,interestRate,installementAmount,issueDate"
-                    + ",customerdetails.id,customerdetails.name,"
-                    + "customerdetails.nic,customerdetails.address,customerdetails.resistance,"
-                    + "customerdetails.contactNo,customerdetails.gender FROM fixloan "
+                    + ",customerdetails.id,customerdetails.name "
+                    + "FROM fixloan "
                     + "INNER JOIN customerdetails ON fixloan.customerId=customerdetails.id ";
  
             pst=conn.prepareStatement(sql);
@@ -774,11 +772,11 @@ public class Home extends javax.swing.JFrame {
             
            Document myDocument = new Document();
            PdfWriter myWriter = PdfWriter.getInstance(myDocument, new FileOutputStream(filePath ));
-           PdfPTable table = new PdfPTable(12);
+           PdfPTable table = new PdfPTable(7);
            myDocument.open();
            
            
-           float[] columnWidths = new float[] {5,10,8,10,8,8,12,9,18,12,8,5};
+           float[] columnWidths = new float[] {8,12,8,11,9,8,15};
            table.setWidths(columnWidths);
 
            table.setWidthPercentage(100); //set table width to 100%
@@ -787,18 +785,14 @@ public class Home extends javax.swing.JFrame {
           myDocument.add(new Paragraph("Fix Loan Report",FontFactory.getFont(FontFactory.TIMES_BOLD,20,Font.BOLD )));
           myDocument.add(new Paragraph(new Date().toString()));
           myDocument.add(new Paragraph("-------------------------------------------------------------------------------------------"));
-          table.addCell(new PdfPCell(new Paragraph("fixLoanId",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));      
-          table.addCell(new PdfPCell(new Paragraph("amountOfLoan",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
-          table.addCell(new PdfPCell(new Paragraph("interestRate",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
-          table.addCell(new PdfPCell(new Paragraph("installementAmount",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
-          table.addCell(new PdfPCell(new Paragraph("issueDate",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
-          table.addCell(new PdfPCell(new Paragraph("customerId",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
-          table.addCell(new PdfPCell(new Paragraph("name",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
-          table.addCell(new PdfPCell(new Paragraph("nic",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
-          table.addCell(new PdfPCell(new Paragraph("address",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
-          table.addCell(new PdfPCell(new Paragraph("resistance",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
-          table.addCell(new PdfPCell(new Paragraph("contactNo",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
-          table.addCell(new PdfPCell(new Paragraph("gender",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD)))); 
+          table.addCell(new PdfPCell(new Paragraph("Fix Loan ID",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));      
+          table.addCell(new PdfPCell(new Paragraph("Amount of Loan",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
+          table.addCell(new PdfPCell(new Paragraph("Interest Rate",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
+          table.addCell(new PdfPCell(new Paragraph("Installement Amount",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
+          table.addCell(new PdfPCell(new Paragraph("Issue Date",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
+          table.addCell(new PdfPCell(new Paragraph("Customer ID",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
+          table.addCell(new PdfPCell(new Paragraph("Customer Name",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
+          
           
           
           while(rs.next()){
@@ -810,12 +804,6 @@ public class Home extends javax.swing.JFrame {
            table.addCell(new PdfPCell(new Paragraph(rs.getString(5),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
            table.addCell(new PdfPCell(new Paragraph(rs.getString(6),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
            table.addCell(new PdfPCell(new Paragraph(rs.getString(7),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
-           table.addCell(new PdfPCell(new Paragraph(rs.getString(8),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
-           table.addCell(new PdfPCell(new Paragraph(rs.getString(9),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
-           table.addCell(new PdfPCell(new Paragraph(rs.getString(10),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
-           table.addCell(new PdfPCell(new Paragraph(rs.getString(11),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
-           table.addCell(new PdfPCell(new Paragraph(rs.getString(12),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
-
                     
             }
            
@@ -856,9 +844,9 @@ public class Home extends javax.swing.JFrame {
         try {
             
 
-            String sql = "SELECT customerdetails.id,customerdetails.name,customerdetails.nic,"
-                + "microloan.microLoanId,microloan.numberOfInstallement,"
-                + "installementNo,payedAmount,payDate "
+            String sql = "SELECT microLoanRepaymentId ,  microloan.microLoanId , microloan.numberOfInstallement,"
+                + "installementNo , payedAmount , payDate, "
+                + "customerdetails.id , customerdetails.name "
                 + "FROM microloanrepayment "
                 + "INNER JOIN customerdetails ON (microloanrepayment.customerId=customerdetails.id) "
                 + "INNER JOIN microloan ON (microloanrepayment.microLoanId=microloan.microLoanId)"
@@ -875,7 +863,7 @@ public class Home extends javax.swing.JFrame {
            myDocument.open();
            
            
-           float[] columnWidths = new float[] {8,10,10,10,8,12,9,18};
+           float[] columnWidths = new float[] {8,8,8,8,12,10,8,15};
            table.setWidths(columnWidths);
 
            table.setWidthPercentage(100); //set table width to 100%
@@ -884,14 +872,14 @@ public class Home extends javax.swing.JFrame {
           myDocument.add(new Paragraph("Daily Micro Loan Repayment Report ",FontFactory.getFont(FontFactory.TIMES_BOLD,20,Font.BOLD )));
           myDocument.add(new Paragraph(new Date().toString()));
           myDocument.add(new Paragraph("-------------------------------------------------------------------------------------------"));
-          table.addCell(new PdfPCell(new Paragraph("customerId",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));      
-          table.addCell(new PdfPCell(new Paragraph("name",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));      
-          table.addCell(new PdfPCell(new Paragraph("nic",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
-          table.addCell(new PdfPCell(new Paragraph("microLoanId",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
-          table.addCell(new PdfPCell(new Paragraph("numberOfInstallement",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
-          table.addCell(new PdfPCell(new Paragraph("installementNo",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
-          table.addCell(new PdfPCell(new Paragraph("payedAmount",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
-          table.addCell(new PdfPCell(new Paragraph("payDate",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
+          table.addCell(new PdfPCell(new Paragraph("M-Loan Repayment Id",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));      
+          table.addCell(new PdfPCell(new Paragraph("Micro Loan ID",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));      
+          table.addCell(new PdfPCell(new Paragraph("Number of Installement",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
+          table.addCell(new PdfPCell(new Paragraph("Installement Number",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
+          table.addCell(new PdfPCell(new Paragraph("Pay Amount",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
+          table.addCell(new PdfPCell(new Paragraph("Pay Date",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
+          table.addCell(new PdfPCell(new Paragraph("Customer ID",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
+          table.addCell(new PdfPCell(new Paragraph("Customer Name",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
           
           
           
@@ -945,9 +933,8 @@ public class Home extends javax.swing.JFrame {
         try {
             
 
-            String sql = "SELECT customerdetails.id,customerdetails.name,customerdetails.nic,"
-                + "microloan.microLoanId,microloan.numberOfInstallement,"
-                + "installementNo,payedAmount,payDate "
+            String sql = "SELECT microLoanRepaymentId , microloan.microLoanId , microloan.numberOfInstallement,"
+                + "installementNo , payedAmount , payDate , customerdetails.id,customerdetails.name "
                 + "FROM microloanrepayment "
                 + "INNER JOIN customerdetails ON (microloanrepayment.customerId=customerdetails.id) "
                 + "INNER JOIN microloan ON (microloanrepayment.microLoanId=microloan.microLoanId)"
@@ -964,23 +951,23 @@ public class Home extends javax.swing.JFrame {
            myDocument.open();
            
            
-           float[] columnWidths = new float[] {8,10,10,10,8,12,9,18};
+           float[] columnWidths = new float[] {8,8,8,8,12,10,8,15};
            table.setWidths(columnWidths);
 
            table.setWidthPercentage(100); //set table width to 100%
            
           
-         myDocument.add(new Paragraph("Monthly Micro Loan Repayment Report ",FontFactory.getFont(FontFactory.TIMES_BOLD,20,Font.BOLD )));
+          myDocument.add(new Paragraph("Monthly Micro Loan Repayment Report ",FontFactory.getFont(FontFactory.TIMES_BOLD,20,Font.BOLD )));
           myDocument.add(new Paragraph(new Date().toString()));
           myDocument.add(new Paragraph("-------------------------------------------------------------------------------------------"));
-          table.addCell(new PdfPCell(new Paragraph("customerId",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));      
-          table.addCell(new PdfPCell(new Paragraph("name",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));      
-          table.addCell(new PdfPCell(new Paragraph("nic",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
-          table.addCell(new PdfPCell(new Paragraph("microLoanId",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
-          table.addCell(new PdfPCell(new Paragraph("numberOfInstallement",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
-          table.addCell(new PdfPCell(new Paragraph("installementNo",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
-          table.addCell(new PdfPCell(new Paragraph("payedAmount",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
-          table.addCell(new PdfPCell(new Paragraph("payDate",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
+          table.addCell(new PdfPCell(new Paragraph("M-Loan Repayment Id",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));      
+          table.addCell(new PdfPCell(new Paragraph("Micro Loan ID",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));      
+          table.addCell(new PdfPCell(new Paragraph("Number of Installement",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
+          table.addCell(new PdfPCell(new Paragraph("Installement Number",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
+          table.addCell(new PdfPCell(new Paragraph("Pay Amount",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
+          table.addCell(new PdfPCell(new Paragraph("Pay Date",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
+          table.addCell(new PdfPCell(new Paragraph("Customer ID",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
+          table.addCell(new PdfPCell(new Paragraph("Customer Name",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
           
           
           
@@ -1034,9 +1021,8 @@ public class Home extends javax.swing.JFrame {
         try {
             
 
-            String sql = "SELECT customerdetails.id,customerdetails.name,customerdetails.nic,"
-                + "microloan.microLoanId,microloan.numberOfInstallement,"
-                + "installementNo,payedAmount,payDate "
+            String sql = "SELECT microLoanRepaymentId , microloan.microLoanId,microloan.numberOfInstallement,"
+                + "installementNo,payedAmount,payDate ,customerdetails.id , customerdetails.name "
                 + "FROM microloanrepayment "
                 + "INNER JOIN customerdetails ON (microloanrepayment.customerId=customerdetails.id) "
                 + "INNER JOIN microloan ON (microloanrepayment.microLoanId=microloan.microLoanId)"
@@ -1053,7 +1039,7 @@ public class Home extends javax.swing.JFrame {
            myDocument.open();
            
            
-           float[] columnWidths = new float[] {8,10,10,10,8,12,9,18};
+           float[] columnWidths = new float[] {8,8,8,8,12,10,8,15};
            table.setWidths(columnWidths);
 
            table.setWidthPercentage(100); //set table width to 100%
@@ -1062,14 +1048,14 @@ public class Home extends javax.swing.JFrame {
           myDocument.add(new Paragraph("Anually Micro Loan Repayment Report ",FontFactory.getFont(FontFactory.TIMES_BOLD,20,Font.BOLD )));
           myDocument.add(new Paragraph(new Date().toString()));
           myDocument.add(new Paragraph("-------------------------------------------------------------------------------------------"));
-          table.addCell(new PdfPCell(new Paragraph("customerId",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));      
-          table.addCell(new PdfPCell(new Paragraph("name",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));      
-          table.addCell(new PdfPCell(new Paragraph("nic",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
-          table.addCell(new PdfPCell(new Paragraph("microLoanId",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
-          table.addCell(new PdfPCell(new Paragraph("numberOfInstallement",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
-          table.addCell(new PdfPCell(new Paragraph("installementNo",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
-          table.addCell(new PdfPCell(new Paragraph("payedAmount",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
-          table.addCell(new PdfPCell(new Paragraph("payDate",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
+          table.addCell(new PdfPCell(new Paragraph("M-Loan Repayment Id",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));      
+          table.addCell(new PdfPCell(new Paragraph("Micro Loan ID",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));      
+          table.addCell(new PdfPCell(new Paragraph("Number of Installement",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
+          table.addCell(new PdfPCell(new Paragraph("Installement Number",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
+          table.addCell(new PdfPCell(new Paragraph("Pay Amount",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
+          table.addCell(new PdfPCell(new Paragraph("Pay Date",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
+          table.addCell(new PdfPCell(new Paragraph("Customer ID",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
+          table.addCell(new PdfPCell(new Paragraph("Customer Name",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
           
           
           
@@ -1123,9 +1109,8 @@ public class Home extends javax.swing.JFrame {
         try {
 
             String sql = "SELECT microLoanId,amountOfLoan,interestRate,numberOfInstallement,loanType,"
-                    + "installementAmount,issueDate,dueDate,customerdetails.id,customerdetails.name,"
-                    + "customerdetails.nic,customerdetails.address,customerdetails.resistance,"
-                    + "customerdetails.contactNo,customerdetails.gender FROM microloan "
+                    + "installementAmount,issueDate,dueDate,customerdetails.id,customerdetails.name "
+                    + "FROM microloan "
                     + "INNER JOIN customerdetails ON (microloan.customerId=customerdetails.id) "
                     + "WHERE loanType='Daily' and microloan.userId=?";
  
@@ -1136,11 +1121,11 @@ public class Home extends javax.swing.JFrame {
             
            Document myDocument = new Document();
            PdfWriter myWriter = PdfWriter.getInstance(myDocument, new FileOutputStream(filePath ));
-           PdfPTable table = new PdfPTable(14);
+           PdfPTable table = new PdfPTable(10);
            myDocument.open();
            
            
-           float[] columnWidths = new float[] {5,10,8,5,8,10,8,8,12,9,18,12,8,5};
+           float[] columnWidths = new float[] {8,12,8,10,8,11,9,9,8,15};
            table.setWidths(columnWidths);
 
            table.setWidthPercentage(100); //set table width to 100%
@@ -1149,20 +1134,17 @@ public class Home extends javax.swing.JFrame {
           myDocument.add(new Paragraph("Daily Micro Loan Report",FontFactory.getFont(FontFactory.TIMES_BOLD,20,Font.BOLD )));
           myDocument.add(new Paragraph(new Date().toString()));
           myDocument.add(new Paragraph("-------------------------------------------------------------------------------------------"));
-          table.addCell(new PdfPCell(new Paragraph("microLoanId",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));      
-          table.addCell(new PdfPCell(new Paragraph("amountOfLoan",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
-          table.addCell(new PdfPCell(new Paragraph("interestRate",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
-          table.addCell(new PdfPCell(new Paragraph("numberOfInstallement",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
-          table.addCell(new PdfPCell(new Paragraph("loanType",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
-          table.addCell(new PdfPCell(new Paragraph("installementAmount",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
-          table.addCell(new PdfPCell(new Paragraph("issueDate",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
-          table.addCell(new PdfPCell(new Paragraph("customerId",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
-          table.addCell(new PdfPCell(new Paragraph("name",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
-          table.addCell(new PdfPCell(new Paragraph("nic",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
-          table.addCell(new PdfPCell(new Paragraph("address",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
-          table.addCell(new PdfPCell(new Paragraph("resistance",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
-          table.addCell(new PdfPCell(new Paragraph("contactNo",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
-          table.addCell(new PdfPCell(new Paragraph("gender",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD)))); 
+          table.addCell(new PdfPCell(new Paragraph("Micro Loan ID",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));      
+          table.addCell(new PdfPCell(new Paragraph("Amount of Loan",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
+          table.addCell(new PdfPCell(new Paragraph("Interest Rate",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
+          table.addCell(new PdfPCell(new Paragraph("Number of Installement",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
+          table.addCell(new PdfPCell(new Paragraph("Loan Type",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
+          table.addCell(new PdfPCell(new Paragraph("Installement Amount",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
+          table.addCell(new PdfPCell(new Paragraph("Issue Date",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
+          table.addCell(new PdfPCell(new Paragraph("Due Date",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
+          table.addCell(new PdfPCell(new Paragraph("Customer ID",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
+          table.addCell(new PdfPCell(new Paragraph("Customer Name",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
+          
           
           
           while(rs.next()){
@@ -1177,11 +1159,6 @@ public class Home extends javax.swing.JFrame {
            table.addCell(new PdfPCell(new Paragraph(rs.getString(8),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
            table.addCell(new PdfPCell(new Paragraph(rs.getString(9),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
            table.addCell(new PdfPCell(new Paragraph(rs.getString(10),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
-           table.addCell(new PdfPCell(new Paragraph(rs.getString(11),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
-           table.addCell(new PdfPCell(new Paragraph(rs.getString(12),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
-           table.addCell(new PdfPCell(new Paragraph(rs.getString(13),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
-           table.addCell(new PdfPCell(new Paragraph(rs.getString(14),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
-
                     
             }
            
@@ -1222,9 +1199,8 @@ public class Home extends javax.swing.JFrame {
         try {
 
             String sql = "SELECT microLoanId,amountOfLoan,interestRate,numberOfInstallement,loanType,"
-                    + "installementAmount,issueDate,dueDate,customerdetails.id,customerdetails.name,"
-                    + "customerdetails.nic,customerdetails.address,customerdetails.resistance,"
-                    + "customerdetails.contactNo,customerdetails.gender FROM microloan "
+                    + "installementAmount,issueDate,dueDate,customerdetails.id,customerdetails.name "
+                    + "FROM microloan "
                     + "INNER JOIN customerdetails ON (microloan.customerId=customerdetails.id) "
                     + "WHERE loanType='Monthly' and microloan.userId=?";
  
@@ -1235,11 +1211,11 @@ public class Home extends javax.swing.JFrame {
             
            Document myDocument = new Document();
            PdfWriter myWriter = PdfWriter.getInstance(myDocument, new FileOutputStream(filePath ));
-           PdfPTable table = new PdfPTable(14);
+           PdfPTable table = new PdfPTable(10);
            myDocument.open();
            
            
-           float[] columnWidths = new float[] {5,10,8,5,8,10,8,8,12,9,18,12,8,5};
+           float[] columnWidths = new float[] {8,12,8,10,8,11,9,9,8,15};
            table.setWidths(columnWidths);
 
            table.setWidthPercentage(100); //set table width to 100%
@@ -1248,20 +1224,16 @@ public class Home extends javax.swing.JFrame {
           myDocument.add(new Paragraph("Monthly Micro Loan Report",FontFactory.getFont(FontFactory.TIMES_BOLD,20,Font.BOLD )));
           myDocument.add(new Paragraph(new Date().toString()));
           myDocument.add(new Paragraph("-------------------------------------------------------------------------------------------"));
-          table.addCell(new PdfPCell(new Paragraph("microLoanId",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));      
-          table.addCell(new PdfPCell(new Paragraph("amountOfLoan",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
-          table.addCell(new PdfPCell(new Paragraph("interestRate",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
-          table.addCell(new PdfPCell(new Paragraph("numberOfInstallement",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
-          table.addCell(new PdfPCell(new Paragraph("loanType",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
-          table.addCell(new PdfPCell(new Paragraph("installementAmount",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
-          table.addCell(new PdfPCell(new Paragraph("issueDate",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
-          table.addCell(new PdfPCell(new Paragraph("customerId",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
-          table.addCell(new PdfPCell(new Paragraph("name",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
-          table.addCell(new PdfPCell(new Paragraph("nic",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
-          table.addCell(new PdfPCell(new Paragraph("address",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
-          table.addCell(new PdfPCell(new Paragraph("resistance",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
-          table.addCell(new PdfPCell(new Paragraph("contactNo",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
-          table.addCell(new PdfPCell(new Paragraph("gender",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD)))); 
+          table.addCell(new PdfPCell(new Paragraph("Micr Loan ID",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));      
+          table.addCell(new PdfPCell(new Paragraph("Amount of Loan",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
+          table.addCell(new PdfPCell(new Paragraph("Interest Rate",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
+          table.addCell(new PdfPCell(new Paragraph("Number of Installement",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
+          table.addCell(new PdfPCell(new Paragraph("Loan Type",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
+          table.addCell(new PdfPCell(new Paragraph("Installement Amount",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
+          table.addCell(new PdfPCell(new Paragraph("Issue Date",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
+          table.addCell(new PdfPCell(new Paragraph("Due Date",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
+          table.addCell(new PdfPCell(new Paragraph("Customer Id",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
+          table.addCell(new PdfPCell(new Paragraph("Customer Name",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
           
           
           while(rs.next()){
@@ -1276,11 +1248,6 @@ public class Home extends javax.swing.JFrame {
            table.addCell(new PdfPCell(new Paragraph(rs.getString(8),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
            table.addCell(new PdfPCell(new Paragraph(rs.getString(9),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
            table.addCell(new PdfPCell(new Paragraph(rs.getString(10),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
-           table.addCell(new PdfPCell(new Paragraph(rs.getString(11),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
-           table.addCell(new PdfPCell(new Paragraph(rs.getString(12),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
-           table.addCell(new PdfPCell(new Paragraph(rs.getString(13),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
-           table.addCell(new PdfPCell(new Paragraph(rs.getString(14),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
-
                     
             }
            
@@ -1334,11 +1301,11 @@ public class Home extends javax.swing.JFrame {
             
            Document myDocument = new Document();
            PdfWriter myWriter = PdfWriter.getInstance(myDocument, new FileOutputStream(filePath ));
-           PdfPTable table = new PdfPTable(14);
+           PdfPTable table = new PdfPTable(10);
            myDocument.open();
            
            
-           float[] columnWidths = new float[] {5,10,8,5,8,10,8,8,12,9,18,12,8,5};
+           float[] columnWidths = new float[] {8,12,8,10,8,11,9,9,8,15};
            table.setWidths(columnWidths);
 
            table.setWidthPercentage(100); //set table width to 100%
@@ -1347,21 +1314,16 @@ public class Home extends javax.swing.JFrame {
           myDocument.add(new Paragraph("Anually Micro Loan Report",FontFactory.getFont(FontFactory.TIMES_BOLD,20,Font.BOLD )));
           myDocument.add(new Paragraph(new Date().toString()));
           myDocument.add(new Paragraph("-------------------------------------------------------------------------------------------"));
-          table.addCell(new PdfPCell(new Paragraph("microLoanId",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));      
-          table.addCell(new PdfPCell(new Paragraph("amountOfLoan",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
-          table.addCell(new PdfPCell(new Paragraph("interestRate",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
-          table.addCell(new PdfPCell(new Paragraph("numberOfInstallement",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
-          table.addCell(new PdfPCell(new Paragraph("loanType",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
-          table.addCell(new PdfPCell(new Paragraph("installementAmount",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
-          table.addCell(new PdfPCell(new Paragraph("issueDate",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
-          table.addCell(new PdfPCell(new Paragraph("customerId",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
-          table.addCell(new PdfPCell(new Paragraph("name",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
-          table.addCell(new PdfPCell(new Paragraph("nic",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
-          table.addCell(new PdfPCell(new Paragraph("address",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
-          table.addCell(new PdfPCell(new Paragraph("resistance",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
-          table.addCell(new PdfPCell(new Paragraph("contactNo",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
-          table.addCell(new PdfPCell(new Paragraph("gender",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD)))); 
-          
+          table.addCell(new PdfPCell(new Paragraph("Micro Loan ID",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));      
+          table.addCell(new PdfPCell(new Paragraph("Amount of Loan",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
+          table.addCell(new PdfPCell(new Paragraph("Interest Rate",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
+          table.addCell(new PdfPCell(new Paragraph("Number of Installement",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
+          table.addCell(new PdfPCell(new Paragraph("Loan Type",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
+          table.addCell(new PdfPCell(new Paragraph("Installement Amount",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
+          table.addCell(new PdfPCell(new Paragraph("Issue Date",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
+          table.addCell(new PdfPCell(new Paragraph("Due Date",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
+          table.addCell(new PdfPCell(new Paragraph("Customer Id",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));          
+          table.addCell(new PdfPCell(new Paragraph("Customer Name",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));          
           
           while(rs.next()){
               
@@ -1375,10 +1337,6 @@ public class Home extends javax.swing.JFrame {
            table.addCell(new PdfPCell(new Paragraph(rs.getString(8),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
            table.addCell(new PdfPCell(new Paragraph(rs.getString(9),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
            table.addCell(new PdfPCell(new Paragraph(rs.getString(10),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
-           table.addCell(new PdfPCell(new Paragraph(rs.getString(11),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
-           table.addCell(new PdfPCell(new Paragraph(rs.getString(12),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
-           table.addCell(new PdfPCell(new Paragraph(rs.getString(13),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
-           table.addCell(new PdfPCell(new Paragraph(rs.getString(14),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
 
                     
             }

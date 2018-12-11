@@ -140,14 +140,14 @@ public class ChangePassword extends javax.swing.JFrame {
                     .addComponent(jPasswordField2, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
                     .addComponent(jPasswordField1)
                     .addComponent(jTextField1))
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(57, 57, 57)
+                .addGap(47, 47, 47)
                 .addComponent(jLabel5)
-                .addGap(43, 43, 43)
+                .addGap(53, 53, 53)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -181,7 +181,7 @@ public class ChangePassword extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(409, 539));
+        setSize(new java.awt.Dimension(435, 539));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 

@@ -35,10 +35,12 @@ public class Repayment extends javax.swing.JFrame {
         public void microLoanTable(){
         
         try{
-            String sql = "SELECT microLoanId,amountOfLoan,interestRate,numberOfInstallement,loanType,"
-                    + "installementAmount,issueDate,dueDate,customerdetails.id,customerdetails.name,"
-                    + "customerdetails.nic,customerdetails.address,customerdetails.resistance,"
-                    + "customerdetails.contactNo,customerdetails.gender FROM microloan "
+            String sql = "SELECT microLoanId AS Micro_Loan_ID , amountOfLoan AS Amount_of_Loan,"
+                    + "interestRate AS Interest_Rate , numberOfInstallement AS No_of_Installement , loanType AS Loan_Type,"
+                    + "installementAmount AS Installement_Amount ,issueDate AS Issue_Date , dueDate AS Due_Date ,"
+                    + "customerdetails.id AS Customer_ID,customerdetails.name AS Customer_Name ,"
+                    + "customerdetails.nic AS NIC_NO , customerdetails.contactNo AS Contact_NO "
+                    + "FROM microloan "
                     + "INNER JOIN customerdetails ON (microloan.customerId=customerdetails.id) "
                     + "WHERE microloan.userId=?";
             
@@ -62,12 +64,14 @@ public class Repayment extends javax.swing.JFrame {
     public void fixLoanTable(){
         
         try{
-        String sql = "SELECT fixLoanId,amountOfLoan,interestRate,installementAmount,issueDate,"
-                + "customerdetails.id,customerdetails.name,customerdetails.nic,customerdetails.address,"
-                + "customerdetails.resistance,customerdetails.contactNo,customerdetails.gender "
+            
+        String sql = "SELECT fixLoanId AS Fix_Loan_ID , amountOfLoan AS Amount_of_Loan , interestRate AS Interest_Rate,"
+                + "installementAmount AS Installement_Amount , issueDate AS Issue_Date,"
+                + "customerdetails.id AS Customer_ID , customerdetails.name AS Customer_Name ,"
+                + "customerdetails.nic AS NIC_No , customerdetails.contactNo AS Contact_No "
                 + "FROM fixloan "
-                + "INNER JOIN customerdetails ON fixloan.customerId=customerdetails.id "
-                + "WHERE fixloan.userId=? ";
+                + "INNER JOIN customerdetails ON (fixloan.customerId=customerdetails.id) "
+                + "WHERE fixloan.userId=?";
         
         pst = conn.prepareStatement(sql);
         pst.setString(1, User.userid);
@@ -687,12 +691,13 @@ public class Repayment extends javax.swing.JFrame {
 
     private void txt_searchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_searchKeyReleased
 
-        String sql = "SELECT microLoanId,amountOfLoan,interestRate,numberOfInstallement,loanType,"
-                    + "installementAmount,issueDate,dueDate,customerdetails.id,customerdetails.name,"
-                    + "customerdetails.nic,customerdetails.address,customerdetails.resistance,"
-                    + "customerdetails.contactNo,customerdetails.gender FROM microloan "
-                    + "INNER JOIN customerdetails ON microloan.customerId=customerdetails.id "
-                    + "WHERE name=? and microloan.userId=? ";
+        String sql = "SELECT microLoanId AS Micro_Loan_ID , amountOfLoan AS Amount_of_Loan,"
+                    + "interestRate AS Interest_Rate , numberOfInstallement AS No_of_Installement , loanType AS Loan_Type,"
+                    + "installementAmount AS Installement_Amount ,issueDate AS Issue_Date , dueDate AS Due_Date ,"
+                    + "customerdetails.id AS Customer_ID,customerdetails.name AS Customer_Name "
+                    + "FROM microloan "
+                    + "INNER JOIN customerdetails ON (microloan.customerId=customerdetails.id) "
+                    + "WHERE name=? AND microloan.userId=? ";
         try{
             pst = conn.prepareStatement(sql);
             pst.setString(1 , txt_search.getText());
@@ -732,7 +737,7 @@ public class Repayment extends javax.swing.JFrame {
         String customerid = jTable1.getValueAt(r, 8).toString();
         String name = jTable1.getValueAt(r, 9).toString();
         String nic = jTable1.getValueAt(r, 10).toString();
-        String contactno = jTable1.getValueAt(r, 13).toString();
+        String contactno = jTable1.getValueAt(r, 11).toString();
         String loanid = jTable1.getValueAt(r, 0).toString();
         String loantype = jTable1.getValueAt(r, 4).toString();
         String numberofinstallement = jTable1.getValueAt(r, 3).toString();
@@ -807,12 +812,12 @@ public class Repayment extends javax.swing.JFrame {
 
     private void txt_search2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_search2KeyReleased
     
-        String sql = "SELECT fixLoanId,amountOfLoan,interestRate,installementAmount,issueDate,"
-                    + "customerdetails.id,customerdetails.name,"
-                    + "customerdetails.nic,customerdetails.address,customerdetails.resistance,"
-                    + "customerdetails.contactNo,customerdetails.gender FROM fixloan "
-                    + "INNER JOIN customerdetails ON fixloan.customerId=customerdetails.id "
-                    + "WHERE name=? and fixloan.userId=? ";
+        String sql = "SELECT fixLoanId AS Fix_Loan_ID , amountOfLoan AS Amount_of_Loan , interestRate AS Interest_Rate,"
+                + "installementAmount AS Installement_Amount , issueDate AS Issue_Date,"
+                + "customerdetails.id AS Customer_ID , customerdetails.name AS Customer_Name "
+                + "FROM fixloan "
+                + "INNER JOIN customerdetails ON (fixloan.customerId=customerdetails.id) "
+                + "WHERE name=? and fixloan.userId=?";
         try{
             pst = conn.prepareStatement(sql);
             pst.setString(1 , txt_search2.getText());
@@ -841,7 +846,7 @@ public class Repayment extends javax.swing.JFrame {
         String customerid = jTable2.getValueAt(r, 5).toString();
         String name = jTable2.getValueAt(r, 6).toString();
         String nic = jTable2.getValueAt(r, 7).toString();
-        String contactno = jTable2.getValueAt(r, 10).toString();
+        String contactno = jTable2.getValueAt(r, 8).toString();
         String loanid = jTable2.getValueAt(r, 0).toString();
         String installementamount = jTable2.getValueAt(r, 3).toString();
 
