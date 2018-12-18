@@ -21,8 +21,8 @@ public class LoanDetails extends javax.swing.JFrame {
         setIcon();
         
         microLoanDailyTable();
+        microLoanWeeklyTable();
         microLoanMonthlyTable();
-        microLoanAnnuallyTable();
         fixLoanTable();
         customerDetailsTable();
         
@@ -48,7 +48,7 @@ public class LoanDetails extends javax.swing.JFrame {
                     + "customerdetails.id AS Customer_ID,customerdetails.name AS Customer_Name "
                     + "FROM microloan "
                     + "INNER JOIN customerdetails ON (microloan.customerId=customerdetails.id) "
-                    + "WHERE loanType='Daily' and microloan.userId=?";
+                    + "WHERE loanType='Daily' AND microloan.userId=? AND microloan.is_deleted=0 ";
             
             pst = conn.prepareStatement(sql);
             pst.setString(1, User.userid);
@@ -69,7 +69,7 @@ public class LoanDetails extends javax.swing.JFrame {
   
     }
     
-    public void microLoanMonthlyTable(){
+    public void microLoanWeeklyTable(){
         
         try{
             String sql = "SELECT microLoanId AS Micro_Loan_ID , amountOfLoan AS Amount_of_Loan,"
@@ -78,7 +78,7 @@ public class LoanDetails extends javax.swing.JFrame {
                     + "customerdetails.id AS Customer_ID,customerdetails.name AS Customer_Name "
                     + "FROM microloan "
                     + "INNER JOIN customerdetails ON (microloan.customerId=customerdetails.id) "
-                    + "WHERE loanType='Monthly' and microloan.userId=?";
+                    + "WHERE loanType='Weekly' AND microloan.userId=? AND microloan.is_deleted=0";
             
             pst = conn.prepareStatement(sql);
             pst.setString(1, User.userid);
@@ -98,7 +98,7 @@ public class LoanDetails extends javax.swing.JFrame {
   
     }
        
-    public void microLoanAnnuallyTable(){
+    public void microLoanMonthlyTable(){
         
         try{
             String sql = "SELECT microLoanId AS Micro_Loan_ID , amountOfLoan AS Amount_of_Loan,"
@@ -107,7 +107,7 @@ public class LoanDetails extends javax.swing.JFrame {
                     + "customerdetails.id AS Customer_ID,customerdetails.name AS Customer_Name "
                     + "FROM microloan "
                     + "INNER JOIN customerdetails ON (microloan.customerId=customerdetails.id) "
-                    + "WHERE loanType='Anually' and microloan.userId=?";
+                    + "WHERE loanType='Monthly' AND microloan.userId=? AND microloan.is_deleted=0";
             
             pst = conn.prepareStatement(sql);
             pst.setString(1 , User.userid);
@@ -135,7 +135,7 @@ public class LoanDetails extends javax.swing.JFrame {
                 + "customerdetails.id AS Customer_ID , customerdetails.name AS Customer_Name "
                 + "FROM fixloan "
                 + "INNER JOIN customerdetails ON (fixloan.customerId=customerdetails.id) "
-                + "WHERE fixloan.userId=?";
+                + "WHERE fixloan.userId=? AND fixloan.is_deleted=0 ";
             
             
             pst = conn.prepareStatement(sql);
@@ -158,7 +158,9 @@ public class LoanDetails extends javax.swing.JFrame {
         
         public void customerDetailsTable(){
         
-            String sql = "SELECT id,name,nic,address,resistance,contactNo,gender FROM customerdetails WHERE userId=?";
+            String sql = "SELECT id,name,nic,address,resistance,contactNo,gender "
+                    + "FROM customerdetails "
+                    + "WHERE userId=? AND is_deleted=0 ";
             
             try{
                 pst = conn.prepareStatement(sql);
@@ -292,8 +294,7 @@ public class LoanDetails extends javax.swing.JFrame {
                     .addComponent(jButton2)
                     .addComponent(jButton1))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 458, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Daily Micro-Loan Service", jPanel3);
@@ -373,11 +374,10 @@ public class LoanDetails extends javax.swing.JFrame {
                     .addComponent(jButton4)
                     .addComponent(jButton3))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 457, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Monthly Micro-Loan Service", jPanel4);
+        jTabbedPane1.addTab("Weekly  Micro-Loan Service", jPanel4);
 
         jTable5.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -445,11 +445,10 @@ public class LoanDetails extends javax.swing.JFrame {
                     .addComponent(jButton6)
                     .addComponent(jButton5))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Annually Micro-Loan Service", jPanel5);
+        jTabbedPane1.addTab("Monthly Micro-Loan Service", jPanel5);
 
         jTable6.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -517,8 +516,7 @@ public class LoanDetails extends javax.swing.JFrame {
                     .addComponent(jButton8)
                     .addComponent(jButton7))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Fix-Loan Service", jPanel6);
@@ -578,8 +576,7 @@ public class LoanDetails extends javax.swing.JFrame {
                     .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton9))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Customer Details", jPanel1);
@@ -611,7 +608,7 @@ public class LoanDetails extends javax.swing.JFrame {
                     + "customerdetails.id AS Customer_ID,customerdetails.name AS Customer_Name "
                     + "FROM microloan "
                     + "INNER JOIN customerdetails ON (microloan.customerId=customerdetails.id) "
-                    + "WHERE name=? AND loanType='Daily' AND microloan.userId=? ";
+                    + "WHERE name=? AND loanType='Daily' AND microloan.userId=? AND microloan.is_deleted=0 ";
                     
         try{
             pst = conn.prepareStatement(sql);
@@ -642,7 +639,7 @@ public class LoanDetails extends javax.swing.JFrame {
                     + "customerdetails.id AS Customer_ID,customerdetails.name AS Customer_Name "
                     + "FROM microloan "
                     + "INNER JOIN customerdetails ON (microloan.customerId=customerdetails.id) "
-                    + "WHERE name=? AND loanType='Monthly' AND microloan.userId=? ";
+                    + "WHERE name=? AND loanType='Weekly' AND microloan.userId=? AND microloan.is_deleted=0 ";
         try{
             pst = conn.prepareStatement(sql);
             pst.setString(1 , jTextField2.getText());
@@ -671,7 +668,7 @@ public class LoanDetails extends javax.swing.JFrame {
                     + "customerdetails.id AS Customer_ID,customerdetails.name AS Customer_Name "
                     + "FROM microloan "
                     + "INNER JOIN customerdetails ON (microloan.customerId=customerdetails.id) "
-                    + "WHERE name=? AND loanType='Anually' AND microloan.userId=? ";
+                    + "WHERE name=? AND loanType='Monthly' AND microloan.userId=? AND microloan.is_deleted=0 ";
         try{
             pst = conn.prepareStatement(sql);
             pst.setString(1 , jTextField3.getText());
@@ -700,7 +697,7 @@ public class LoanDetails extends javax.swing.JFrame {
                 + "customerdetails.id AS Customer_ID , customerdetails.name AS Customer_Name "
                 + "FROM fixloan "
                 + "INNER JOIN customerdetails ON (fixloan.customerId=customerdetails.id) "
-                + "WHERE name=? and fixloan.userId=?";
+                + "WHERE name=? and fixloan.userId=? AND fixloan.is_deleted=0 ";
         try{
             pst = conn.prepareStatement(sql);
             pst.setString(1 , jTextField4.getText());
@@ -819,7 +816,7 @@ public class LoanDetails extends javax.swing.JFrame {
             pst.setString(3, User.userid);
             pst.execute();
             
-            microLoanMonthlyTable();
+            microLoanWeeklyTable();
             JOptionPane.showMessageDialog(null, "Record Deleted Successfully!");
             
         }catch(Exception e){
@@ -861,7 +858,7 @@ public class LoanDetails extends javax.swing.JFrame {
             pst.setString(3, User.userid);
             pst.execute();
             
-            microLoanAnnuallyTable();
+            microLoanMonthlyTable();
             JOptionPane.showMessageDialog(null, "Record Deleted Successfully!");
             
         }catch(Exception e){
@@ -925,7 +922,7 @@ public class LoanDetails extends javax.swing.JFrame {
     private void jTextField6KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField6KeyReleased
         
         String sql = "SELECT id,name,nic,address,resistance,contactNo,gender FROM customerdetails "
-                + "WHERE name=? and userId=?";
+                + "WHERE name=? and userId=? AND is_deleted=0 ";
         try{
             pst = conn.prepareStatement(sql);
             pst.setString(1, jTextField6.getText());
@@ -947,13 +944,13 @@ public class LoanDetails extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         
-        microLoanMonthlyTable();
+        microLoanWeeklyTable();
         jTextField2.setText("");
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         
-        microLoanAnnuallyTable();
+        microLoanMonthlyTable();
         jTextField3.setText("");
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -964,7 +961,7 @@ public class LoanDetails extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        
+        jTextField6.setText("");
         customerDetailsTable();
     }//GEN-LAST:event_jButton9ActionPerformed
 

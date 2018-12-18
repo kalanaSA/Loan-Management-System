@@ -4,8 +4,10 @@ import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
 
 public class RepaymentDetails extends javax.swing.JFrame {
@@ -21,67 +23,84 @@ public class RepaymentDetails extends javax.swing.JFrame {
         conn = DBconnect.connect();
         setIcon();
         
-        microLoanRepaymentDetailsTable();
-        fixLoanRepaymentDetailsTable();
+        microLoanTable();
+        fixLoanTable();
     }
     
-    public void microLoanRepaymentDetailsTable(){
-        
-        String sql = "SELECT microloan.microLoanId AS Micro_Loan_ID , microloan.numberOfInstallement AS Number_of_Installement,"
-                + "installementNo AS Installement_No , payedAmount AS Payed_Amount , payDate AS Pay_Date ,"
-                + "customerdetails.id AS Customer_ID , customerdetails.name AS Customer_Name "
-                + "FROM microloanrepayment "
-                + "INNER JOIN customerdetails ON (microloanrepayment.customerId=customerdetails.id) "
-                + "INNER JOIN microloan ON (microloanrepayment.microLoanId=microloan.microLoanId)"
-                + "WHERE microloanrepayment.userId=?";
+    RepaymentDetailsPop rdp = new RepaymentDetailsPop();
+    
+    public void microLoanTable(){
         
         try{
+            String sql = "SELECT microLoanId AS Micro_Loan_ID , amountOfLoan AS Amount_of_Loan,"
+                    + "interestRate AS Interest_Rate , numberOfInstallement AS No_of_Installement , loanType AS Loan_Type,"
+                    + "installementAmount AS Installement_Amount ,issueDate AS Issue_Date , dueDate AS Due_Date ,"
+                    + "customerdetails.id AS Customer_ID,customerdetails.name AS Customer_Name "
+                    + "FROM microloan "
+                    + "INNER JOIN customerdetails ON (microloan.customerId=customerdetails.id) "
+                    + "WHERE microloan.userId=? AND microloan.is_deleted=0" ;
+            
             pst = conn.prepareStatement(sql);
             pst.setString(1, User.userid);
             rs = pst.executeQuery();
-            
             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-            
             
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
         }finally{
             try{
                 rs.close();
-                pst.close(); 
+                pst.close();
             }catch(Exception e){
                 
             }
         }
     }
     
-    public void fixLoanRepaymentDetailsTable(){
-        
-        String sql = "SELECT fixloan.fixLoanId AS Fix_Loan_ID , installementNo AS Installement_No ,"
-                + "payedAmount AS Payed_Amount , payDate AS Pay_Date ,"
-                + "customerdetails.id AS Customer_ID , customerdetails.name AS Customer_Name "
-                + "FROM fixloanrepayment "
-                + "INNER JOIN customerdetails ON (fixloanrepayment.customerId=customerdetails.id) "
-                + "INNER JOIN fixloan ON (fixloanrepayment.fixLoanId=fixloan.fixLoanId) "
-                + "WHERE fixloanrepayment.userId=?";
+    public void fixLoanTable(){
         
         try{
+            String sql = "SELECT fixLoanId AS Fix_Loan_ID , amountOfLoan AS Amount_of_Loan , interestRate AS Interest_Rate,"
+                + "installementAmount AS Installement_Amount , issueDate AS Issue_Date,"
+                + "customerdetails.id AS Customer_ID , customerdetails.name AS Customer_Name "
+                + "FROM fixloan "
+                + "INNER JOIN customerdetails ON (fixloan.customerId=customerdetails.id) "
+                + "WHERE fixloan.userId=? AND fixloan.is_deleted=0 ";
+            
+            
             pst = conn.prepareStatement(sql);
-            pst.setString(1, User.userid);
+            pst.setString(1 ,User.userid);
             rs = pst.executeQuery();
-            
             jTable2.setModel(DbUtils.resultSetToTableModel(rs));
-            
             
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
         }finally{
             try{
                 rs.close();
-                pst.close(); 
+                pst.close();
             }catch(Exception e){
                 
             }
+        }
+    }
+    
+    public void microLoanRepaymentDetailTable(){
+        
+        try{
+            String sql = "SELECT microLoanRepaymentId ,  microloan.microLoanId , microloan.numberOfInstallement,"
+                + "installementNo , payedAmount , payDate, "
+                + "customerdetails.id , customerdetails.name "
+                + "FROM microloanrepayment "
+                + "INNER JOIN customerdetails ON (microloanrepayment.customerId=customerdetails.id) "
+                + "INNER JOIN microloan ON (microloanrepayment.microLoanId=microloan.microLoanId)"
+                + "WHERE microloanrepayment.userId=?";
+ 
+            pst=conn.prepareStatement(sql);
+            pst.setString(1, User.userid);
+            rs=pst.executeQuery();
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
         }
     }
 
@@ -116,11 +135,21 @@ public class RepaymentDetails extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel1.setText("Search Name");
 
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
         jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextField1KeyReleased(evt);
@@ -139,33 +168,30 @@ public class RepaymentDetails extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap()
+                        .addComponent(jScrollPane1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1213, Short.MAX_VALUE))
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 772, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(24, 24, 24))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addGap(20, 20, 20)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Micro-Loan Repayment Details", jPanel1);
@@ -181,6 +207,11 @@ public class RepaymentDetails extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable2MouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTable2);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
@@ -205,28 +236,28 @@ public class RepaymentDetails extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(760, 760, 760)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1204, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(19, Short.MAX_VALUE))
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 776, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(21, 21, 21)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jTabbedPane1.addTab("Fix-Loan Repayment Details", jPanel2);
@@ -242,35 +273,34 @@ public class RepaymentDetails extends javax.swing.JFrame {
             .addComponent(jTabbedPane1)
         );
 
-        setSize(new java.awt.Dimension(1270, 585));
+        setSize(new java.awt.Dimension(1309, 585));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
          
-        String sql = "SELECT microloan.microLoanId AS Micro_Loan_ID , microloan.numberOfInstallement AS Number_of_Installement,"
-                + "installementNo AS Installement_No , payedAmount AS Payed_Amount , payDate AS Pay_Date ,"
-                + "customerdetails.id AS Customer_ID , customerdetails.name AS Customer_Name "
-                + "FROM microloanrepayment "
-                + "INNER JOIN customerdetails ON (microloanrepayment.customerId=customerdetails.id) "
-                + "INNER JOIN microloan ON (microloanrepayment.microLoanId=microloan.microLoanId) "
-                + "WHERE name=? AND microloanrepayment.userId=?";
-        
+        String sql = "SELECT microLoanId AS Micro_Loan_ID , amountOfLoan AS Amount_of_Loan,"
+                    + "interestRate AS Interest_Rate , numberOfInstallement AS No_of_Installement , loanType AS Loan_Type,"
+                    + "installementAmount AS Installement_Amount ,issueDate AS Issue_Date , dueDate AS Due_Date ,"
+                    + "customerdetails.id AS Customer_ID,customerdetails.name AS Customer_Name "
+                    + "FROM microloan "
+                    + "INNER JOIN customerdetails ON (microloan.customerId=customerdetails.id) "
+                    + "WHERE name=? AND microloan.userId=? AND microloan.is_deleted=0 ";
+                    
         try{
             pst = conn.prepareStatement(sql);
-            pst.setString(1, jTextField1.getText());
-            pst.setString(2, User.userid);
+            pst.setString(1 , jTextField1.getText());
+            pst.setString(2 , User.userid);
             rs = pst.executeQuery();
             
             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-            
             
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
         }finally{
             try{
                 rs.close();
-                pst.close(); 
+                pst.close();
             }catch(Exception e){
                 
             }
@@ -280,29 +310,26 @@ public class RepaymentDetails extends javax.swing.JFrame {
 
     private void jTextField2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyReleased
         
-        String sql = "SELECT fixloan.fixLoanId AS Fix_Loan_ID , installementNo AS Installement_No ,"
-                + "payedAmount AS Payed_Amount , payDate AS Pay_Date ,"
+       String sql = "SELECT fixLoanId AS Fix_Loan_ID , amountOfLoan AS Amount_of_Loan , interestRate AS Interest_Rate,"
+                + "installementAmount AS Installement_Amount , issueDate AS Issue_Date,"
                 + "customerdetails.id AS Customer_ID , customerdetails.name AS Customer_Name "
-                + "FROM fixloanrepayment "
-                + "INNER JOIN customerdetails ON (fixloanrepayment.customerId=customerdetails.id) "
-                + "INNER JOIN fixloan ON (fixloanrepayment.fixLoanId=fixloan.fixLoanId) "
-                + "WHERE name = ? AND fixloanrepayment.userId=? ";
-        
+                + "FROM fixloan "
+                + "INNER JOIN customerdetails ON (fixloan.customerId=customerdetails.id) "
+                + "WHERE name=? and fixloan.userId=? AND fixloan.is_deleted=0 ";
         try{
             pst = conn.prepareStatement(sql);
-            pst.setString(1, jTextField2.getText());
-            pst.setString(2, User.userid);
+            pst.setString(1 , jTextField2.getText());
+            pst.setString(2 , User.userid);
             rs = pst.executeQuery();
             
             jTable2.setModel(DbUtils.resultSetToTableModel(rs));
-            
             
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
         }finally{
             try{
                 rs.close();
-                pst.close(); 
+                pst.close();
             }catch(Exception e){
                 
             }
@@ -311,15 +338,102 @@ public class RepaymentDetails extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
-        microLoanRepaymentDetailsTable();   
+        microLoanTable();   
         jTextField1.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         
-        fixLoanRepaymentDetailsTable();
+        fixLoanTable();
         jTextField2.setText("");
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        
+        int r = jTable1.getSelectedRow();
+        TableModel model = jTable1.getModel();
+        String loanid = model.getValueAt(r, 0).toString();
+        
+        rdp.setVisible(true);
+        rdp.pack();
+        rdp.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        
+        try{
+            String sql = "SELECT microloan.microLoanId , microloan.numberOfInstallement,"
+                + "installementNo , payedAmount , payDate, "
+                + "customerdetails.id , customerdetails.name "
+                + "FROM microloanrepayment "
+                + "INNER JOIN customerdetails ON (microloanrepayment.customerId=customerdetails.id) "
+                + "INNER JOIN microloan ON (microloanrepayment.microLoanId=microloan.microLoanId)"
+                + "WHERE microloan.microLoanId=? AND microloanrepayment.userId=? AND microloanrepayment.is_deleted=0 ";
+ 
+            pst=conn.prepareStatement(sql);
+            pst.setString(1, loanid);
+            pst.setString(2, User.userid);
+            rs=pst.executeQuery();
+            
+            rdp.RepaymentDetailsPopjTable.setModel(DbUtils.resultSetToTableModel(rs));
+
+            
+            
+            
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }finally{
+            try{
+                rs.close();
+                pst.close();
+            }catch(Exception e){
+                
+            }
+        }      
+        
+          
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+        
+        int r = jTable2.getSelectedRow();
+        TableModel model = jTable2.getModel();
+        String loanid = model.getValueAt(r, 0).toString();
+        
+        rdp.setVisible(true);
+        rdp.pack();
+        rdp.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        
+        try{
+            String sql = "SELECT fixloan.fixLoanId,"
+                + "installementNo , payedAmount,payDate , customerdetails.id,customerdetails.name "
+                + "FROM fixloanrepayment "
+                + "INNER JOIN customerdetails ON (fixloanrepayment.customerId=customerdetails.id) "
+                + "INNER JOIN fixloan ON (fixloanrepayment.fixLoanId=fixloan.fixLoanId)"
+                + "WHERE fixloan.fixLoanId=? AND fixloanrepayment.userId=? AND fixloanrepayment.is_deleted=0 ";
+ 
+            pst=conn.prepareStatement(sql);
+            pst.setString(1, loanid);
+            pst.setString(2, User.userid);
+            rs=pst.executeQuery();
+            
+            rdp.RepaymentDetailsPopjTable.setModel(DbUtils.resultSetToTableModel(rs));
+
+            
+            
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }finally{
+            try{
+                rs.close();
+                pst.close();
+            }catch(Exception e){
+                
+            }
+        }  
+        
+    }//GEN-LAST:event_jTable2MouseClicked
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

@@ -23,17 +23,12 @@ public class AddMicroLoan extends javax.swing.JFrame {
         initComponents();
         conn = DBconnect.connect();
         setIcon();
-        Random();
                 
         jLabel18.setText(String.valueOf(User.username));
         jDateChooser1.setDate(new Date());
     }
     
-    public void Random(){
-        Random rd = new Random();
-        int n1 = rd.nextInt(5)+5;
-        jLabel22.setText(""+n1);
-    }
+  
     
     
     public void clearAll(){
@@ -50,6 +45,7 @@ public class AddMicroLoan extends javax.swing.JFrame {
         jTextField9.setText("");
         jComboBox2.setSelectedItem("Daily");  
         jTextField10.setText("");
+        jDateChooser1.setDate(new Date());
         jDateChooser2.setCalendar(null);
     }
 
@@ -97,10 +93,9 @@ public class AddMicroLoan extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
-        jLabel21 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setText("Serach Name :");
@@ -197,7 +192,7 @@ public class AddMicroLoan extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel14.setText("Loan Type");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Daily", "Monthly", "Annually" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Daily", "Weekly", "Monthly" }));
 
         jButton4.setText("Calculate");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -224,11 +219,6 @@ public class AddMicroLoan extends javax.swing.JFrame {
 
         jTextField7.setEditable(false);
 
-        jLabel21.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel21.setText("Loan ID");
-
-        jLabel22.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -245,7 +235,7 @@ public class AddMicroLoan extends javax.swing.JFrame {
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 1, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
@@ -286,15 +276,13 @@ public class AddMicroLoan extends javax.swing.JFrame {
                                     .addComponent(jLabel11)
                                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel15)
-                                    .addComponent(jLabel16)
-                                    .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel16))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(jLabel22, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(jTextField9, javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jTextField10, javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jTextField8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -333,9 +321,9 @@ public class AddMicroLoan extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
                     .addComponent(jLabel12))
+                .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -366,11 +354,6 @@ public class AddMicroLoan extends javax.swing.JFrame {
                             .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
                             .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -400,11 +383,11 @@ public class AddMicroLoan extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel16))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -425,26 +408,25 @@ public class AddMicroLoan extends javax.swing.JFrame {
         
             int x = JOptionPane.showConfirmDialog(null, "Are you sure you want add this record?");
             if(x==0){
-            String sql = "INSERT INTO microloan(microLoanId,amountOfLoan,interestRate,numberOfInstallement,loanType,"
-                    + "installementAmount,issueDate,dueDate,customerId,userId) VALUES(?,?,?,?,?,?,?,?,?,?)" ;
+            String sql = "INSERT INTO microloan(amountOfLoan,interestRate,numberOfInstallement,loanType,"
+                    + "installementAmount,issueDate,dueDate,is_deleted,customerId,userId) "
+                    + "VALUES(?,?,?,?,?,?,?,0,?,?)" ;
            
             try{   
                 pst = conn.prepareStatement(sql);
-                pst.setString(1 , jLabel22.getText());
-                pst.setString(2 , jTextField8.getText());
-                pst.setString(3 , jComboBox1.getSelectedItem().toString());
-                pst.setString(4 , jTextField9.getText());
-                pst.setString(5 , jComboBox2.getSelectedItem().toString());
-                pst.setString(6 , jTextField10.getText());
-                pst.setString(7 , ((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText());
-                pst.setString(8 , ((JTextField)jDateChooser2.getDateEditor().getUiComponent()).getText());
-                pst.setString(9 , jTextField1.getText());
-                pst.setString(10 , User.userid);
+                pst.setString(1 , jTextField8.getText());
+                pst.setString(2 , jComboBox1.getSelectedItem().toString());
+                pst.setString(3 , jTextField9.getText());
+                pst.setString(4 , jComboBox2.getSelectedItem().toString());
+                pst.setString(5 , jTextField10.getText());
+                pst.setString(6 , ((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText());
+                pst.setString(7 , ((JTextField)jDateChooser2.getDateEditor().getUiComponent()).getText());
+                pst.setString(8 , jTextField1.getText());
+                pst.setString(9 , User.userid);
                 pst.execute();
                 
                 JOptionPane.showMessageDialog(null, "Daily Micro-loan Added!");
                 clearAll();
-                Random();
                 
             }catch(Exception e){
                 JOptionPane.showMessageDialog(null, e);
@@ -587,8 +569,6 @@ public class AddMicroLoan extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

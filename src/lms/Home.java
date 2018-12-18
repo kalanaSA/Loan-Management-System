@@ -21,8 +21,10 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Properties;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import net.proteanit.sql.DbUtils;
 
 public class Home extends javax.swing.JFrame {
     
@@ -41,6 +43,9 @@ public class Home extends javax.swing.JFrame {
         jLabel5.setText(String.valueOf(User.username));
         
     }
+    
+    //object for FineshedLoans
+    FinishedLoans fl = new FinishedLoans();
 
 
     @SuppressWarnings("unchecked")
@@ -88,6 +93,8 @@ public class Home extends javax.swing.JFrame {
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
+        jMenu9 = new javax.swing.JMenu();
+        jMenuItem5 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -95,9 +102,10 @@ public class Home extends javax.swing.JFrame {
 
         jPanel1.setLayout(null);
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jButton3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lms/img/Allowance.png"))); // NOI18N
         jButton3.setText("Micro Loan Service");
+        jButton3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -106,9 +114,10 @@ public class Home extends javax.swing.JFrame {
         jPanel1.add(jButton3);
         jButton3.setBounds(610, 330, 200, 60);
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lms/img/Add_Employee.png"))); // NOI18N
         jButton1.setText("Add Customer");
+        jButton1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -117,9 +126,10 @@ public class Home extends javax.swing.JFrame {
         jPanel1.add(jButton1);
         jButton1.setBounds(610, 260, 200, 60);
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lms/img/Search_1.png"))); // NOI18N
         jButton2.setText("Search Customer");
+        jButton2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -128,8 +138,10 @@ public class Home extends javax.swing.JFrame {
         jPanel1.add(jButton2);
         jButton2.setBounds(820, 260, 210, 60);
 
+        jButton4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lms/img/Allowance.png"))); // NOI18N
         jButton4.setText("Fix Loan Service");
+        jButton4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -138,8 +150,10 @@ public class Home extends javax.swing.JFrame {
         jPanel1.add(jButton4);
         jButton4.setBounds(820, 330, 210, 60);
 
+        jButton5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lms/img/Update.png"))); // NOI18N
         jButton5.setText("Repayments");
+        jButton5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -148,8 +162,10 @@ public class Home extends javax.swing.JFrame {
         jPanel1.add(jButton5);
         jButton5.setBounds(820, 400, 210, 60);
 
+        jButton6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lms/img/Payment.png"))); // NOI18N
         jButton6.setText("Loan Details");
+        jButton6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
@@ -190,8 +206,10 @@ public class Home extends javax.swing.JFrame {
         jPanel1.add(jLabel5);
         jLabel5.setBounds(110, 540, 110, 15);
 
+        jButton7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lms/img/Search_1.png"))); // NOI18N
         jButton7.setText("Profit Share");
+        jButton7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
@@ -200,8 +218,10 @@ public class Home extends javax.swing.JFrame {
         jPanel1.add(jButton7);
         jButton7.setBounds(820, 470, 210, 60);
 
+        jButton8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lms/img/Payment.png"))); // NOI18N
         jButton8.setText("Repayments Details");
+        jButton8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
@@ -313,7 +333,7 @@ public class Home extends javax.swing.JFrame {
         });
         jMenu7.add(jMenuItem19);
 
-        jMenuItem20.setText("monthly micro loan report");
+        jMenuItem20.setText("weekly micro loan report");
         jMenuItem20.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem20ActionPerformed(evt);
@@ -321,7 +341,7 @@ public class Home extends javax.swing.JFrame {
         });
         jMenu7.add(jMenuItem20);
 
-        jMenuItem21.setText("anually micro loan report");
+        jMenuItem21.setText("monthly micro loan report");
         jMenuItem21.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem21ActionPerformed(evt);
@@ -353,7 +373,7 @@ public class Home extends javax.swing.JFrame {
         });
         jMenu8.add(jMenuItem4);
 
-        jMenuItem16.setText("monthly micro loan repayment report");
+        jMenuItem16.setText("weekly micro loan repayment report");
         jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem16ActionPerformed(evt);
@@ -361,7 +381,7 @@ public class Home extends javax.swing.JFrame {
         });
         jMenu8.add(jMenuItem16);
 
-        jMenuItem17.setText("anually micro loan repayment report");
+        jMenuItem17.setText("monthly micro loan repayment report");
         jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem17ActionPerformed(evt);
@@ -394,6 +414,18 @@ public class Home extends javax.swing.JFrame {
         jMenu3.add(jMenuItem7);
 
         jMenuBar1.add(jMenu3);
+
+        jMenu9.setText("show");
+
+        jMenuItem5.setText("Fineshed Loans");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu9.add(jMenuItem5);
+
+        jMenuBar1.add(jMenu9);
 
         jMenu4.setText("About");
         jMenuBar1.add(jMenu4);
@@ -657,7 +689,7 @@ public class Home extends javax.swing.JFrame {
            
         try {
 
-            String sql = "SELECT fixLoanRepaymentId ,fixloan.fixLoanId,"
+            String sql = "SELECT fixloan.fixLoanId,"
                 + "installementNo , payedAmount,payDate , customerdetails.id,customerdetails.name "
                 + "FROM fixloanrepayment "
                 + "INNER JOIN customerdetails ON (fixloanrepayment.customerId=customerdetails.id) "
@@ -671,11 +703,11 @@ public class Home extends javax.swing.JFrame {
             
            Document myDocument = new Document();
            PdfWriter myWriter = PdfWriter.getInstance(myDocument, new FileOutputStream(filePath ));
-           PdfPTable table = new PdfPTable(7);
+           PdfPTable table = new PdfPTable(6);
            myDocument.open();
            
            
-           float[] columnWidths = new float[] {5,12,10,8,5,18,18};
+           float[] columnWidths = new float[] {12,10,8,5,18,18};
            table.setWidths(columnWidths);
 
            table.setWidthPercentage(100); //set table width to 100%
@@ -684,7 +716,6 @@ public class Home extends javax.swing.JFrame {
           myDocument.add(new Paragraph("Fix Loan Repayment Report ",FontFactory.getFont(FontFactory.TIMES_BOLD,20,Font.BOLD )));
           myDocument.add(new Paragraph(new Date().toString()));
           myDocument.add(new Paragraph("-------------------------------------------------------------------------------------------"));
-          table.addCell(new PdfPCell(new Paragraph("F-Loan Repayment ID",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));      
           table.addCell(new PdfPCell(new Paragraph("Fix Loan ID",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
           table.addCell(new PdfPCell(new Paragraph("Installement Number",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
           table.addCell(new PdfPCell(new Paragraph("Pay Amount",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
@@ -701,7 +732,6 @@ public class Home extends javax.swing.JFrame {
            table.addCell(new PdfPCell(new Paragraph(rs.getString(4),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
            table.addCell(new PdfPCell(new Paragraph(rs.getString(5),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
            table.addCell(new PdfPCell(new Paragraph(rs.getString(6),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
-           table.addCell(new PdfPCell(new Paragraph(rs.getString(7),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
                  
             }
            
@@ -844,7 +874,7 @@ public class Home extends javax.swing.JFrame {
         try {
             
 
-            String sql = "SELECT microLoanRepaymentId ,  microloan.microLoanId , microloan.numberOfInstallement,"
+            String sql = "SELECT microloan.microLoanId , microloan.numberOfInstallement,"
                 + "installementNo , payedAmount , payDate, "
                 + "customerdetails.id , customerdetails.name "
                 + "FROM microloanrepayment "
@@ -859,11 +889,11 @@ public class Home extends javax.swing.JFrame {
             
            Document myDocument = new Document();
            PdfWriter myWriter = PdfWriter.getInstance(myDocument, new FileOutputStream(filePath ));
-           PdfPTable table = new PdfPTable(8);
+           PdfPTable table = new PdfPTable(7);
            myDocument.open();
            
            
-           float[] columnWidths = new float[] {8,8,8,8,12,10,8,15};
+           float[] columnWidths = new float[] {8,8,8,12,10,8,15};
            table.setWidths(columnWidths);
 
            table.setWidthPercentage(100); //set table width to 100%
@@ -872,7 +902,6 @@ public class Home extends javax.swing.JFrame {
           myDocument.add(new Paragraph("Daily Micro Loan Repayment Report ",FontFactory.getFont(FontFactory.TIMES_BOLD,20,Font.BOLD )));
           myDocument.add(new Paragraph(new Date().toString()));
           myDocument.add(new Paragraph("-------------------------------------------------------------------------------------------"));
-          table.addCell(new PdfPCell(new Paragraph("M-Loan Repayment Id",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));      
           table.addCell(new PdfPCell(new Paragraph("Micro Loan ID",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));      
           table.addCell(new PdfPCell(new Paragraph("Number of Installement",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
           table.addCell(new PdfPCell(new Paragraph("Installement Number",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
@@ -892,7 +921,6 @@ public class Home extends javax.swing.JFrame {
            table.addCell(new PdfPCell(new Paragraph(rs.getString(5),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
            table.addCell(new PdfPCell(new Paragraph(rs.getString(6),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
            table.addCell(new PdfPCell(new Paragraph(rs.getString(7),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
-           table.addCell(new PdfPCell(new Paragraph(rs.getString(8),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
                   
             }
            
@@ -923,9 +951,9 @@ public class Home extends javax.swing.JFrame {
 
     private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
         
-            //monthly micro loan repayment report
+            //weekly micro loan repayment report
             JFileChooser dialog = new JFileChooser();
-            dialog.setSelectedFile(new File("monthly-micro-loan-repayment-report.pdf"));
+            dialog.setSelectedFile(new File("weekly-micro-loan-repayment-report.pdf"));
             int dialogResult = dialog.showSaveDialog(null);
             if (dialogResult==JFileChooser.APPROVE_OPTION){
             String filePath = dialog.getSelectedFile().getPath();
@@ -933,12 +961,12 @@ public class Home extends javax.swing.JFrame {
         try {
             
 
-            String sql = "SELECT microLoanRepaymentId , microloan.microLoanId , microloan.numberOfInstallement,"
+            String sql = "SELECT microloan.microLoanId , microloan.numberOfInstallement,"
                 + "installementNo , payedAmount , payDate , customerdetails.id,customerdetails.name "
                 + "FROM microloanrepayment "
                 + "INNER JOIN customerdetails ON (microloanrepayment.customerId=customerdetails.id) "
                 + "INNER JOIN microloan ON (microloanrepayment.microLoanId=microloan.microLoanId)"
-                + "WHERE microloan.loanType = 'Monthly' AND microloanrepayment.userId=?";
+                + "WHERE microloan.loanType = 'Weekly' AND microloanrepayment.userId=?";
  
             pst=conn.prepareStatement(sql);
             pst.setString(1, User.userid);
@@ -947,20 +975,19 @@ public class Home extends javax.swing.JFrame {
             
            Document myDocument = new Document();
            PdfWriter myWriter = PdfWriter.getInstance(myDocument, new FileOutputStream(filePath ));
-           PdfPTable table = new PdfPTable(8);
+           PdfPTable table = new PdfPTable(7);
            myDocument.open();
            
            
-           float[] columnWidths = new float[] {8,8,8,8,12,10,8,15};
+           float[] columnWidths = new float[] {8,8,8,12,10,8,15};
            table.setWidths(columnWidths);
 
            table.setWidthPercentage(100); //set table width to 100%
            
           
-          myDocument.add(new Paragraph("Monthly Micro Loan Repayment Report ",FontFactory.getFont(FontFactory.TIMES_BOLD,20,Font.BOLD )));
+          myDocument.add(new Paragraph("Weekly Micro Loan Repayment Report ",FontFactory.getFont(FontFactory.TIMES_BOLD,20,Font.BOLD )));
           myDocument.add(new Paragraph(new Date().toString()));
           myDocument.add(new Paragraph("-------------------------------------------------------------------------------------------"));
-          table.addCell(new PdfPCell(new Paragraph("M-Loan Repayment Id",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));      
           table.addCell(new PdfPCell(new Paragraph("Micro Loan ID",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));      
           table.addCell(new PdfPCell(new Paragraph("Number of Installement",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
           table.addCell(new PdfPCell(new Paragraph("Installement Number",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
@@ -980,7 +1007,6 @@ public class Home extends javax.swing.JFrame {
            table.addCell(new PdfPCell(new Paragraph(rs.getString(5),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
            table.addCell(new PdfPCell(new Paragraph(rs.getString(6),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
            table.addCell(new PdfPCell(new Paragraph(rs.getString(7),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
-           table.addCell(new PdfPCell(new Paragraph(rs.getString(8),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
                   
             }
            
@@ -1011,9 +1037,9 @@ public class Home extends javax.swing.JFrame {
 
     private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
         
-            //anually micro loan repayment report
+            //monthly micro loan repayment report
             JFileChooser dialog = new JFileChooser();
-            dialog.setSelectedFile(new File("anually-micro-loan-repayment-report.pdf"));
+            dialog.setSelectedFile(new File("monthly-micro-loan-repayment-report.pdf"));
             int dialogResult = dialog.showSaveDialog(null);
             if (dialogResult==JFileChooser.APPROVE_OPTION){
             String filePath = dialog.getSelectedFile().getPath();
@@ -1021,12 +1047,12 @@ public class Home extends javax.swing.JFrame {
         try {
             
 
-            String sql = "SELECT microLoanRepaymentId , microloan.microLoanId,microloan.numberOfInstallement,"
+            String sql = "SELECT microloan.microLoanId,microloan.numberOfInstallement,"
                 + "installementNo,payedAmount,payDate ,customerdetails.id , customerdetails.name "
                 + "FROM microloanrepayment "
                 + "INNER JOIN customerdetails ON (microloanrepayment.customerId=customerdetails.id) "
                 + "INNER JOIN microloan ON (microloanrepayment.microLoanId=microloan.microLoanId)"
-                + "WHERE microloan.loanType = 'Anually' AND microloanrepayment.userId=?";
+                + "WHERE microloan.loanType = 'Monthly' AND microloanrepayment.userId=?";
  
             pst=conn.prepareStatement(sql);
             pst.setString(1, User.userid);
@@ -1035,20 +1061,19 @@ public class Home extends javax.swing.JFrame {
             
            Document myDocument = new Document();
            PdfWriter myWriter = PdfWriter.getInstance(myDocument, new FileOutputStream(filePath ));
-           PdfPTable table = new PdfPTable(8);
+           PdfPTable table = new PdfPTable(7);
            myDocument.open();
            
            
-           float[] columnWidths = new float[] {8,8,8,8,12,10,8,15};
+           float[] columnWidths = new float[] {8,8,8,12,10,8,15};
            table.setWidths(columnWidths);
 
            table.setWidthPercentage(100); //set table width to 100%
            
           
-          myDocument.add(new Paragraph("Anually Micro Loan Repayment Report ",FontFactory.getFont(FontFactory.TIMES_BOLD,20,Font.BOLD )));
+          myDocument.add(new Paragraph("Monthly Micro Loan Repayment Report ",FontFactory.getFont(FontFactory.TIMES_BOLD,20,Font.BOLD )));
           myDocument.add(new Paragraph(new Date().toString()));
           myDocument.add(new Paragraph("-------------------------------------------------------------------------------------------"));
-          table.addCell(new PdfPCell(new Paragraph("M-Loan Repayment Id",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));      
           table.addCell(new PdfPCell(new Paragraph("Micro Loan ID",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));      
           table.addCell(new PdfPCell(new Paragraph("Number of Installement",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
           table.addCell(new PdfPCell(new Paragraph("Installement Number",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
@@ -1068,7 +1093,6 @@ public class Home extends javax.swing.JFrame {
            table.addCell(new PdfPCell(new Paragraph(rs.getString(5),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
            table.addCell(new PdfPCell(new Paragraph(rs.getString(6),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
            table.addCell(new PdfPCell(new Paragraph(rs.getString(7),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
-           table.addCell(new PdfPCell(new Paragraph(rs.getString(8),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
                   
             }
            
@@ -1189,9 +1213,9 @@ public class Home extends javax.swing.JFrame {
 
     private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
         
-            //monthly micro loan report
+            //weekly micro loan report
             JFileChooser dialog = new JFileChooser();
-            dialog.setSelectedFile(new File("monthly-micro-loan-report.pdf"));
+            dialog.setSelectedFile(new File("weekly-micro-loan-report.pdf"));
             int dialogResult = dialog.showSaveDialog(null);
             if (dialogResult==JFileChooser.APPROVE_OPTION){
             String filePath = dialog.getSelectedFile().getPath();
@@ -1202,7 +1226,7 @@ public class Home extends javax.swing.JFrame {
                     + "installementAmount,issueDate,dueDate,customerdetails.id,customerdetails.name "
                     + "FROM microloan "
                     + "INNER JOIN customerdetails ON (microloan.customerId=customerdetails.id) "
-                    + "WHERE loanType='Monthly' and microloan.userId=?";
+                    + "WHERE loanType='Weekly' and microloan.userId=?";
  
             pst=conn.prepareStatement(sql);
             pst.setString(1, User.userid);
@@ -1221,10 +1245,10 @@ public class Home extends javax.swing.JFrame {
            table.setWidthPercentage(100); //set table width to 100%
            
           
-          myDocument.add(new Paragraph("Monthly Micro Loan Report",FontFactory.getFont(FontFactory.TIMES_BOLD,20,Font.BOLD )));
+          myDocument.add(new Paragraph("Weekly Micro Loan Report",FontFactory.getFont(FontFactory.TIMES_BOLD,20,Font.BOLD )));
           myDocument.add(new Paragraph(new Date().toString()));
           myDocument.add(new Paragraph("-------------------------------------------------------------------------------------------"));
-          table.addCell(new PdfPCell(new Paragraph("Micr Loan ID",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));      
+          table.addCell(new PdfPCell(new Paragraph("Micro Loan ID",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));      
           table.addCell(new PdfPCell(new Paragraph("Amount of Loan",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
           table.addCell(new PdfPCell(new Paragraph("Interest Rate",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
           table.addCell(new PdfPCell(new Paragraph("Number of Installement",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
@@ -1278,9 +1302,9 @@ public class Home extends javax.swing.JFrame {
 
     private void jMenuItem21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem21ActionPerformed
         
-            //anually micro loan report
+            //monthly micro loan report
             JFileChooser dialog = new JFileChooser();
-            dialog.setSelectedFile(new File("anually-micro-loan-report.pdf"));
+            dialog.setSelectedFile(new File("monthly-micro-loan-report.pdf"));
             int dialogResult = dialog.showSaveDialog(null);
             if (dialogResult==JFileChooser.APPROVE_OPTION){
             String filePath = dialog.getSelectedFile().getPath();
@@ -1292,7 +1316,7 @@ public class Home extends javax.swing.JFrame {
                     + "customerdetails.nic,customerdetails.address,customerdetails.resistance,"
                     + "customerdetails.contactNo,customerdetails.gender FROM microloan "
                     + "INNER JOIN customerdetails ON (microloan.customerId=customerdetails.id) "
-                    + "WHERE loanType='Annually' and microloan.userId=? ";
+                    + "WHERE loanType='Monthly' and microloan.userId=? ";
  
             pst=conn.prepareStatement(sql);
             pst.setString(1 , User.userid);
@@ -1311,7 +1335,7 @@ public class Home extends javax.swing.JFrame {
            table.setWidthPercentage(100); //set table width to 100%
            
           
-          myDocument.add(new Paragraph("Anually Micro Loan Report",FontFactory.getFont(FontFactory.TIMES_BOLD,20,Font.BOLD )));
+          myDocument.add(new Paragraph("Monthly Micro Loan Report",FontFactory.getFont(FontFactory.TIMES_BOLD,20,Font.BOLD )));
           myDocument.add(new Paragraph(new Date().toString()));
           myDocument.add(new Paragraph("-------------------------------------------------------------------------------------------"));
           table.addCell(new PdfPCell(new Paragraph("Micro Loan ID",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));      
@@ -1365,6 +1389,30 @@ public class Home extends javax.swing.JFrame {
      }
     }
     }//GEN-LAST:event_jMenuItem21ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        
+//        FineshedLoans fl = new FinishedLoans();
+        fl.setVisible(true);
+    
+//        fl.setVisible(true);
+//        fl.pack();
+//        fl.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+//        String sql ="SELECT microLoanId,amountOfLoan,interestRate,numberOfInstallement,loanType,installementAmount,"
+//                + "issueDate,dueDate "
+//                + "FROM microloan "
+//                + "WHERE is_deleted = 1 ";
+//        
+//        try{
+//            
+//            pst = conn.prepareStatement(sql);
+//            rs = pst.executeQuery();
+//            fl.jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+//            
+//        }catch(Exception e){
+//            JOptionPane.showMessageDialog(null, e);
+//        }
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -1427,6 +1475,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
+    private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
@@ -1443,6 +1492,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem21;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
