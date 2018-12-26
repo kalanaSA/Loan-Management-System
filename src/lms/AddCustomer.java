@@ -25,22 +25,15 @@ public class AddCustomer extends javax.swing.JFrame {
         initComponents();
         conn = DBconnect.connect();
         setIcon();
-        Random();
         
         jLabel12.setText(String.valueOf(User.username));
     }
     
-    public void Random(){
-        Random rd = new Random();
-        jLabel2.setText(""+rd.nextInt(1000+1));
-    }
-    
+      
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -69,11 +62,6 @@ public class AddCustomer extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel1.setText("ID NO :");
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel3.setText("Name");
@@ -230,14 +218,12 @@ public class AddCustomer extends javax.swing.JFrame {
                                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(layout.createSequentialGroup()
                                             .addGap(99, 99, 99)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(jTextField1)
                                                 .addComponent(jTextField2)
-                                                .addComponent(jTextField3)
-                                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                                .addComponent(jTextField3)))
                                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(jLabel13)
@@ -283,11 +269,7 @@ public class AddCustomer extends javax.swing.JFrame {
                         .addComponent(jButton4)
                         .addGap(41, 41, 41))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addGap(71, 71, 71)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3))
@@ -303,7 +285,7 @@ public class AddCustomer extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel13)
                             .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(14, 14, 14)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
                             .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -354,21 +336,21 @@ public class AddCustomer extends javax.swing.JFrame {
         
         int x = JOptionPane.showConfirmDialog(null, "Are you sure want add this record !");
         if(x==0){
-            String sql = "INSERT INTO customerdetails(id,name,nic,address,resistance,contactNo,gender,img1,img2,userId)"
-                    + " VALUES(?,?,?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO customerdetails(name,nic,address,resistance,contactNo,gender,"
+                    + "img1,img2,userId,is_deleted)"
+                    + " VALUES(?,?,?,?,?,?,?,?,?,0)";
             
         try{
             pst = conn.prepareStatement(sql);
-            pst.setString(1 , jLabel2.getText());
-            pst.setString(2 , jTextField1.getText());
-            pst.setString(3 , jTextField2.getText());
-            pst.setString(4 , jTextField3.getText());
-            pst.setString(5 , jTextField4.getText());
-            pst.setString(6 , jTextField5.getText());
-            pst.setString(7 , gender);
-            pst.setBytes(8 , person_image1);
-            pst.setBytes(9 , person_image2);
-            pst.setString(10 , User.userid);
+            pst.setString(1 , jTextField1.getText());
+            pst.setString(2 , jTextField2.getText());
+            pst.setString(3 , jTextField3.getText());
+            pst.setString(4 , jTextField4.getText());
+            pst.setString(5 , jTextField5.getText());
+            pst.setString(6 , gender);
+            pst.setBytes(7 , person_image1);
+            pst.setBytes(8 , person_image2);
+            pst.setString(9 , User.userid);
             pst.execute();
             
             JOptionPane.showMessageDialog(null, "Record Added Successfully !");
@@ -379,8 +361,6 @@ public class AddCustomer extends javax.swing.JFrame {
             jTextField5.setText("");
             jRadioButton1.setSelected(false);
             jRadioButton2.setSelected(false);
-            
-            Random();
             
             
         }catch(Exception e){
@@ -509,12 +489,10 @@ public class AddCustomer extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JDesktopPane jDesktopPane2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

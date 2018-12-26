@@ -351,7 +351,7 @@ public class SearchCustomer extends javax.swing.JFrame {
 
     private void txt_searchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_searchKeyReleased
         
-        String sql = "SELECT * FROM customerdetails WHERE name=? and userId=?";
+        String sql = "SELECT * FROM customerdetails WHERE name=? and userId=? AND is_deleted=0 ";
         
         try{
             pst = conn.prepareStatement(sql);

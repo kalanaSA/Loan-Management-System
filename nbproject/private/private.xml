@@ -5,16 +5,17 @@
         <group>
             <file>file:/D:/Projects/LoanManagementSystem/src/lms/FinishedLoansPop.java</file>
             <file>file:/D:/Projects/LoanManagementSystem/src/lms/RepaymentDetails.java</file>
-            <file>file:/D:/Projects/LoanManagementSystem/src/lms/AddFixLoan.java</file>
-            <file>file:/D:/Projects/LoanManagementSystem/src/lms/Repayment.java</file>
-            <file>file:/D:/Projects/LoanManagementSystem/src/lms/RepaymentDetailsPop.java</file>
             <file>file:/D:/Projects/LoanManagementSystem/src/lms/FinishedLoans.java</file>
             <file>file:/D:/Projects/LoanManagementSystem/src/lms/LoanDetails.java</file>
-            <file>file:/D:/Projects/LoanManagementSystem/src/lms/Login.java</file>
             <file>file:/D:/Projects/LoanManagementSystem/src/lms/Home.java</file>
             <file>file:/D:/Projects/LoanManagementSystem/src/lms/AddCustomer.java</file>
             <file>file:/D:/Projects/LoanManagementSystem/src/lms/SearchCustomer.java</file>
+            <file>file:/D:/Projects/LoanManagementSystem/src/lms/AddFixLoan.java</file>
+            <file>file:/D:/Projects/LoanManagementSystem/src/lms/Repayment.java</file>
+            <file>file:/D:/Projects/LoanManagementSystem/src/lms/RepaymentDetailsPop.java</file>
+            <file>file:/D:/Projects/LoanManagementSystem/src/lms/Login.java</file>
             <file>file:/D:/Projects/LoanManagementSystem/src/lms/AddMicroLoan.java</file>
+            <file>file:/D:/Projects/LoanManagementSystem/src/lms/ProfitShare.java</file>
         </group>
     </open-files>
 </project-private>
