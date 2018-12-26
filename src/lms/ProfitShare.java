@@ -746,7 +746,7 @@ public class ProfitShare extends javax.swing.JFrame {
         jTextField18.setEditable(false);
 
         jLabel39.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        jLabel39.setText("Profile 1");
+        jLabel39.setText("Profile 3");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
