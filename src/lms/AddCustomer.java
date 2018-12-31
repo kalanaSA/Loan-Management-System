@@ -2,13 +2,17 @@ package lms;
 
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
+import java.awt.image.RenderedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Random;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -331,8 +335,28 @@ public class AddCustomer extends javax.swing.JFrame {
         jRadioButton2.setSelected(true);
         jRadioButton1.setSelected(false);
     }//GEN-LAST:event_jRadioButton2ActionPerformed
+        
+   
+        public static void imageIoWrite() {
+    	 BufferedImage bImage = null;
+         try {
+             File initialImage = new File("Desktop/image.jpg");
+             bImage = ImageIO.read(initialImage);
 
+             //ImageIO.write(bImage, "gif", new File("C://Users/Rou/Desktop/image.gif"));
+             ImageIO.write(bImage, "jpg", new File("Desktop/image.png"));
+             //ImageIO.write(bImage, "bmp", new File("C://Users/Rou/Desktop/image.bmp"));
+
+         } catch (IOException e) {
+               System.out.println("Exception occured :" + e.getMessage());
+         }
+         System.out.println("Images were written succesfully.");
+    }
+    
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        imageIoWrite();
         
         int x = JOptionPane.showConfirmDialog(null, "Are you sure want add this record !");
         if(x==0){
@@ -361,6 +385,8 @@ public class AddCustomer extends javax.swing.JFrame {
             jTextField5.setText("");
             jRadioButton1.setSelected(false);
             jRadioButton2.setSelected(false);
+            
+            
             
             
         }catch(Exception e){

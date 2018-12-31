@@ -165,7 +165,7 @@ public class FinishedLoans extends javax.swing.JFrame {
         
         try{
             String sql = "SELECT microloan.microLoanId , microloan.numberOfInstallement,"
-                + "installementNo , remainingInstallement , payedAmount , payDate, "
+                + "installementNo , remainingInstallement , payedAmount ,remainingAmountOfLoan , payDate, "
                 + "customerdetails.id , customerdetails.name "
                 + "FROM microloanrepayment "
                 + "INNER JOIN customerdetails ON (microloanrepayment.customerId=customerdetails.id) "

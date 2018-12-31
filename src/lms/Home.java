@@ -45,7 +45,7 @@ public class Home extends javax.swing.JFrame {
     }
     
     //object for FineshedLoans
-    FinishedLoans fl = new FinishedLoans();
+    //FinishedLoans fl = new FinishedLoans();
 
 
     @SuppressWarnings("unchecked")
@@ -96,6 +96,7 @@ public class Home extends javax.swing.JFrame {
         jMenu9 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
+        jMenuItem18 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -428,6 +429,15 @@ public class Home extends javax.swing.JFrame {
         jMenuBar1.add(jMenu9);
 
         jMenu4.setText("About");
+
+        jMenuItem18.setText("about developer");
+        jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem18ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem18);
+
         jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);
@@ -675,8 +685,8 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        ProfitShare ps = new ProfitShare();
-        ps.setVisible(true);
+        ProfitShare p = new ProfitShare();
+        p.setVisible(true);
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
@@ -1392,27 +1402,34 @@ public class Home extends javax.swing.JFrame {
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         
-//        FineshedLoans fl = new FinishedLoans();
+        FinishedLoans fl = new FinishedLoans();
         fl.setVisible(true);
     
-//        fl.setVisible(true);
-//        fl.pack();
-//        fl.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-//        String sql ="SELECT microLoanId,amountOfLoan,interestRate,numberOfInstallement,loanType,installementAmount,"
-//                + "issueDate,dueDate "
-//                + "FROM microloan "
-//                + "WHERE is_deleted = 1 ";
-//        
-//        try{
-//            
-//            pst = conn.prepareStatement(sql);
-//            rs = pst.executeQuery();
-//            fl.jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-//            
-//        }catch(Exception e){
-//            JOptionPane.showMessageDialog(null, e);
-//        }
+/*        fl.setVisible(true);
+        fl.pack();
+        fl.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        String sql ="SELECT microLoanId,amountOfLoan,interestRate,numberOfInstallement,loanType,installementAmount,"
+                + "issueDate,dueDate "
+                + "FROM microloan "
+                + "WHERE is_deleted = 1 ";
+        
+        try{
+            
+            pst = conn.prepareStatement(sql);
+            rs = pst.executeQuery();
+            fl.jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+            
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+       }
+        
+        */
     }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
+        About a = new About();
+        a.setVisible(true);
+    }//GEN-LAST:event_jMenuItem18ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -1486,6 +1503,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem17;
+    private javax.swing.JMenuItem jMenuItem18;
     private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem20;

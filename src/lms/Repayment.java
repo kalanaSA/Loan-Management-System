@@ -37,9 +37,11 @@ public class Repayment extends javax.swing.JFrame {
         jDateChooser3.setDate(new Date());
         jDateChooser4.setDate(new Date());
         jDateChooser2.setDate(new Date());
-                
+            
+        
 
     }
+    
     
         public void dailyMicroLoanTable(){
         
@@ -218,7 +220,6 @@ public class Repayment extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
         jTextField8 = new javax.swing.JTextField();
-        jButton8 = new javax.swing.JButton();
         jLabel21 = new javax.swing.JLabel();
         txt_minstallementNo = new javax.swing.JTextField();
         jLabel25 = new javax.swing.JLabel();
@@ -252,7 +253,6 @@ public class Repayment extends javax.swing.JFrame {
         jButton13 = new javax.swing.JButton();
         jButton14 = new javax.swing.JButton();
         jButton15 = new javax.swing.JButton();
-        jButton16 = new javax.swing.JButton();
         jButton23 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel33 = new javax.swing.JLabel();
@@ -281,7 +281,6 @@ public class Repayment extends javax.swing.JFrame {
         jButton18 = new javax.swing.JButton();
         jButton19 = new javax.swing.JButton();
         jButton20 = new javax.swing.JButton();
-        jButton21 = new javax.swing.JButton();
         jButton24 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
@@ -408,17 +407,10 @@ public class Repayment extends javax.swing.JFrame {
             }
         });
 
-        jButton8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton8.setForeground(new java.awt.Color(255, 0, 51));
-        jButton8.setText("PAY & CLOSE");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
-            }
-        });
-
-        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel21.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel21.setText("Installement No : ");
+
+        txt_minstallementNo.setEditable(false);
 
         jLabel25.setText("Logged In As :");
 
@@ -455,8 +447,7 @@ public class Repayment extends javax.swing.JFrame {
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -560,8 +551,7 @@ public class Repayment extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton1)
                             .addComponent(jButton2)
-                            .addComponent(jButton3)
-                            .addComponent(jButton8))
+                            .addComponent(jButton3))
                         .addGap(22, 22, 22))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -578,8 +568,10 @@ public class Repayment extends javax.swing.JFrame {
 
         jTextField11.setEditable(false);
 
-        jLabel27.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel27.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel27.setText("Installement No : ");
+
+        txt_minstallementNo1.setEditable(false);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel4.setText("Customer ID");
@@ -677,15 +669,6 @@ public class Repayment extends javax.swing.JFrame {
             }
         });
 
-        jButton16.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton16.setForeground(new java.awt.Color(255, 0, 51));
-        jButton16.setText("PAY & CLOSE");
-        jButton16.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton16ActionPerformed(evt);
-            }
-        });
-
         jButton23.setText("change");
         jButton23.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -710,8 +693,7 @@ public class Repayment extends javax.swing.JFrame {
                         .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -815,8 +797,7 @@ public class Repayment extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton13)
                             .addComponent(jButton14)
-                            .addComponent(jButton15)
-                            .addComponent(jButton16))
+                            .addComponent(jButton15))
                         .addGap(22, 22, 22))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -833,8 +814,10 @@ public class Repayment extends javax.swing.JFrame {
 
         jTextField17.setEditable(false);
 
-        jLabel34.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel34.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel34.setText("Installement No : ");
+
+        txt_minstallementNo2.setEditable(false);
 
         jLabel35.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel35.setText("Customer ID");
@@ -932,15 +915,6 @@ public class Repayment extends javax.swing.JFrame {
             }
         });
 
-        jButton21.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton21.setForeground(new java.awt.Color(255, 0, 51));
-        jButton21.setText("PAY & CLOSE");
-        jButton21.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton21ActionPerformed(evt);
-            }
-        });
-
         jButton24.setText("change");
         jButton24.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -965,8 +939,7 @@ public class Repayment extends javax.swing.JFrame {
                         .addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton20, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton21, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1070,8 +1043,7 @@ public class Repayment extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton18)
                             .addComponent(jButton19)
-                            .addComponent(jButton20)
-                            .addComponent(jButton21))
+                            .addComponent(jButton20))
                         .addGap(22, 22, 22))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1086,11 +1058,13 @@ public class Repayment extends javax.swing.JFrame {
         jLabel19.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel19.setText("Installement Amount");
 
-        jLabel23.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel23.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel23.setText("Installement No : ");
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel20.setText("Pay Date");
+
+        txt_finstallementNo.setEditable(false);
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel13.setText("Search Name :");
@@ -1197,14 +1171,10 @@ public class Repayment extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(41, 41, 41)
+                .addGap(38, 38, 38)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel23)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txt_finstallementNo, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel14)
@@ -1212,7 +1182,11 @@ public class Repayment extends javax.swing.JFrame {
                                 .addGap(46, 46, 46)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel23)
+                                .addGap(18, 18, 18)
+                                .addComponent(txt_finstallementNo, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel18)
@@ -1231,7 +1205,7 @@ public class Repayment extends javax.swing.JFrame {
                                 .addGap(195, 195, 195)
                                 .addComponent(jButton9))))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(230, 230, 230)
+                        .addGap(233, 233, 233)
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1506,6 +1480,34 @@ public class Repayment extends javax.swing.JFrame {
         jTextField10.setText(name);
         jTextField13.setText(loanid);
         jTextField14.setText(installementamount);
+       
+        
+        
+        String sql = "SELECT COUNT(installementNo) "
+                    + "FROM fixloanrepayment "
+                    + "WHERE fixLoanId = ? AND customerId=? AND userId=? ";
+            
+            try{
+                
+                pst = conn.prepareStatement(sql);
+                pst.setString(1 , jTextField13.getText());
+                pst.setString(2 , jTextField9.getText());
+                pst.setString(3 , User.userid);
+                rs = pst.executeQuery();
+                
+                if(rs.next()){
+                
+                    String inc = rs.getString("COUNT(installementNo)");
+                    int installementNoCount = Integer.parseInt(inc);
+                    int installementNo = installementNoCount+1;
+                    String f = String.valueOf(installementNo);
+                    txt_finstallementNo.setText(f);
+                    
+                }
+                
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, e);
+            }
 
     }//GEN-LAST:event_jTable2MouseClicked
 
@@ -1544,79 +1546,6 @@ public class Repayment extends javax.swing.JFrame {
         dailyMicroLoanTable();
     }//GEN-LAST:event_jButton11ActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-
-        int x = JOptionPane.showConfirmDialog(null, "Are you sure you want finished this loan?");
-        if(x==0){
-
-            //firstly add this last repayment into microloanrepayment
-            double noOfInstallement = Double.parseDouble(jTextField7.getText());
-            double installementNo = Double.parseDouble(txt_minstallementNo.getText());
-            double remainingInstallement = noOfInstallement - installementNo ;
-            double roundedRemainingInstallement = Math.round(remainingInstallement*100.0)/100.0;
-
-            String f = String.valueOf(roundedRemainingInstallement);
-
-            String s = "INSERT INTO microloanrepayment(installementNo,remainingInstallement,payDate,payedAmount"
-            + ",customerId,microLoanId,userId,is_deleted) "
-            + "VALUES(?,?,?,?,?,?,?,0)";
-
-            try{
-                pst =conn.prepareStatement(s);
-                pst.setString(1, txt_minstallementNo.getText());
-                pst.setString(2, f);
-                pst.setString(3, ((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText());
-                pst.setString(4, jTextField8.getText());
-                pst.setString(5, jTextField1.getText());
-                pst.setString(6, jTextField5.getText());
-                pst.setString(7, User.userid);
-                pst.execute();
-
-                JOptionPane.showMessageDialog(null, "pay record added successfully!");
-                jDateChooser1.setDate(new Date());
-
-            }catch(Exception e){
-                JOptionPane.showMessageDialog(null, e);
-            }
-
-            //delete from microloanrepayment
-            String sq = "UPDATE microloanrepayment SET is_deleted = 1 "
-            + "WHERE microLoanId=? AND customerId=? AND userId=?";
-
-            try{
-                pst = conn.prepareStatement(sq);
-                pst.setString(1, jTextField5.getText());
-                pst.setString(2, jTextField1.getText());
-                pst.setString(3, User.userid);
-                pst.execute();
-
-            }catch(Exception e){
-                JOptionPane.showMessageDialog(null, e);
-            }
-
-            //also delete microloan details
-            String sql = "UPDATE microloan SET is_deleted = 1 "
-            + "WHERE microLoanId=? AND customerId=? AND userId=? ";
-
-            try{
-                pst = conn.prepareStatement(sql);
-                pst.setString(1, jTextField5.getText());
-                pst.setString(2, jTextField1.getText());
-                pst.setString(3, User.userid);
-                pst.execute();
-
-                dailyMicroLoanTable();
-                dailyMicroLoanClearAll();
-                JOptionPane.showMessageDialog(null, "This customer payed all installement successfully!");
-
-            }catch(Exception e){
-
-                JOptionPane.showMessageDialog(null, e);
-
-            }
-        }
-    }//GEN-LAST:event_jButton8ActionPerformed
-
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 
         this.dispose();
@@ -1628,15 +1557,14 @@ public class Repayment extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
          
-        
-        
-        //for calculate remainingAmountOfLoan
-        String query = "SELECT SUM(payedAmount) "
+           
+        //for calculate remainingAmountOfLoan *******************************************************************************************************
+        String query1 = "SELECT SUM(payedAmount) "
             + "FROM microloanrepayment "
             + "WHERE customerId = ? AND microloanrepayment.userId=? AND microloanrepayment.is_deleted=0 ";
         
         try{
-            pst = conn.prepareStatement(query);
+            pst = conn.prepareStatement(query1);
             pst.setString(1, jTextField1.getText());
             pst.setString(2, User.userid);
             rs = pst.executeQuery();
@@ -1645,18 +1573,21 @@ public class Repayment extends javax.swing.JFrame {
                    
                 String  spa = rs.getString("SUM(payedAmount)");    
                 
-                //when not first time pay
+                //when not first time pay ******************************************************************************
                 if(spa != null){
-                    
+                
                 double sumOfPayedAmount = Double.parseDouble(spa);
                 
                 int r = jTable1.getSelectedRow();
                 String aol = jTable1.getValueAt(r, 1).toString();
                 double amountOfLoan = Double.parseDouble(aol);
-                
+                String ir = jTable1.getValueAt(r, 2).toString();
+                double interestRate = Double.parseDouble(ir);
+                double finalAmount = (amountOfLoan*(interestRate/100)) + amountOfLoan;
+                      
                 double currentPayAmount = Double.parseDouble(jTextField8.getText());
                 
-                double remainingAmountOfLoan = amountOfLoan - sumOfPayedAmount - currentPayAmount ;
+                double remainingAmountOfLoan = finalAmount - sumOfPayedAmount - currentPayAmount ;
                 double roundedRemainingAmountOfLoan = Math.round(remainingAmountOfLoan*100.0)/100.0;
                 String rraol = String.valueOf(roundedRemainingAmountOfLoan);
                 
@@ -1669,12 +1600,12 @@ public class Repayment extends javax.swing.JFrame {
                 
                 
                 //for add repayment
-                String sql = "INSERT INTO microloanrepayment(installementNo,remainingInstallement,payDate,payedAmount,"
+                String query2 = "INSERT INTO microloanrepayment(installementNo,remainingInstallement,payDate,payedAmount,"
                         + "remainingAmountOfLoan,is_deleted,customerId,microLoanId,userId) "
                         + "VALUES(?,?,?,?,?,0,?,?,?)";
 
                 try{
-                    pst =conn.prepareStatement(sql);
+                    pst =conn.prepareStatement(query2);
                     pst.setString(1, txt_minstallementNo.getText());
                     pst.setString(2, rri);
                     pst.setString(3, ((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText());
@@ -1691,17 +1622,64 @@ public class Repayment extends javax.swing.JFrame {
                 }catch(Exception e){
                     JOptionPane.showMessageDialog(null, e);
                 }
-               
+                
+                
+                
+                if(roundedRemainingAmountOfLoan <= 1){
+
+                    //delete from microloanrepayment
+                    String query4 = "UPDATE microloanrepayment SET is_deleted = 1 "
+                    + "WHERE microLoanId=? AND customerId=? AND userId=?";
+
+                    try{
+                        pst = conn.prepareStatement(query4);
+                        pst.setString(1, jTextField5.getText());
+                        pst.setString(2, jTextField1.getText());
+                        pst.setString(3, User.userid);
+                        pst.execute();
+
+                    }catch(Exception e){
+                        JOptionPane.showMessageDialog(null, e);
+                    }
+
+                    //also delete microloan details
+                    String query5 = "UPDATE microloan SET is_deleted = 1 "
+                    + "WHERE microLoanId=? AND customerId=? AND userId=? ";
+
+                    try{
+                        pst = conn.prepareStatement(query5);
+                        pst.setString(1, jTextField5.getText());
+                        pst.setString(2, jTextField1.getText());
+                        pst.setString(3, User.userid);
+                        pst.execute();
+
+                        dailyMicroLoanTable();
+                        dailyMicroLoanClearAll();
+                        JOptionPane.showMessageDialog(null, "This customer payed all installement successfully!");
+
+                    }catch(Exception e){
+
+                        JOptionPane.showMessageDialog(null, e);
+
+                    }
+                               
+                
+                }
+                
                 
             }else{
-                //when pay first time there has no sum(payedAmount) --->prevent null pointer exception     
+                    
+                //when pay first time there has no sum(payedAmount) --->prevent null pointer exception ******************    
                 int r = jTable1.getSelectedRow();
                 String aol = jTable1.getValueAt(r, 1).toString();
                 double amountOfLoan = Double.parseDouble(aol);
+                String ir = jTable1.getValueAt(r, 2).toString();
+                double interestRate = Double.parseDouble(ir);
+                double finalAmount = (amountOfLoan*(interestRate/100)) + amountOfLoan;
                 
                 double currentPayAmount = Double.parseDouble(jTextField8.getText());
                 
-                double remainingAmountOfLoan = amountOfLoan - currentPayAmount ;
+                double remainingAmountOfLoan = finalAmount - currentPayAmount ;
                 double roundedRemainingAmountOfLoan = Math.round(remainingAmountOfLoan*100.0)/100.0;
                 String rraol = String.valueOf(roundedRemainingAmountOfLoan);
                 
@@ -1714,12 +1692,12 @@ public class Repayment extends javax.swing.JFrame {
                 
                 
                 //for add repayment
-                String sql = "INSERT INTO microloanrepayment(installementNo,remainingInstallement,payDate,payedAmount,"
+                String query6 = "INSERT INTO microloanrepayment(installementNo,remainingInstallement,payDate,payedAmount,"
                         + "remainingAmountOfLoan,is_deleted,customerId,microLoanId,userId) "
                         + "VALUES(?,?,?,?,?,0,?,?,?)";
 
                 try{
-                    pst =conn.prepareStatement(sql);
+                    pst =conn.prepareStatement(query6);
                     pst.setString(1, txt_minstallementNo.getText());
                     pst.setString(2, rri);
                     pst.setString(3, ((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText());
@@ -1736,6 +1714,7 @@ public class Repayment extends javax.swing.JFrame {
                 }catch(Exception e){
                     JOptionPane.showMessageDialog(null, e);
                 }
+                
             }      
             
             }
@@ -1755,8 +1734,9 @@ public class Repayment extends javax.swing.JFrame {
         double currentInstallementNo = Double.parseDouble(txt_minstallementNo.getText());
 
         double howmany = numberOfInstallement- currentInstallementNo;
+        double roundedhowmany = Math.round(howmany*100.0)/100.0;
 
-        String h = String.valueOf(howmany);
+        String h = String.valueOf(roundedhowmany);
 
         JOptionPane.showMessageDialog(null, "This customer have to pay only "+h+" installement/s after this.");
         dailyMicroLoanClearAll();
@@ -1784,6 +1764,33 @@ public class Repayment extends javax.swing.JFrame {
         jTextField6.setText(loantype);
         jTextField7.setText(numberofinstallement);
         jTextField8.setText(installementamount);
+        
+        
+        String sql = "SELECT COUNT(installementNo) "
+                    + "FROM microloanrepayment "
+                    + "WHERE microLoanId = ? AND customerId=? AND userId=? ";
+            
+            try{
+                
+                pst = conn.prepareStatement(sql);
+                pst.setString(1 , jTextField5.getText());
+                pst.setString(2 , jTextField1.getText());
+                pst.setString(3 , User.userid);
+                rs = pst.executeQuery();
+                
+                if(rs.next()){
+                
+                    String inc = rs.getString("COUNT(installementNo)");
+                    int installementNoCount = Integer.parseInt(inc);
+                    int installementNo = installementNoCount+1;
+                    String f = String.valueOf(installementNo);
+                    txt_minstallementNo.setText(f);
+                    
+                }
+                
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, e);
+            }
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void txt_searchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_searchKeyReleased
@@ -1870,121 +1877,206 @@ public class Repayment extends javax.swing.JFrame {
         jTextField16.setText(loantype);
         jTextField11.setText(numberofinstallement);
         jTextField12.setText(installementamount);
+        
+        
+        String sql = "SELECT COUNT(installementNo) "
+                    + "FROM microloanrepayment "
+                    + "WHERE microLoanId = ? AND customerId=? AND userId=? ";
+            
+            try{
+                
+                pst = conn.prepareStatement(sql);
+                pst.setString(1 , jTextField15.getText());
+                pst.setString(2 , jTextField3.getText());
+                pst.setString(3 , User.userid);
+                rs = pst.executeQuery();
+                
+                if(rs.next()){
+                
+                    String inc = rs.getString("COUNT(installementNo)");
+                    int installementNoCount = Integer.parseInt(inc);
+                    int installementNo = installementNoCount+1;
+                    String f = String.valueOf(installementNo);
+                    txt_minstallementNo1.setText(f);
+                    
+                }
+                
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, e);
+            }
      
     }//GEN-LAST:event_jTable3MouseClicked
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         
-        //for calculate remainingAmountOfLoan
-        String query = "SELECT SUM(payedAmount) "
+        //for calculate remainingAmountOfLoan *******************************************************************************************************
+        String query1 = "SELECT SUM(payedAmount) "
             + "FROM microloanrepayment "
-            + "WHERE customerId = ? AND microloanrepayment.userId=? AND microloanrepayment.is_deleted=0";
+            + "WHERE customerId = ? AND microloanrepayment.userId=? AND microloanrepayment.is_deleted=0 ";
         
         try{
-            pst = conn.prepareStatement(query);
+            pst = conn.prepareStatement(query1);
             pst.setString(1, jTextField3.getText());
             pst.setString(2, User.userid);
             rs = pst.executeQuery();
             
             if(rs.next()){
-                String  spa = rs.getString("SUM(payedAmount)");
+                   
+                String  spa = rs.getString("SUM(payedAmount)");    
                 
+                //when not first time pay ******************************************************************************
                 if(spa != null){
-                    
+                
                 double sumOfPayedAmount = Double.parseDouble(spa);
                 
                 int r = jTable3.getSelectedRow();
                 String aol = jTable3.getValueAt(r, 1).toString();
                 double amountOfLoan = Double.parseDouble(aol);
-                
+                String ir = jTable3.getValueAt(r, 2).toString();
+                double interestRate = Double.parseDouble(ir);
+                double finalAmount = (amountOfLoan*(interestRate/100)) + amountOfLoan;
+                      
                 double currentPayAmount = Double.parseDouble(jTextField12.getText());
                 
-                double remainingAmountOfLoan = amountOfLoan - sumOfPayedAmount - currentPayAmount ;
+                double remainingAmountOfLoan = finalAmount - sumOfPayedAmount - currentPayAmount ;
                 double roundedRemainingAmountOfLoan = Math.round(remainingAmountOfLoan*100.0)/100.0;
                 String rraol = String.valueOf(roundedRemainingAmountOfLoan);
-        
-        //for calculate remaining installements
-        double noOfInstallement = Double.parseDouble(jTextField11.getText());
-        double installementNo = Double.parseDouble(txt_minstallementNo1.getText());
-        double remainingInstallement = noOfInstallement - installementNo ;
-        double roundedRemainingInstallement = Math.round(remainingInstallement*100.0)/100.0;
-        String rri = String.valueOf(roundedRemainingInstallement);
-        
-        
-        //for add repayment
-        String sql = "INSERT INTO microloanrepayment(installementNo,remainingInstallement,payDate,payedAmount,"
+                
+                //for calculate remaining installements
+                double noOfInstallement = Double.parseDouble(jTextField11.getText());
+                double installementNo = Double.parseDouble(txt_minstallementNo1.getText());
+                double remainingInstallement = noOfInstallement - installementNo ;
+                double roundedRemainingInstallement = Math.round(remainingInstallement*100.0)/100.0;
+                String rri = String.valueOf(roundedRemainingInstallement);
+                
+                
+                //for add repayment
+                String query2 = "INSERT INTO microloanrepayment(installementNo,remainingInstallement,payDate,payedAmount,"
                         + "remainingAmountOfLoan,is_deleted,customerId,microLoanId,userId) "
                         + "VALUES(?,?,?,?,?,0,?,?,?)";
 
-        try{
-            pst =conn.prepareStatement(sql);
-            pst.setString(1, txt_minstallementNo1.getText());
-            pst.setString(2, rri);
-            pst.setString(3, ((JTextField)jDateChooser3.getDateEditor().getUiComponent()).getText());
-            pst.setString(4, jTextField12.getText());
-            pst.setString(5, rraol);
-            pst.setString(6, jTextField3.getText());
-            pst.setString(7, jTextField15.getText());
-            pst.setString(8, User.userid);
-            pst.execute();
+                try{
+                    pst =conn.prepareStatement(query2);
+                    pst.setString(1, txt_minstallementNo1.getText());
+                    pst.setString(2, rri);
+                    pst.setString(3, ((JTextField)jDateChooser3.getDateEditor().getUiComponent()).getText());
+                    pst.setString(4, jTextField12.getText());
+                    pst.setString(5, rraol);
+                    pst.setString(6, jTextField3.getText());
+                    pst.setString(7, jTextField15.getText());
+                    pst.setString(8, User.userid);
+                    pst.execute();
 
-            JOptionPane.showMessageDialog(null, "pay record added successfully!");
-            jDateChooser3.setDate(new Date());
+                    JOptionPane.showMessageDialog(null, "pay record added successfully!");
+                    jDateChooser3.setDate(new Date());
 
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
-        }
-        
-        }else{
+                }catch(Exception e){
+                    JOptionPane.showMessageDialog(null, e);
+                }
+                
+                
+                
+                if(roundedRemainingAmountOfLoan <= 1){
+
+                    //delete from microloanrepayment
+                    String query4 = "UPDATE microloanrepayment SET is_deleted = 1 "
+                    + "WHERE microLoanId=? AND customerId=? AND userId=?";
+
+                    try{
+                        pst = conn.prepareStatement(query4);
+                        pst.setString(1, jTextField15.getText());
+                        pst.setString(2, jTextField3.getText());
+                        pst.setString(3, User.userid);
+                        pst.execute();
+
+                    }catch(Exception e){
+                        JOptionPane.showMessageDialog(null, e);
+                    }
+
+                    //also delete microloan details
+                    String query5 = "UPDATE microloan SET is_deleted = 1 "
+                    + "WHERE microLoanId=? AND customerId=? AND userId=? ";
+
+                    try{
+                        pst = conn.prepareStatement(query5);
+                        pst.setString(1, jTextField15.getText());
+                        pst.setString(2, jTextField3.getText());
+                        pst.setString(3, User.userid);
+                        pst.execute();
+
+                        weeklyMicroLoanTable();
+                        weeklyMicroLoanClearAll();
+                        JOptionPane.showMessageDialog(null, "This customer payed all installement successfully!");
+
+                    }catch(Exception e){
+
+                        JOptionPane.showMessageDialog(null, e);
+
+                    }
+                               
+                
+                }
+                
+                
+            }else{
+                    
+                //when pay first time there has no sum(payedAmount) --->prevent null pointer exception ******************    
                 int r = jTable3.getSelectedRow();
                 String aol = jTable3.getValueAt(r, 1).toString();
                 double amountOfLoan = Double.parseDouble(aol);
+                String ir = jTable3.getValueAt(r, 2).toString();
+                double interestRate = Double.parseDouble(ir);
+                double finalAmount = (amountOfLoan*(interestRate/100)) + amountOfLoan;
                 
                 double currentPayAmount = Double.parseDouble(jTextField12.getText());
                 
-                double remainingAmountOfLoan = amountOfLoan - currentPayAmount ;
+                double remainingAmountOfLoan = finalAmount - currentPayAmount ;
                 double roundedRemainingAmountOfLoan = Math.round(remainingAmountOfLoan*100.0)/100.0;
                 String rraol = String.valueOf(roundedRemainingAmountOfLoan);
-        
-        //for calculate remaining installements
-        double noOfInstallement = Double.parseDouble(jTextField11.getText());
-        double installementNo = Double.parseDouble(txt_minstallementNo1.getText());
-        double remainingInstallement = noOfInstallement - installementNo ;
-        double roundedRemainingInstallement = Math.round(remainingInstallement*100.0)/100.0;
-        String rri = String.valueOf(roundedRemainingInstallement);
-        
-        
-        //for add repayment
-        String sql = "INSERT INTO microloanrepayment(installementNo,remainingInstallement,payDate,payedAmount,"
+                
+                //for calculate remaining installements
+                double noOfInstallement = Double.parseDouble(jTextField11.getText());
+                double installementNo = Double.parseDouble(txt_minstallementNo1.getText());
+                double remainingInstallement = noOfInstallement - installementNo ;
+                double roundedRemainingInstallement = Math.round(remainingInstallement*100.0)/100.0;
+                String rri = String.valueOf(roundedRemainingInstallement);
+                
+                
+                //for add repayment
+                String query6 = "INSERT INTO microloanrepayment(installementNo,remainingInstallement,payDate,payedAmount,"
                         + "remainingAmountOfLoan,is_deleted,customerId,microLoanId,userId) "
                         + "VALUES(?,?,?,?,?,0,?,?,?)";
 
-        try{
-            pst =conn.prepareStatement(sql);
-            pst.setString(1, txt_minstallementNo1.getText());
-            pst.setString(2, rri);
-            pst.setString(3, ((JTextField)jDateChooser3.getDateEditor().getUiComponent()).getText());
-            pst.setString(4, jTextField12.getText());
-            pst.setString(5, rraol);
-            pst.setString(6, jTextField3.getText());
-            pst.setString(7, jTextField15.getText());
-            pst.setString(8, User.userid);
-            pst.execute();
+                try{
+                    pst =conn.prepareStatement(query6);
+                    pst.setString(1, txt_minstallementNo1.getText());
+                    pst.setString(2, rri);
+                    pst.setString(3, ((JTextField)jDateChooser3.getDateEditor().getUiComponent()).getText());
+                    pst.setString(4, jTextField12.getText());
+                    pst.setString(5, rraol);
+                    pst.setString(6, jTextField3.getText());
+                    pst.setString(7, jTextField15.getText());
+                    pst.setString(8, User.userid);
+                    pst.execute();
 
-            JOptionPane.showMessageDialog(null, "pay record added successfully!");
-            jDateChooser3.setDate(new Date());
+                    JOptionPane.showMessageDialog(null, "pay record added successfully!");
+                    jDateChooser3.setDate(new Date());
 
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
-        }
-        
-            } 
+                }catch(Exception e){
+                    JOptionPane.showMessageDialog(null, e);
+                }
                 
+            }      
+            
             }
+            
+                
             
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
         }
+        
+  
 
         //for show how many installements do customer have?
         String noi = jTextField11.getText();
@@ -1992,8 +2084,9 @@ public class Repayment extends javax.swing.JFrame {
         double currentInstallementNo = Double.parseDouble(txt_minstallementNo1.getText());
 
         double howmany = numberOfInstallement- currentInstallementNo;
+        double roundedhowmany = Math.round(howmany*100.0)/100.0;
 
-        String h = String.valueOf(howmany);
+        String h = String.valueOf(roundedhowmany);
 
         JOptionPane.showMessageDialog(null, "This customer have to pay only "+h+" installement/s after this.");
         weeklyMicroLoanClearAll();
@@ -2007,79 +2100,6 @@ public class Repayment extends javax.swing.JFrame {
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton15ActionPerformed
-
-    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
-        
-        int x = JOptionPane.showConfirmDialog(null, "Are you sure you want finished this loan?");
-        if(x==0){
-
-            //firstly add this last repayment into microloanrepayment
-            double noOfInstallement = Double.parseDouble(jTextField11.getText());
-            double installementNo = Double.parseDouble(txt_minstallementNo1.getText());
-            double remainingInstallement = noOfInstallement - installementNo ;
-            double roundedRemainingInstallement = Math.round(remainingInstallement*100.0)/100.0;
-
-            String f = String.valueOf(roundedRemainingInstallement);
-
-            String s = "INSERT INTO microloanrepayment(installementNo,remainingInstallement,payDate,payedAmount"
-            + ",customerId,microLoanId,userId,is_deleted) "
-            + "VALUES(?,?,?,?,?,?,?,0)";
-
-            try{
-                pst =conn.prepareStatement(s);
-                pst.setString(1, txt_minstallementNo1.getText());
-                pst.setString(2, f);
-                pst.setString(3, ((JTextField)jDateChooser3.getDateEditor().getUiComponent()).getText());
-                pst.setString(4, jTextField12.getText());
-                pst.setString(5, jTextField3.getText());
-                pst.setString(6, jTextField15.getText());
-                pst.setString(7, User.userid);
-                pst.execute();
-
-                JOptionPane.showMessageDialog(null, "pay record added successfully!");
-                jDateChooser3.setDate(new Date());
-
-            }catch(Exception e){
-                JOptionPane.showMessageDialog(null, e);
-            }
-
-            //delete from microloanrepayment
-            String sq = "UPDATE microloanrepayment SET is_deleted = 1 "
-            + "WHERE microLoanId=? AND customerId=? AND userId=?";
-
-            try{
-                pst = conn.prepareStatement(sq);
-                pst.setString(1, jTextField15.getText());
-                pst.setString(2, jTextField3.getText());
-                pst.setString(3, User.userid);
-                pst.execute();
-
-            }catch(Exception e){
-                JOptionPane.showMessageDialog(null, e);
-            }
-
-            //also delete microloan details
-            String sql = "UPDATE microloan SET is_deleted = 1 "
-            + "WHERE microLoanId=? AND customerId=? AND userId=? ";
-
-            try{
-                pst = conn.prepareStatement(sql);
-                pst.setString(1, jTextField15.getText());
-                pst.setString(2, jTextField3.getText());
-                pst.setString(3, User.userid);
-                pst.execute();
-
-                weeklyMicroLoanTable();
-                weeklyMicroLoanClearAll();
-                JOptionPane.showMessageDialog(null, "This customer payed all installement successfully!");
-
-            }catch(Exception e){
-
-                JOptionPane.showMessageDialog(null, e);
-
-            }
-        }
-    }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
         txt_search3.setText("");
@@ -2138,121 +2158,205 @@ public class Repayment extends javax.swing.JFrame {
         jTextField17.setText(numberofinstallement);
         jTextField18.setText(installementamount);
     
+        
+        String sql = "SELECT COUNT(installementNo) "
+                    + "FROM microloanrepayment "
+                    + "WHERE microLoanId = ? AND customerId=? AND userId=? ";
+            
+            try{
+                
+                pst = conn.prepareStatement(sql);
+                pst.setString(1 , jTextField21.getText());
+                pst.setString(2 , jTextField19.getText());
+                pst.setString(3 , User.userid);
+                rs = pst.executeQuery();
+                
+                if(rs.next()){
+                
+                    String inc = rs.getString("COUNT(installementNo)");
+                    int installementNoCount = Integer.parseInt(inc);
+                    int installementNo = installementNoCount+1;
+                    String f = String.valueOf(installementNo);
+                    txt_minstallementNo2.setText(f);
+                    
+                }
+                
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, e);
+            }
     }//GEN-LAST:event_jTable4MouseClicked
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
         
-        //for calculate remainingAmountOfLoan
-        String query = "SELECT SUM(payedAmount) "
+        //for calculate remainingAmountOfLoan *******************************************************************************************************
+        String query1 = "SELECT SUM(payedAmount) "
             + "FROM microloanrepayment "
-            + "WHERE customerId = ? AND microloanrepayment.userId=? AND microloanrepayment.is_deleted=0";
+            + "WHERE customerId = ? AND microloanrepayment.userId=? AND microloanrepayment.is_deleted=0 ";
         
         try{
-            pst = conn.prepareStatement(query);
+            pst = conn.prepareStatement(query1);
             pst.setString(1, jTextField19.getText());
             pst.setString(2, User.userid);
             rs = pst.executeQuery();
             
             if(rs.next()){
-                String  spa = rs.getString("SUM(payedAmount)");
+                   
+                String  spa = rs.getString("SUM(payedAmount)");    
                 
+                //when not first time pay ******************************************************************************
                 if(spa != null){
-                    
+                
                 double sumOfPayedAmount = Double.parseDouble(spa);
                 
                 int r = jTable4.getSelectedRow();
                 String aol = jTable4.getValueAt(r, 1).toString();
                 double amountOfLoan = Double.parseDouble(aol);
-                
+                String ir = jTable4.getValueAt(r, 2).toString();
+                double interestRate = Double.parseDouble(ir);
+                double finalAmount = (amountOfLoan*(interestRate/100)) + amountOfLoan;
+                      
                 double currentPayAmount = Double.parseDouble(jTextField18.getText());
                 
-                double remainingAmountOfLoan = amountOfLoan - sumOfPayedAmount - currentPayAmount ;
+                double remainingAmountOfLoan = finalAmount - sumOfPayedAmount - currentPayAmount ;
                 double roundedRemainingAmountOfLoan = Math.round(remainingAmountOfLoan*100.0)/100.0;
                 String rraol = String.valueOf(roundedRemainingAmountOfLoan);
-        
-           
-        //for calculate remaining installements
-        double noOfInstallement = Double.parseDouble(jTextField17.getText());
-        double installementNo = Double.parseDouble(txt_minstallementNo2.getText());
-        double remainingInstallement = noOfInstallement - installementNo ;
-        double roundedRemainingInstallement = Math.round(remainingInstallement*100.0)/100.0;
-        String rri = String.valueOf(roundedRemainingInstallement);
-        
-        
-        //for add repayment
-        String sql = "INSERT INTO microloanrepayment(installementNo,remainingInstallement,payDate,payedAmount,"
+                
+                //for calculate remaining installements
+                double noOfInstallement = Double.parseDouble(jTextField17.getText());
+                double installementNo = Double.parseDouble(txt_minstallementNo2.getText());
+                double remainingInstallement = noOfInstallement - installementNo ;
+                double roundedRemainingInstallement = Math.round(remainingInstallement*100.0)/100.0;
+                String rri = String.valueOf(roundedRemainingInstallement);
+                
+                
+                //for add repayment
+                String query2 = "INSERT INTO microloanrepayment(installementNo,remainingInstallement,payDate,payedAmount,"
                         + "remainingAmountOfLoan,is_deleted,customerId,microLoanId,userId) "
                         + "VALUES(?,?,?,?,?,0,?,?,?)";
 
-        try{
-            pst =conn.prepareStatement(sql);
-            pst.setString(1, txt_minstallementNo2.getText());
-            pst.setString(2, rri);
-            pst.setString(3, ((JTextField)jDateChooser4.getDateEditor().getUiComponent()).getText());
-            pst.setString(4, jTextField18.getText());
-            pst.setString(5, rraol);
-            pst.setString(6, jTextField19.getText());
-            pst.setString(7, jTextField21.getText());
-            pst.setString(8, User.userid);
-            pst.execute();
+                try{
+                    pst =conn.prepareStatement(query2);
+                    pst.setString(1, txt_minstallementNo2.getText());
+                    pst.setString(2, rri);
+                    pst.setString(3, ((JTextField)jDateChooser4.getDateEditor().getUiComponent()).getText());
+                    pst.setString(4, jTextField18.getText());
+                    pst.setString(5, rraol);
+                    pst.setString(6, jTextField19.getText());
+                    pst.setString(7, jTextField21.getText());
+                    pst.setString(8, User.userid);
+                    pst.execute();
 
-            JOptionPane.showMessageDialog(null, "pay record added successfully!");
-            jDateChooser4.setDate(new Date());
+                    JOptionPane.showMessageDialog(null, "pay record added successfully!");
+                    jDateChooser4.setDate(new Date());
 
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
-        }
-        
-        }else{
+                }catch(Exception e){
+                    JOptionPane.showMessageDialog(null, e);
+                }
+                
+                
+                
+                if(roundedRemainingAmountOfLoan <= 1){
+
+                    //delete from microloanrepayment
+                    String query4 = "UPDATE microloanrepayment SET is_deleted = 1 "
+                    + "WHERE microLoanId=? AND customerId=? AND userId=?";
+
+                    try{
+                        pst = conn.prepareStatement(query4);
+                        pst.setString(1, jTextField21.getText());
+                        pst.setString(2, jTextField19.getText());
+                        pst.setString(3, User.userid);
+                        pst.execute();
+
+                    }catch(Exception e){
+                        JOptionPane.showMessageDialog(null, e);
+                    }
+
+                    //also delete microloan details
+                    String query5 = "UPDATE microloan SET is_deleted = 1 "
+                    + "WHERE microLoanId=? AND customerId=? AND userId=? ";
+
+                    try{
+                        pst = conn.prepareStatement(query5);
+                        pst.setString(1, jTextField21.getText());
+                        pst.setString(2, jTextField19.getText());
+                        pst.setString(3, User.userid);
+                        pst.execute();
+
+                        monthlyMicroLoanTable();
+                        monthlyMicroLoanClearAll();
+                        JOptionPane.showMessageDialog(null, "This customer payed all installement successfully!");
+
+                    }catch(Exception e){
+
+                        JOptionPane.showMessageDialog(null, e);
+
+                    }
+                               
+                
+                }
+                
+                
+            }else{
+                    
+                //when pay first time there has no sum(payedAmount) --->prevent null pointer exception ******************    
                 int r = jTable4.getSelectedRow();
                 String aol = jTable4.getValueAt(r, 1).toString();
                 double amountOfLoan = Double.parseDouble(aol);
+                String ir = jTable4.getValueAt(r, 2).toString();
+                double interestRate = Double.parseDouble(ir);
+                double finalAmount = (amountOfLoan*(interestRate/100)) + amountOfLoan;
                 
                 double currentPayAmount = Double.parseDouble(jTextField18.getText());
                 
-                double remainingAmountOfLoan = amountOfLoan - currentPayAmount ;
+                double remainingAmountOfLoan = finalAmount - currentPayAmount ;
                 double roundedRemainingAmountOfLoan = Math.round(remainingAmountOfLoan*100.0)/100.0;
                 String rraol = String.valueOf(roundedRemainingAmountOfLoan);
-        
-           
-        //for calculate remaining installements
-        double noOfInstallement = Double.parseDouble(jTextField17.getText());
-        double installementNo = Double.parseDouble(txt_minstallementNo2.getText());
-        double remainingInstallement = noOfInstallement - installementNo ;
-        double roundedRemainingInstallement = Math.round(remainingInstallement*100.0)/100.0;
-        String rri = String.valueOf(roundedRemainingInstallement);
-        
-        
-        //for add repayment
-        String sql = "INSERT INTO microloanrepayment(installementNo,remainingInstallement,payDate,payedAmount,"
+                
+                //for calculate remaining installements
+                double noOfInstallement = Double.parseDouble(jTextField17.getText());
+                double installementNo = Double.parseDouble(txt_minstallementNo2.getText());
+                double remainingInstallement = noOfInstallement - installementNo ;
+                double roundedRemainingInstallement = Math.round(remainingInstallement*100.0)/100.0;
+                String rri = String.valueOf(roundedRemainingInstallement);
+                
+                
+                //for add repayment
+                String query6 = "INSERT INTO microloanrepayment(installementNo,remainingInstallement,payDate,payedAmount,"
                         + "remainingAmountOfLoan,is_deleted,customerId,microLoanId,userId) "
                         + "VALUES(?,?,?,?,?,0,?,?,?)";
 
-        try{
-            pst =conn.prepareStatement(sql);
-            pst.setString(1, txt_minstallementNo2.getText());
-            pst.setString(2, rri);
-            pst.setString(3, ((JTextField)jDateChooser4.getDateEditor().getUiComponent()).getText());
-            pst.setString(4, jTextField18.getText());
-            pst.setString(5, rraol);
-            pst.setString(6, jTextField19.getText());
-            pst.setString(7, jTextField21.getText());
-            pst.setString(8, User.userid);
-            pst.execute();
+                try{
+                    pst =conn.prepareStatement(query6);
+                    pst.setString(1, txt_minstallementNo2.getText());
+                    pst.setString(2, rri);
+                    pst.setString(3, ((JTextField)jDateChooser4.getDateEditor().getUiComponent()).getText());
+                    pst.setString(4, jTextField18.getText());
+                    pst.setString(5, rraol);
+                    pst.setString(6, jTextField19.getText());
+                    pst.setString(7, jTextField21.getText());
+                    pst.setString(8, User.userid);
+                    pst.execute();
 
-            JOptionPane.showMessageDialog(null, "pay record added successfully!");
-            jDateChooser4.setDate(new Date());
+                    JOptionPane.showMessageDialog(null, "pay record added successfully!");
+                    jDateChooser4.setDate(new Date());
 
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
-        }
-        
-        }
-        }
+                }catch(Exception e){
+                    JOptionPane.showMessageDialog(null, e);
+                }
+                
+            }      
+            
+            }
+            
+            
+            
             
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
         }
+        
+  
 
         //for show how many installements do customer have?
         String noi = jTextField17.getText();
@@ -2260,8 +2364,9 @@ public class Repayment extends javax.swing.JFrame {
         double currentInstallementNo = Double.parseDouble(txt_minstallementNo2.getText());
 
         double howmany = numberOfInstallement- currentInstallementNo;
+        double roundedhowmany = Math.round(howmany*100.0)/100.0;
 
-        String h = String.valueOf(howmany);
+        String h = String.valueOf(roundedhowmany);
 
         JOptionPane.showMessageDialog(null, "This customer have to pay only "+h+" installement/s after this.");
         monthlyMicroLoanClearAll();
@@ -2275,112 +2380,40 @@ public class Repayment extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton20ActionPerformed
 
-    private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
-        int x = JOptionPane.showConfirmDialog(null, "Are you sure you want finished this loan?");
-        if(x==0){
-
-            //firstly add this last repayment into microloanrepayment
-            double noOfInstallement = Double.parseDouble(jTextField17.getText());
-            double installementNo = Double.parseDouble(txt_minstallementNo2.getText());
-            double remainingInstallement = noOfInstallement - installementNo ;
-            double roundedRemainingInstallement = Math.round(remainingInstallement*100.0)/100.0;
-
-            String f = String.valueOf(roundedRemainingInstallement);
-
-            String s = "INSERT INTO microloanrepayment(installementNo,remainingInstallement,payDate,payedAmount"
-            + ",customerId,microLoanId,userId,is_deleted) "
-            + "VALUES(?,?,?,?,?,?,?,0)";
-
-            try{
-                pst =conn.prepareStatement(s);
-                pst.setString(1, txt_minstallementNo2.getText());
-                pst.setString(2, f);
-                pst.setString(3, ((JTextField)jDateChooser4.getDateEditor().getUiComponent()).getText());
-                pst.setString(4, jTextField18.getText());
-                pst.setString(5, jTextField19.getText());
-                pst.setString(6, jTextField21.getText());
-                pst.setString(7, User.userid);
-                pst.execute();
-
-                JOptionPane.showMessageDialog(null, "pay record added successfully!");
-                jDateChooser4.setDate(new Date());
-
-            }catch(Exception e){
-                JOptionPane.showMessageDialog(null, e);
-            }
-
-            //delete from microloanrepayment
-            String sq = "UPDATE microloanrepayment SET is_deleted = 1 "
-            + "WHERE microLoanId=? AND customerId=? AND userId=?";
-
-            try{
-                pst = conn.prepareStatement(sq);
-                pst.setString(1, jTextField21.getText());
-                pst.setString(2, jTextField19.getText());
-                pst.setString(3, User.userid);
-                pst.execute();
-
-            }catch(Exception e){
-                JOptionPane.showMessageDialog(null, e);
-            }
-
-            //also delete microloan details
-            String sql = "UPDATE microloan SET is_deleted = 1 "
-            + "WHERE microLoanId=? AND customerId=? AND userId=? ";
-
-            try{
-                pst = conn.prepareStatement(sql);
-                pst.setString(1, jTextField21.getText());
-                pst.setString(2, jTextField19.getText());
-                pst.setString(3, User.userid);
-                pst.execute();
-
-                monthlyMicroLoanTable();
-                monthlyMicroLoanClearAll();
-                JOptionPane.showMessageDialog(null, "This customer payed all installement successfully!");
-
-            }catch(Exception e){
-
-                JOptionPane.showMessageDialog(null, e);
-
-            }
-        }
-    }//GEN-LAST:event_jButton21ActionPerformed
-
     private void jTextField8KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField8KeyReleased
         
     }//GEN-LAST:event_jTextField8KeyReleased
 
     private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
         
-        String sql = "SELECT installementAmount "
-                    + "FROM microloan "
-                    + "WHERE microLOanId = ? AND customerId =? AND  userId=?";
-      
-        try{
-            pst = conn.prepareStatement(sql);
-            pst.setString(1 , jTextField5.getText());
-            pst.setString(2 , jTextField1.getText());
-            pst.setString(3 , User.userid);
-            rs = pst.executeQuery();
-            
-            if(rs.next()){
-                String dim = rs.getString("installementAmount");
-                double dueinstallmentAmount = Double.parseDouble(dim);
-                double enteredInstallementAmount = Double.parseDouble(jTextField8.getText());
-                double pastInstallementNo = Double.parseDouble(txt_minstallementNo.getText());
-
-                double newInstallementNo = (enteredInstallementAmount/dueinstallmentAmount)+pastInstallementNo-1;
-                Double  roundedNewInstallementNo = Math.round(newInstallementNo*100.0)/100.0;
-
-                String f = String.valueOf(roundedNewInstallementNo);
-                txt_minstallementNo.setText(f);
-            }
-           
-            
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
-        }
+//        String sql = "SELECT installementAmount "
+//                    + "FROM microloan "
+//                    + "WHERE microLOanId = ? AND customerId =? AND  userId=?";
+//        
+//        try{
+//            pst = conn.prepareStatement(sql);
+//            pst.setString(1 , jTextField5.getText());
+//            pst.setString(2 , jTextField1.getText());
+//            pst.setString(3 , User.userid);
+//            rs = pst.executeQuery();
+//            
+//            if(rs.next()){
+//                String dim = rs.getString("installementAmount");
+//                double dueinstallmentAmount = Double.parseDouble(dim);
+//                double enteredInstallementAmount = Double.parseDouble(jTextField8.getText());
+//                double pastInstallementNo = Double.parseDouble(txt_minstallementNo.getText());
+//
+//                double newInstallementNo = pastInstallementNo + (enteredInstallementAmount/dueinstallmentAmount)- 1;
+//                Double  roundedNewInstallementNo = Math.round(newInstallementNo*100.0)/100.0;
+//
+//                String f = String.valueOf(roundedNewInstallementNo);
+//                txt_minstallementNo.setText(f);
+//            }
+//           
+//            
+//        }catch(Exception e){
+//            JOptionPane.showMessageDialog(null, e);
+//        }
         
         
     }//GEN-LAST:event_jButton22ActionPerformed
@@ -2491,13 +2524,11 @@ public class Repayment extends javax.swing.JFrame {
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
-    private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton20;
-    private javax.swing.JButton jButton21;
     private javax.swing.JButton jButton22;
     private javax.swing.JButton jButton23;
     private javax.swing.JButton jButton24;
@@ -2506,7 +2537,6 @@ public class Repayment extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private com.toedter.calendar.JDateChooser jDateChooser2;
