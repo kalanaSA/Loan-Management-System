@@ -113,6 +113,37 @@ public class ProfitShare extends javax.swing.JFrame {
  
  
      }  
+     
+     
+     public void clearAll(){
+        jTextField6.setText("");
+        jTextField5.setText("");
+        jTextField19.setText("");
+        jTextField20.setText("");
+        jTextField8.setText("");
+        jTextField9.setText("");
+        
+        jTextField7.setText("");
+        jTextField12.setText("");
+        jTextField26.setText("");
+        jTextField23.setText("");
+        jTextField11.setText("");
+        jTextField10.setText("");
+        
+        jTextField13.setText("");
+        jTextField18.setText("");
+        jTextField30.setText("");
+        jTextField17.setText("");
+        jTextField15.setText("");
+        
+        jDateChooser2.setDate(new Date());
+        jDateChooser1.setCalendar(null);
+        jDateChooser4.setDate(new Date());
+        jDateChooser3.setCalendar(null);
+        jDateChooser6.setDate(new Date());
+        jDateChooser5.setCalendar(null);
+                
+     }
     
 
     @SuppressWarnings("unchecked")
@@ -142,13 +173,9 @@ public class ProfitShare extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jTextField20 = new javax.swing.JTextField();
         jTextField1 = new javax.swing.JTextField();
-        jLabel42 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
-        jTextField21 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField22 = new javax.swing.JTextField();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jLabel43 = new javax.swing.JLabel();
         jDateChooser2 = new com.toedter.calendar.JDateChooser();
         jLabel44 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -156,6 +183,7 @@ public class ProfitShare extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jTextField8 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jLabel58 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
@@ -168,13 +196,9 @@ public class ProfitShare extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jTextField23 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
-        jLabel46 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
-        jTextField24 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jTextField25 = new javax.swing.JTextField();
         jDateChooser3 = new com.toedter.calendar.JDateChooser();
-        jLabel47 = new javax.swing.JLabel();
         jDateChooser4 = new com.toedter.calendar.JDateChooser();
         jLabel48 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
@@ -192,6 +216,7 @@ public class ProfitShare extends javax.swing.JFrame {
         jTextField26 = new javax.swing.JTextField();
         jLabel26 = new javax.swing.JLabel();
         jLabel51 = new javax.swing.JLabel();
+        jLabel59 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel27 = new javax.swing.JLabel();
         jTextField13 = new javax.swing.JTextField();
@@ -204,13 +229,9 @@ public class ProfitShare extends javax.swing.JFrame {
         jLabel32 = new javax.swing.JLabel();
         jTextField27 = new javax.swing.JTextField();
         jTextField16 = new javax.swing.JTextField();
-        jLabel52 = new javax.swing.JLabel();
         jButton7 = new javax.swing.JButton();
-        jTextField28 = new javax.swing.JTextField();
         jLabel33 = new javax.swing.JLabel();
-        jTextField29 = new javax.swing.JTextField();
         jDateChooser5 = new com.toedter.calendar.JDateChooser();
-        jLabel53 = new javax.swing.JLabel();
         jDateChooser6 = new com.toedter.calendar.JDateChooser();
         jLabel54 = new javax.swing.JLabel();
         jButton8 = new javax.swing.JButton();
@@ -228,6 +249,7 @@ public class ProfitShare extends javax.swing.JFrame {
         jTextField30 = new javax.swing.JTextField();
         jLabel39 = new javax.swing.JLabel();
         jLabel57 = new javax.swing.JLabel();
+        jLabel60 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -288,9 +310,6 @@ public class ProfitShare extends javax.swing.JFrame {
 
         jTextField20.setEditable(false);
 
-        jLabel42.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel42.setText("-");
-
         jButton3.setText("Change");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -298,15 +317,8 @@ public class ProfitShare extends javax.swing.JFrame {
             }
         });
 
-        jTextField21.setEditable(false);
-
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel7.setText("Perecentage of share");
-
-        jTextField22.setEditable(false);
-
-        jLabel43.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel43.setText("=");
 
         jLabel44.setText("total payed amount");
 
@@ -327,6 +339,8 @@ public class ProfitShare extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jLabel1.setText("Profile 1");
+
+        jLabel58.setText("total payed amount");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -352,7 +366,6 @@ public class ProfitShare extends javax.swing.JFrame {
                             .addComponent(jLabel15))
                         .addGap(23, 23, 23)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel44)
@@ -361,24 +374,18 @@ public class ProfitShare extends javax.swing.JFrame {
                                             .addComponent(jTextField8, javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jLabel40, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(jLabel40, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel45)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jTextField21, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jTextField22))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jTextField19, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField20, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(jTextField20, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jLabel58)
+                            .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(362, 362, 362)
@@ -448,11 +455,11 @@ public class ProfitShare extends javax.swing.JFrame {
                             .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(45, 45, 45)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel44)
                     .addComponent(jLabel45))
-                .addGap(12, 12, 12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -470,14 +477,12 @@ public class ProfitShare extends javax.swing.JFrame {
                             .addComponent(jTextField19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel41)
                             .addComponent(jTextField20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(26, 26, 26)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel58)
+                        .addGap(1, 1, 1)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel42)
-                            .addComponent(jTextField21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel43))
+                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(27, 27, 27)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel15)
@@ -520,9 +525,6 @@ public class ProfitShare extends javax.swing.JFrame {
 
         jTextField23.setEditable(false);
 
-        jLabel46.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel46.setText("-");
-
         jButton4.setText("Change");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -530,15 +532,8 @@ public class ProfitShare extends javax.swing.JFrame {
             }
         });
 
-        jTextField24.setEditable(false);
-
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel8.setText("Perecentage of share");
-
-        jTextField25.setEditable(false);
-
-        jLabel47.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel47.setText("=");
 
         jLabel48.setText("total payed amount");
 
@@ -592,6 +587,8 @@ public class ProfitShare extends javax.swing.JFrame {
         jLabel51.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel51.setText("=");
 
+        jLabel59.setText("total payed amount");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -616,7 +613,6 @@ public class ProfitShare extends javax.swing.JFrame {
                             .addComponent(jLabel18))
                         .addGap(23, 23, 23)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel48)
@@ -625,24 +621,18 @@ public class ProfitShare extends javax.swing.JFrame {
                                             .addComponent(jTextField11, javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jTextField12, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jLabel50, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jLabel46, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(jLabel50, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel49)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jTextField24, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel47, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jTextField25))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(jTextField26, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jLabel51, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField23, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(jTextField23, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jLabel59)
+                            .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(362, 362, 362)
@@ -712,11 +702,11 @@ public class ProfitShare extends javax.swing.JFrame {
                             .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(45, 45, 45)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(24, 24, 24)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel48)
                     .addComponent(jLabel49))
-                .addGap(12, 12, 12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -734,19 +724,17 @@ public class ProfitShare extends javax.swing.JFrame {
                             .addComponent(jTextField26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel51)
                             .addComponent(jTextField23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(26, 26, 26)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel59)
+                        .addGap(1, 1, 1)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel46)
-                            .addComponent(jTextField24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel47))
+                            .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(27, 27, 27)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel18)
                             .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton5)
                     .addComponent(jButton6))
@@ -784,9 +772,6 @@ public class ProfitShare extends javax.swing.JFrame {
 
         jTextField27.setEditable(false);
 
-        jLabel52.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel52.setText("-");
-
         jButton7.setText("Change");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -794,15 +779,8 @@ public class ProfitShare extends javax.swing.JFrame {
             }
         });
 
-        jTextField28.setEditable(false);
-
         jLabel33.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel33.setText("Perecentage of share");
-
-        jTextField29.setEditable(false);
-
-        jLabel53.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel53.setText("=");
 
         jLabel54.setText("total payed amount");
 
@@ -856,6 +834,8 @@ public class ProfitShare extends javax.swing.JFrame {
         jLabel57.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel57.setText("=");
 
+        jLabel60.setText("total payed amount");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -880,7 +860,6 @@ public class ProfitShare extends javax.swing.JFrame {
                             .addComponent(jLabel29))
                         .addGap(23, 23, 23)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel54)
@@ -889,24 +868,18 @@ public class ProfitShare extends javax.swing.JFrame {
                                             .addComponent(jTextField17, javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jTextField18, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jLabel56, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jLabel52, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(jLabel56, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel55)
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(jTextField28, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel53, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jTextField29))
                                     .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addComponent(jTextField30, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jLabel57, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField27, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(jTextField27, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jLabel60)
+                            .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(362, 362, 362)
@@ -976,11 +949,11 @@ public class ProfitShare extends javax.swing.JFrame {
                             .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(45, 45, 45)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(24, 24, 24)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel54)
                     .addComponent(jLabel55))
-                .addGap(12, 12, 12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -998,19 +971,17 @@ public class ProfitShare extends javax.swing.JFrame {
                             .addComponent(jTextField30, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel57)
                             .addComponent(jTextField27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(26, 26, 26)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel60)
+                        .addGap(1, 1, 1)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel52)
-                            .addComponent(jTextField28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField29, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel53))
+                            .addComponent(jTextField17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(27, 27, 27)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel29)
                             .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton8)
                     .addComponent(jButton9))
@@ -1042,10 +1013,10 @@ public class ProfitShare extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        //get total payedAmount from microloanrepayment
+        //get total payedAmount from microloanrepayment************************************************************
         String query1 = "SELECT SUM(payedAmount) "
         + "FROM microloanrepayment "
-        + "WHERE time_stamp >= CAST(? AS DATE) AND time_stamp <= CAST(? AS DATE) "
+        + "WHERE microloanrepayment.time_stamp >= CAST(? AS DATE) AND microloanrepayment.time_stamp <= CAST(? AS DATE) "
         + "AND microloanrepayment.userId=? AND microloanrepayment.is_deleted=1";
 
         SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
@@ -1072,7 +1043,7 @@ public class ProfitShare extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e);
         }
 
-        //get total amountOfLoan from microloan
+        //get total amountOfLoan from microloan********************************************************************
         String query2 = "SELECT SUM(amountOfLoan) "
         + "FROM microloan "
         + "WHERE microloan.time_stamp >= CAST(? AS DATE) AND microloan.time_stamp <= CAST(? AS DATE) "
@@ -1102,7 +1073,7 @@ public class ProfitShare extends javax.swing.JFrame {
         }
 
 
-        //total profit from microloans
+        //total profit from microloans***********************************************
         Double mtotalPayedAmount = Double.parseDouble(jTextField5.getText());
         Double mtotalAmountOfLoan = Double.parseDouble(jTextField19.getText());
         Double totalProfitMicroLoan = mtotalPayedAmount - mtotalAmountOfLoan;
@@ -1110,95 +1081,56 @@ public class ProfitShare extends javax.swing.JFrame {
         String tpm = String.valueOf(roundedTotalProfitMicroLoan);
         jTextField20.setText(tpm);
 
-        /****************************************************************************************************************/
+                
+                
+        //get total payedAmount from fixloanrepayment*********************************************************************
+        //SUM(payedAmount)=totalProfit
+        String query3 = "SELECT SUM(payedAmount) "
+        + "FROM fixloanrepayment "
+        + "WHERE time_stamp >= CAST(? AS DATE) AND time_stamp <= CAST(? AS DATE) "
+        + "AND fixloanrepayment.userId=? AND fixloanrepayment.is_deleted=1 ";
 
-
-        //get total amountOfLoan from fixloan
-        String query4 = "SELECT SUM(amountOfLoan) "
-        + "FROM fixloan "
-        + "WHERE fixloan.time_stamp >= CAST(? AS DATE) AND fixloan.time_stamp <= CAST(? AS DATE) "
-        + "AND fixloan.userId=? AND fixloan.is_deleted=1";
-
-        SimpleDateFormat sdf4 = new SimpleDateFormat("yyyy-MM-dd");
-        String date7 = sdf4.format(jDateChooser1.getDate());
-        String date8 = sdf4.format(jDateChooser2.getDate());
+        SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd");
+        String date5 = sdf3.format(jDateChooser1.getDate());
+        String date6 = sdf3.format(jDateChooser2.getDate());
 
         try{
-            pst=conn.prepareStatement(query4);
+            pst = conn.prepareStatement(query3);
 
-            pst.setString(1 , date7);
-            pst.setString(2 , date8);
+            pst.setString(1 , date5);
+            pst.setString(2 , date6);
             pst.setString(3 , User.userid);
-            rs=pst.executeQuery();
+            rs = pst.executeQuery();
 
             if(rs.next()){
-                String sal = rs.getString("SUM(amountOfLoan)");
-                double sumAmountOfLoan = Double.parseDouble(sal);
-                Double roundedSumAmountOfLoan = Math.round(sumAmountOfLoan*100.0)/100.0;
-                String f1 = String.valueOf(roundedSumAmountOfLoan);
-                jTextField21.setText(f1);
-                
-                
-                
-                    //get total payedAmount from fixloanrepayment
-                    String query3 = "SELECT SUM(payedAmount) "
-                    + "FROM fixloanrepayment "
-                    + "WHERE time_stamp >= CAST(? AS DATE) AND time_stamp <= CAST(? AS DATE) "
-                    + "AND fixloanrepayment.userId=? AND fixloanrepayment.is_deleted=1 ";
 
-                    SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd");
-                    String date5 = sdf3.format(jDateChooser1.getDate());
-                    String date6 = sdf3.format(jDateChooser2.getDate());
+                String spa = rs.getString("SUM(payedAmount)");
+                double sumOfPayedAmount = Double.parseDouble(spa);
+                Double roundedsumOfPayedAmount = Math.round(sumOfPayedAmount*100.0)/100.0;
+                String f2 = String.valueOf(roundedsumOfPayedAmount);
+                jTextField8.setText(f2);
 
-                    try{
-                        pst = conn.prepareStatement(query3);
-
-                        pst.setString(1 , date5);
-                        pst.setString(2 , date6);
-                        pst.setString(3 , User.userid);
-                        rs = pst.executeQuery();
-
-                        if(rs.next()){
-
-                            String spa = rs.getString("SUM(payedAmount)");
-                            double sumOfPayedAmount = Double.parseDouble(spa);
-                            double finalTotalPayed = sumOfPayedAmount+ sumAmountOfLoan;
-                            Double roundedFinalTotalPayed = Math.round(finalTotalPayed*100.0)/100.0;
-                            String f2 = String.valueOf(roundedFinalTotalPayed);
-                            jTextField8.setText(f2);
-
-                        }
-
-                    }catch(Exception e){
-                        JOptionPane.showMessageDialog(null, e);
-                    }
-                
-                
-                
             }
 
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
         }
+                
 
-        //total profit from fixloans
+        //total profit from fixloans***********************************************
         Double ftotalPayedAmount = Double.parseDouble(jTextField8.getText());
-        Double ftotalAmountOfLoan = Double.parseDouble(jTextField21.getText());
-        Double totalProfitFixLoan = ftotalPayedAmount - ftotalAmountOfLoan;
-        Double roundedTotalProfitFixLoan = Math.round(totalProfitFixLoan*100.0)/100.0;
-        String tpf = String.valueOf(roundedTotalProfitFixLoan);
-        jTextField22.setText(tpf);
+        Double roundedTotalProfitFixLoan = Math.round(ftotalPayedAmount*100.0)/100.0;
 
-        /************************************************************************************************************/
-
-        //total profit
-        Double totalProfit  = totalProfitMicroLoan + totalProfitFixLoan ;
+        
+        
+        //total profit********************************************************************************
+        Double totalProfit  = roundedTotalProfitMicroLoan + roundedTotalProfitFixLoan ;
         String fp = String.valueOf(totalProfit);
         jTextField9.setText(fp);
 
-        /***************************************************************************************************************/
+  
 
-        //set profit share for profile 1
+        //set profit share for profile 1**************************************************************
         double percentageForProf1 = Double.parseDouble(jTextField3.getText());
         double shareForProf1 = totalProfit*(percentageForProf1/100);
         double roundedShareForProf1 = Math.round(shareForProf1 * 100.0)/100.0;
@@ -1208,7 +1140,7 @@ public class ProfitShare extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -1223,6 +1155,7 @@ public class ProfitShare extends javax.swing.JFrame {
 
             JOptionPane.showMessageDialog(null, "Successfully Updated!");
             calPercentageOfShares();
+            clearAll();
 
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
@@ -1245,6 +1178,7 @@ public class ProfitShare extends javax.swing.JFrame {
 
             JOptionPane.showMessageDialog(null, "Successfully Updated!");
             calPercentageOfShares();
+            clearAll();
 
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
@@ -1256,7 +1190,7 @@ public class ProfitShare extends javax.swing.JFrame {
         //get total payedAmount from microloanrepayment
         String query1 = "SELECT SUM(payedAmount) "
         + "FROM microloanrepayment "
-        + "WHERE time_stamp >= CAST(? AS DATE) AND time_stamp <= CAST(? AS DATE) "
+        + "WHERE microloanrepayment.time_stamp >= CAST(? AS DATE) AND microloanrepayment.time_stamp <= CAST(? AS DATE) "
         + "AND microloanrepayment.userId=? AND microloanrepayment.is_deleted=1";
 
         SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
@@ -1323,92 +1257,55 @@ public class ProfitShare extends javax.swing.JFrame {
 
         /****************************************************************************************************************/
 
-         //get total amountOfLoan from fixloan
-        String query4 = "SELECT SUM(amountOfLoan) "
-        + "FROM fixloan "
-        + "WHERE fixloan.time_stamp >= CAST(? AS DATE) AND fixloan.time_stamp <= CAST(? AS DATE) "
-        + "AND fixloan.userId=? AND fixloan.is_deleted=1";
 
-        SimpleDateFormat sdf4 = new SimpleDateFormat("yyyy-MM-dd");
-        String date7 = sdf4.format(jDateChooser3.getDate());
-        String date8 = sdf4.format(jDateChooser4.getDate());
+        //get total payedAmount from fixloanrepayment*********************************************************************
+        //SUM(payedAmount)=totalProfit
+        String query3 = "SELECT SUM(payedAmount) "
+        + "FROM fixloanrepayment "
+        + "WHERE time_stamp >= CAST(? AS DATE) AND time_stamp <= CAST(? AS DATE) "
+        + "AND fixloanrepayment.userId=? AND fixloanrepayment.is_deleted=1 ";
+
+        SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd");
+        String date5 = sdf3.format(jDateChooser3.getDate());
+        String date6 = sdf3.format(jDateChooser4.getDate());
 
         try{
-            pst=conn.prepareStatement(query4);
+            pst = conn.prepareStatement(query3);
 
-            pst.setString(1 , date7);
-            pst.setString(2 , date8);
+            pst.setString(1 , date5);
+            pst.setString(2 , date6);
             pst.setString(3 , User.userid);
-            rs=pst.executeQuery();
+            rs = pst.executeQuery();
 
             if(rs.next()){
-                String sal = rs.getString("SUM(amountOfLoan)");
-                double sumAmountOfLoan = Double.parseDouble(sal);
-                Double roundedSumAmountOfLoan = Math.round(sumAmountOfLoan*100.0)/100.0;
-                String f1 = String.valueOf(roundedSumAmountOfLoan);
-                jTextField24.setText(f1);
-                
-                
-                
-                    //get total payedAmount from fixloanrepayment
-                    String query3 = "SELECT SUM(payedAmount) "
-                    + "FROM fixloanrepayment "
-                    + "WHERE time_stamp >= CAST(? AS DATE) AND time_stamp <= CAST(? AS DATE) "
-                    + "AND fixloanrepayment.userId=? AND fixloanrepayment.is_deleted=1 ";
 
-                    SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd");
-                    String date5 = sdf3.format(jDateChooser1.getDate());
-                    String date6 = sdf3.format(jDateChooser2.getDate());
+                String spa = rs.getString("SUM(payedAmount)");
+                double sumOfPayedAmount = Double.parseDouble(spa);
+                Double roundedsumOfPayedAmount = Math.round(sumOfPayedAmount*100.0)/100.0;
+                String f2 = String.valueOf(roundedsumOfPayedAmount);
+                jTextField11.setText(f2);
 
-                    try{
-                        pst = conn.prepareStatement(query3);
-
-                        pst.setString(1 , date5);
-                        pst.setString(2 , date6);
-                        pst.setString(3 , User.userid);
-                        rs = pst.executeQuery();
-
-                        if(rs.next()){
-
-                            String spa = rs.getString("SUM(payedAmount)");
-                            double sumOfPayedAmount = Double.parseDouble(spa);
-                            double finalTotalPayed = sumOfPayedAmount+ sumAmountOfLoan;
-                            Double roundedFinalTotalPayed = Math.round(finalTotalPayed*100.0)/100.0;
-                            String f2 = String.valueOf(roundedFinalTotalPayed);
-                            jTextField11.setText(f2);
-
-                        }
-
-                    }catch(Exception e){
-                        JOptionPane.showMessageDialog(null, e);
-                    }
-                
-                
-                
             }
 
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
         }
+                
 
-        //total profit from fixloans
+        //total profit from fixloans***********************************************
         Double ftotalPayedAmount = Double.parseDouble(jTextField11.getText());
-        Double ftotalAmountOfLoan = Double.parseDouble(jTextField24.getText());
-        Double totalProfitFixLoan = ftotalPayedAmount - ftotalAmountOfLoan;
-        Double roundedTotalProfitFixLoan = Math.round(totalProfitFixLoan*100.0)/100.0;
-        String tpf = String.valueOf(roundedTotalProfitFixLoan);
-        jTextField25.setText(tpf);
+        Double roundedTotalProfitFixLoan = Math.round(ftotalPayedAmount*100.0)/100.0;
 
-        /************************************************************************************************************/
+        
 
-        //total profit
-        Double totalProfit  = totalProfitMicroLoan + totalProfitFixLoan ;
+        //total profit***************************************************************************
+        Double totalProfit  = roundedTotalProfitMicroLoan + roundedTotalProfitFixLoan ;
         String fp = String.valueOf(totalProfit);
         jTextField10.setText(fp);
 
-        /***************************************************************************************************************/
+        
 
-        //set profit share for profile 1
+        //set profit share for profile 1**********************************************************
         double percentageForProf1 = Double.parseDouble(jTextField4.getText());
         double shareForProf1 = totalProfit*(percentageForProf1/100);
         double roundedShareForProf1 = Math.round(shareForProf1 * 100.0)/100.0;
@@ -1420,7 +1317,7 @@ public class ProfitShare extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jTextField11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField11ActionPerformed
@@ -1439,6 +1336,7 @@ public class ProfitShare extends javax.swing.JFrame {
 
             JOptionPane.showMessageDialog(null, "Successfully Updated!");
             calPercentageOfShares();
+            clearAll();
 
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
@@ -1450,7 +1348,7 @@ public class ProfitShare extends javax.swing.JFrame {
         //get total payedAmount from microloanrepayment
         String query1 = "SELECT SUM(payedAmount) "
         + "FROM microloanrepayment "
-        + "WHERE time_stamp >= CAST(? AS DATE) AND time_stamp <= CAST(? AS DATE) "
+        + "WHERE microloanrepayment.time_stamp >= CAST(? AS DATE) AND microloanrepayment.time_stamp <= CAST(? AS DATE) "
         + "AND microloanrepayment.userId=? AND microloanrepayment.is_deleted=1";
 
         SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
@@ -1517,92 +1415,55 @@ public class ProfitShare extends javax.swing.JFrame {
 
         /****************************************************************************************************************/
 
-        //get total amountOfLoan from fixloan
-        String query4 = "SELECT SUM(amountOfLoan) "
-        + "FROM fixloan "
-        + "WHERE fixloan.time_stamp >= CAST(? AS DATE) AND fixloan.time_stamp <= CAST(? AS DATE) "
-        + "AND fixloan.userId=? AND fixloan.is_deleted=1";
 
-        SimpleDateFormat sdf4 = new SimpleDateFormat("yyyy-MM-dd");
-        String date7 = sdf4.format(jDateChooser5.getDate());
-        String date8 = sdf4.format(jDateChooser6.getDate());
+        //get total payedAmount from fixloanrepayment*********************************************************************
+        //SUM(payedAmount)=totalProfit
+        String query3 = "SELECT SUM(payedAmount) "
+        + "FROM fixloanrepayment "
+        + "WHERE time_stamp >= CAST(? AS DATE) AND time_stamp <= CAST(? AS DATE) "
+        + "AND fixloanrepayment.userId=? AND fixloanrepayment.is_deleted=1 ";
+
+        SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd");
+        String date5 = sdf3.format(jDateChooser5.getDate());
+        String date6 = sdf3.format(jDateChooser6.getDate());
 
         try{
-            pst=conn.prepareStatement(query4);
+            pst = conn.prepareStatement(query3);
 
-            pst.setString(1 , date7);
-            pst.setString(2 , date8);
+            pst.setString(1 , date5);
+            pst.setString(2 , date6);
             pst.setString(3 , User.userid);
-            rs=pst.executeQuery();
+            rs = pst.executeQuery();
 
             if(rs.next()){
-                String sal = rs.getString("SUM(amountOfLoan)");
-                double sumAmountOfLoan = Double.parseDouble(sal);
-                Double roundedSumAmountOfLoan = Math.round(sumAmountOfLoan*100.0)/100.0;
-                String f1 = String.valueOf(roundedSumAmountOfLoan);
-                jTextField28.setText(f1);
-                
-                
-                
-                    //get total payedAmount from fixloanrepayment
-                    String query3 = "SELECT SUM(payedAmount) "
-                    + "FROM fixloanrepayment "
-                    + "WHERE time_stamp >= CAST(? AS DATE) AND time_stamp <= CAST(? AS DATE) "
-                    + "AND fixloanrepayment.userId=? AND fixloanrepayment.is_deleted=1 ";
 
-                    SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd");
-                    String date5 = sdf3.format(jDateChooser1.getDate());
-                    String date6 = sdf3.format(jDateChooser2.getDate());
+                String spa = rs.getString("SUM(payedAmount)");
+                double sumOfPayedAmount = Double.parseDouble(spa);
+                Double roundedsumOfPayedAmount = Math.round(sumOfPayedAmount*100.0)/100.0;
+                String f2 = String.valueOf(roundedsumOfPayedAmount);
+                jTextField17.setText(f2);
 
-                    try{
-                        pst = conn.prepareStatement(query3);
-
-                        pst.setString(1 , date5);
-                        pst.setString(2 , date6);
-                        pst.setString(3 , User.userid);
-                        rs = pst.executeQuery();
-
-                        if(rs.next()){
-
-                            String spa = rs.getString("SUM(payedAmount)");
-                            double sumOfPayedAmount = Double.parseDouble(spa);
-                            double finalTotalPayed = sumOfPayedAmount+ sumAmountOfLoan;
-                            Double roundedFinalTotalPayed = Math.round(finalTotalPayed*100.0)/100.0;
-                            String f2 = String.valueOf(roundedFinalTotalPayed);
-                            jTextField17.setText(f2);
-
-                        }
-
-                    }catch(Exception e){
-                        JOptionPane.showMessageDialog(null, e);
-                    }
-                
-                
-                
             }
 
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
         }
+                
 
-        //total profit from fixloans
+        //total profit from fixloans***********************************************
         Double ftotalPayedAmount = Double.parseDouble(jTextField17.getText());
-        Double ftotalAmountOfLoan = Double.parseDouble(jTextField28.getText());
-        Double totalProfitFixLoan = ftotalPayedAmount - ftotalAmountOfLoan;
-        Double roundedTotalProfitFixLoan = Math.round(totalProfitFixLoan*100.0)/100.0;
-        String tpf = String.valueOf(roundedTotalProfitFixLoan);
-        jTextField29.setText(tpf);
+        Double roundedTotalProfitFixLoan = Math.round(ftotalPayedAmount*100.0)/100.0;
 
-        /************************************************************************************************************/
+        
 
-        //total profit
-        Double totalProfit  = totalProfitMicroLoan + totalProfitFixLoan ;
+        //total profit*****************************************************************************
+        Double totalProfit  = roundedTotalProfitMicroLoan + roundedTotalProfitFixLoan ;
         String fp = String.valueOf(totalProfit);
         jTextField15.setText(fp);
 
-        /***************************************************************************************************************/
+        
 
-        //set profit share for profile 1
+        //set profit share for profile 1************************************************************
         double percentageForProf1 = Double.parseDouble(jTextField14.getText());
         double shareForProf1 = totalProfit*(percentageForProf1/100);
         double roundedShareForProf1 = Math.round(shareForProf1 * 100.0)/100.0;
@@ -1612,7 +1473,7 @@ public class ProfitShare extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jTextField17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField17ActionPerformed
@@ -1706,24 +1567,21 @@ public class ProfitShare extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
-    private javax.swing.JLabel jLabel42;
-    private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel45;
-    private javax.swing.JLabel jLabel46;
-    private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel51;
-    private javax.swing.JLabel jLabel52;
-    private javax.swing.JLabel jLabel53;
     private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel55;
     private javax.swing.JLabel jLabel56;
     private javax.swing.JLabel jLabel57;
+    private javax.swing.JLabel jLabel58;
+    private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel60;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -1747,15 +1605,9 @@ public class ProfitShare extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField19;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField20;
-    private javax.swing.JTextField jTextField21;
-    private javax.swing.JTextField jTextField22;
     private javax.swing.JTextField jTextField23;
-    private javax.swing.JTextField jTextField24;
-    private javax.swing.JTextField jTextField25;
     private javax.swing.JTextField jTextField26;
     private javax.swing.JTextField jTextField27;
-    private javax.swing.JTextField jTextField28;
-    private javax.swing.JTextField jTextField29;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField30;
     private javax.swing.JTextField jTextField4;

@@ -2386,34 +2386,34 @@ public class Repayment extends javax.swing.JFrame {
 
     private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
         
-//        String sql = "SELECT installementAmount "
-//                    + "FROM microloan "
-//                    + "WHERE microLOanId = ? AND customerId =? AND  userId=?";
-//        
-//        try{
-//            pst = conn.prepareStatement(sql);
-//            pst.setString(1 , jTextField5.getText());
-//            pst.setString(2 , jTextField1.getText());
-//            pst.setString(3 , User.userid);
-//            rs = pst.executeQuery();
-//            
-//            if(rs.next()){
-//                String dim = rs.getString("installementAmount");
-//                double dueinstallmentAmount = Double.parseDouble(dim);
-//                double enteredInstallementAmount = Double.parseDouble(jTextField8.getText());
-//                double pastInstallementNo = Double.parseDouble(txt_minstallementNo.getText());
-//
-//                double newInstallementNo = pastInstallementNo + (enteredInstallementAmount/dueinstallmentAmount)- 1;
-//                Double  roundedNewInstallementNo = Math.round(newInstallementNo*100.0)/100.0;
-//
-//                String f = String.valueOf(roundedNewInstallementNo);
-//                txt_minstallementNo.setText(f);
-//            }
-//           
-//            
-//        }catch(Exception e){
-//            JOptionPane.showMessageDialog(null, e);
-//        }
+        String sql = "SELECT installementAmount "
+                    + "FROM microloan "
+                    + "WHERE microLoanId = ? AND customerId =? AND  userId=?";
+        
+        try{
+            pst = conn.prepareStatement(sql);
+            pst.setString(1 , jTextField5.getText());
+            pst.setString(2 , jTextField1.getText());
+            pst.setString(3 , User.userid);
+            rs = pst.executeQuery();
+            
+            if(rs.next()){
+                String dim = rs.getString("installementAmount");
+                double dueinstallmentAmount = Double.parseDouble(dim);
+                double enteredInstallementAmount = Double.parseDouble(jTextField8.getText());
+                double pastInstallementNo = Double.parseDouble(txt_minstallementNo.getText());
+
+                double newInstallementNo = pastInstallementNo + (enteredInstallementAmount/dueinstallmentAmount)- 1;
+                Double  roundedNewInstallementNo = Math.round(newInstallementNo*100.0)/100.0;
+
+                String f = String.valueOf(roundedNewInstallementNo);
+                txt_minstallementNo.setText(f);
+            }
+           
+            
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
         
         
     }//GEN-LAST:event_jButton22ActionPerformed

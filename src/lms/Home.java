@@ -75,6 +75,7 @@ public class Home extends javax.swing.JFrame {
         jMenuItem11 = new javax.swing.JMenuItem();
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenuItem12 = new javax.swing.JMenuItem();
+        jMenuItem26 = new javax.swing.JMenuItem();
         jMenuItem15 = new javax.swing.JMenuItem();
         jMenuItem14 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
@@ -91,6 +92,12 @@ public class Home extends javax.swing.JFrame {
         jMenuItem16 = new javax.swing.JMenuItem();
         jMenuItem17 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
+        jMenu10 = new javax.swing.JMenu();
+        jMenu11 = new javax.swing.JMenu();
+        jMenuItem23 = new javax.swing.JMenuItem();
+        jMenuItem24 = new javax.swing.JMenuItem();
+        jMenuItem25 = new javax.swing.JMenuItem();
+        jMenuItem22 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenu9 = new javax.swing.JMenu();
@@ -294,6 +301,14 @@ public class Home extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem12);
 
+        jMenuItem26.setText("profit share");
+        jMenuItem26.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem26ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem26);
+
         jMenuItem15.setText("log out");
         jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -401,6 +416,46 @@ public class Home extends javax.swing.JFrame {
         jMenu5.add(jMenuItem6);
 
         jMenu2.add(jMenu5);
+
+        jMenu10.setText("finished repayment report");
+
+        jMenu11.setText("finished microloan repayment report");
+
+        jMenuItem23.setText("finished microloan daily repayment report");
+        jMenuItem23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem23ActionPerformed(evt);
+            }
+        });
+        jMenu11.add(jMenuItem23);
+
+        jMenuItem24.setText("finished microloan weekly repayment report");
+        jMenuItem24.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem24ActionPerformed(evt);
+            }
+        });
+        jMenu11.add(jMenuItem24);
+
+        jMenuItem25.setText("finished microloan monthly repayment report");
+        jMenuItem25.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem25ActionPerformed(evt);
+            }
+        });
+        jMenu11.add(jMenuItem25);
+
+        jMenu10.add(jMenu11);
+
+        jMenuItem22.setText("finished fixloan repayment report");
+        jMenuItem22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem22ActionPerformed(evt);
+            }
+        });
+        jMenu10.add(jMenuItem22);
+
+        jMenu2.add(jMenu10);
 
         jMenuBar1.add(jMenu2);
 
@@ -581,7 +636,7 @@ public class Home extends javax.swing.JFrame {
            
         try {
 
-            String sql ="select * from customerdetails";
+            String sql ="select * from customerdetails WHERE is_deleted=0";
  
             pst=conn.prepareStatement(sql);
             rs=pst.executeQuery();
@@ -704,7 +759,7 @@ public class Home extends javax.swing.JFrame {
                 + "FROM fixloanrepayment "
                 + "INNER JOIN customerdetails ON (fixloanrepayment.customerId=customerdetails.id) "
                 + "INNER JOIN fixloan ON (fixloanrepayment.fixLoanId=fixloan.fixLoanId)"
-                + "WHERE fixloanrepayment.userId=?";
+                + "WHERE fixloanrepayment.userId=? AND fixloanrepayment.is_deleted=0";
  
             pst=conn.prepareStatement(sql);
             pst.setString(1, User.userid);
@@ -804,7 +859,8 @@ public class Home extends javax.swing.JFrame {
             String sql = "SELECT fixLoanId,amountOfLoan,interestRate,installementAmount,issueDate"
                     + ",customerdetails.id,customerdetails.name "
                     + "FROM fixloan "
-                    + "INNER JOIN customerdetails ON fixloan.customerId=customerdetails.id ";
+                    + "INNER JOIN customerdetails ON fixloan.customerId=customerdetails.id "
+                    + "WHERE fixloan.is_deleted=0";
  
             pst=conn.prepareStatement(sql);
             rs=pst.executeQuery();
@@ -885,12 +941,12 @@ public class Home extends javax.swing.JFrame {
             
 
             String sql = "SELECT microloan.microLoanId , microloan.numberOfInstallement,"
-                + "installementNo , payedAmount , payDate, "
+                + "installementNo , remainingInstallement , payedAmount , remainingAmountOfLoan , payDate, "
                 + "customerdetails.id , customerdetails.name "
                 + "FROM microloanrepayment "
                 + "INNER JOIN customerdetails ON (microloanrepayment.customerId=customerdetails.id) "
                 + "INNER JOIN microloan ON (microloanrepayment.microLoanId=microloan.microLoanId)"
-                + "WHERE microloan.loanType = 'Daily' AND microloanrepayment.userId=?";
+                + "WHERE microloan.loanType = 'Daily' AND microloanrepayment.userId=? AND microloanrepayment.is_deleted=0";
  
             pst=conn.prepareStatement(sql);
             pst.setString(1, User.userid);
@@ -972,11 +1028,12 @@ public class Home extends javax.swing.JFrame {
             
 
             String sql = "SELECT microloan.microLoanId , microloan.numberOfInstallement,"
-                + "installementNo , payedAmount , payDate , customerdetails.id,customerdetails.name "
+                + "installementNo , remainingInstallement , payedAmount , remainingAmountOfLoan ,"
+                + " payDate , customerdetails.id,customerdetails.name "
                 + "FROM microloanrepayment "
                 + "INNER JOIN customerdetails ON (microloanrepayment.customerId=customerdetails.id) "
                 + "INNER JOIN microloan ON (microloanrepayment.microLoanId=microloan.microLoanId)"
-                + "WHERE microloan.loanType = 'Weekly' AND microloanrepayment.userId=?";
+                + "WHERE microloan.loanType = 'Weekly' AND microloanrepayment.userId=? AND microloanrepayment.is_deleted=0";
  
             pst=conn.prepareStatement(sql);
             pst.setString(1, User.userid);
@@ -1058,11 +1115,12 @@ public class Home extends javax.swing.JFrame {
             
 
             String sql = "SELECT microloan.microLoanId,microloan.numberOfInstallement,"
-                + "installementNo,payedAmount,payDate ,customerdetails.id , customerdetails.name "
+                + "installementNo, remainingInstallement , payedAmount, remainingAmountOfLoan ,payDate ,"
+                + "customerdetails.id , customerdetails.name "
                 + "FROM microloanrepayment "
                 + "INNER JOIN customerdetails ON (microloanrepayment.customerId=customerdetails.id) "
                 + "INNER JOIN microloan ON (microloanrepayment.microLoanId=microloan.microLoanId)"
-                + "WHERE microloan.loanType = 'Monthly' AND microloanrepayment.userId=?";
+                + "WHERE microloan.loanType = 'Monthly' AND microloanrepayment.userId=? AND microloanrepayment.is_deleted=0";
  
             pst=conn.prepareStatement(sql);
             pst.setString(1, User.userid);
@@ -1146,7 +1204,7 @@ public class Home extends javax.swing.JFrame {
                     + "installementAmount,issueDate,dueDate,customerdetails.id,customerdetails.name "
                     + "FROM microloan "
                     + "INNER JOIN customerdetails ON (microloan.customerId=customerdetails.id) "
-                    + "WHERE loanType='Daily' and microloan.userId=?";
+                    + "WHERE loanType='Daily' AND microloan.userId=? AND microloan.is_deleted = 0";
  
             pst=conn.prepareStatement(sql);
             pst.setString(1, User.userid);
@@ -1236,7 +1294,7 @@ public class Home extends javax.swing.JFrame {
                     + "installementAmount,issueDate,dueDate,customerdetails.id,customerdetails.name "
                     + "FROM microloan "
                     + "INNER JOIN customerdetails ON (microloan.customerId=customerdetails.id) "
-                    + "WHERE loanType='Weekly' and microloan.userId=?";
+                    + "WHERE loanType='Weekly' AND microloan.userId=? AND microloan.is_deleted = 0";
  
             pst=conn.prepareStatement(sql);
             pst.setString(1, User.userid);
@@ -1326,7 +1384,7 @@ public class Home extends javax.swing.JFrame {
                     + "customerdetails.nic,customerdetails.address,customerdetails.resistance,"
                     + "customerdetails.contactNo,customerdetails.gender FROM microloan "
                     + "INNER JOIN customerdetails ON (microloan.customerId=customerdetails.id) "
-                    + "WHERE loanType='Monthly' and microloan.userId=? ";
+                    + "WHERE loanType='Monthly' AND microloan.userId=? AND microloan.is_deleted=0";
  
             pst=conn.prepareStatement(sql);
             pst.setString(1 , User.userid);
@@ -1431,6 +1489,358 @@ public class Home extends javax.swing.JFrame {
         a.setVisible(true);
     }//GEN-LAST:event_jMenuItem18ActionPerformed
 
+    private void jMenuItem22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem22ActionPerformed
+        
+            JFileChooser dialog = new JFileChooser();
+            dialog.setSelectedFile(new File("finished-fix-loan-repayment-report.pdf"));
+            int dialogResult = dialog.showSaveDialog(null);
+            if (dialogResult==JFileChooser.APPROVE_OPTION){
+            String filePath = dialog.getSelectedFile().getPath();
+           
+        try {
+
+            String sql = "SELECT fixloan.fixLoanId,"
+                + "installementNo , payedAmount,payDate , customerdetails.id,customerdetails.name "
+                + "FROM fixloanrepayment "
+                + "INNER JOIN customerdetails ON (fixloanrepayment.customerId=customerdetails.id) "
+                + "INNER JOIN fixloan ON (fixloanrepayment.fixLoanId=fixloan.fixLoanId)"
+                + "WHERE fixloanrepayment.userId=? AND fixloanrepayment.is_deleted=1";
+ 
+            pst=conn.prepareStatement(sql);
+            pst.setString(1, User.userid);
+            rs=pst.executeQuery();
+
+            
+           Document myDocument = new Document();
+           PdfWriter myWriter = PdfWriter.getInstance(myDocument, new FileOutputStream(filePath ));
+           PdfPTable table = new PdfPTable(6);
+           myDocument.open();
+           
+           
+           float[] columnWidths = new float[] {12,10,8,5,18,18};
+           table.setWidths(columnWidths);
+
+           table.setWidthPercentage(100); //set table width to 100%
+           
+          
+          myDocument.add(new Paragraph("Finished Fix Loan Repayment Report ",FontFactory.getFont(FontFactory.TIMES_BOLD,20,Font.BOLD )));
+          myDocument.add(new Paragraph(new Date().toString()));
+          myDocument.add(new Paragraph("-------------------------------------------------------------------------------------------"));
+          table.addCell(new PdfPCell(new Paragraph("Fix Loan ID",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
+          table.addCell(new PdfPCell(new Paragraph("Installement Number",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
+          table.addCell(new PdfPCell(new Paragraph("Pay Amount",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
+          table.addCell(new PdfPCell(new Paragraph("Pay Date",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
+          table.addCell(new PdfPCell(new Paragraph("Customer ID",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
+          table.addCell(new PdfPCell(new Paragraph("Customer Name",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
+         
+          
+          while(rs.next()){
+              
+           table.addCell(new PdfPCell(new Paragraph(rs.getString(1),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
+           table.addCell(new PdfPCell(new Paragraph(rs.getString(2),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
+           table.addCell(new PdfPCell(new Paragraph(rs.getString(3),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
+           table.addCell(new PdfPCell(new Paragraph(rs.getString(4),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
+           table.addCell(new PdfPCell(new Paragraph(rs.getString(5),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
+           table.addCell(new PdfPCell(new Paragraph(rs.getString(6),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
+                 
+            }
+           
+           myDocument.add(table);
+           myDocument.add(new Paragraph("--------------------------------------------------------------------------------------------"));
+           myDocument.close();  
+           JOptionPane.showMessageDialog(null,"Report was successfully generated");
+            
+     }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);  
+         
+     }
+     finally {
+            
+            try{
+                rs.close();
+                pst.close();
+                
+            }
+            catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+         
+            }
+     }
+    }
+        
+    }//GEN-LAST:event_jMenuItem22ActionPerformed
+
+    private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
+        
+            //daily micro loan repayment report
+            JFileChooser dialog = new JFileChooser();
+            dialog.setSelectedFile(new File("finished-daily-micro-loan-repayment-report.pdf"));
+            int dialogResult = dialog.showSaveDialog(null);
+            if (dialogResult==JFileChooser.APPROVE_OPTION){
+            String filePath = dialog.getSelectedFile().getPath();
+           
+        try {
+            
+
+            String sql = "SELECT microloan.microLoanId , microloan.numberOfInstallement,"
+                + "installementNo , remainingInstallement , payedAmount , remainingAmountOfLoan , payDate, "
+                + "customerdetails.id , customerdetails.name "
+                + "FROM microloanrepayment "
+                + "INNER JOIN customerdetails ON (microloanrepayment.customerId=customerdetails.id) "
+                + "INNER JOIN microloan ON (microloanrepayment.microLoanId=microloan.microLoanId)"
+                + "WHERE microloan.loanType = 'Daily' AND microloanrepayment.userId=? AND microloanrepayment.is_deleted=1";
+ 
+            pst=conn.prepareStatement(sql);
+            pst.setString(1, User.userid);
+            rs=pst.executeQuery();
+
+            
+           Document myDocument = new Document();
+           PdfWriter myWriter = PdfWriter.getInstance(myDocument, new FileOutputStream(filePath ));
+           PdfPTable table = new PdfPTable(7);
+           myDocument.open();
+           
+           
+           float[] columnWidths = new float[] {8,8,8,12,10,8,15};
+           table.setWidths(columnWidths);
+
+           table.setWidthPercentage(100); //set table width to 100%
+           
+          
+          myDocument.add(new Paragraph("Finished Daily Micro Loan Repayment Report ",FontFactory.getFont(FontFactory.TIMES_BOLD,20,Font.BOLD )));
+          myDocument.add(new Paragraph(new Date().toString()));
+          myDocument.add(new Paragraph("-------------------------------------------------------------------------------------------"));
+          table.addCell(new PdfPCell(new Paragraph("Micro Loan ID",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));      
+          table.addCell(new PdfPCell(new Paragraph("Number of Installement",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
+          table.addCell(new PdfPCell(new Paragraph("Installement Number",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
+          table.addCell(new PdfPCell(new Paragraph("Pay Amount",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
+          table.addCell(new PdfPCell(new Paragraph("Pay Date",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
+          table.addCell(new PdfPCell(new Paragraph("Customer ID",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
+          table.addCell(new PdfPCell(new Paragraph("Customer Name",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
+          
+          
+          
+          while(rs.next()){
+              
+           table.addCell(new PdfPCell(new Paragraph(rs.getString(1),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
+           table.addCell(new PdfPCell(new Paragraph(rs.getString(2),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
+           table.addCell(new PdfPCell(new Paragraph(rs.getString(3),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
+           table.addCell(new PdfPCell(new Paragraph(rs.getString(4),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
+           table.addCell(new PdfPCell(new Paragraph(rs.getString(5),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
+           table.addCell(new PdfPCell(new Paragraph(rs.getString(6),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
+           table.addCell(new PdfPCell(new Paragraph(rs.getString(7),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
+                  
+            }
+           
+           myDocument.add(table);
+           myDocument.add(new Paragraph("--------------------------------------------------------------------------------------------"));
+           myDocument.close();  
+           JOptionPane.showMessageDialog(null,"Report was successfully generated");
+            
+     }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);  
+         
+     }
+     finally {
+            
+            try{
+                rs.close();
+                pst.close();
+                
+            }
+            catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+         
+            }
+     }
+    }
+        
+    }//GEN-LAST:event_jMenuItem23ActionPerformed
+
+    private void jMenuItem24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem24ActionPerformed
+        
+        //weekly micro loan repayment report
+            JFileChooser dialog = new JFileChooser();
+            dialog.setSelectedFile(new File("finished-weekly-micro-loan-repayment-report.pdf"));
+            int dialogResult = dialog.showSaveDialog(null);
+            if (dialogResult==JFileChooser.APPROVE_OPTION){
+            String filePath = dialog.getSelectedFile().getPath();
+           
+        try {
+            
+
+            String sql = "SELECT microloan.microLoanId , microloan.numberOfInstallement,"
+                + "installementNo , remainingInstallement , payedAmount , remainingAmountOfLoan ,"
+                + " payDate , customerdetails.id,customerdetails.name "
+                + "FROM microloanrepayment "
+                + "INNER JOIN customerdetails ON (microloanrepayment.customerId=customerdetails.id) "
+                + "INNER JOIN microloan ON (microloanrepayment.microLoanId=microloan.microLoanId)"
+                + "WHERE microloan.loanType = 'Weekly' AND microloanrepayment.userId=? AND microloanrepayment.is_deleted=1";
+ 
+            pst=conn.prepareStatement(sql);
+            pst.setString(1, User.userid);
+            rs=pst.executeQuery();
+
+            
+           Document myDocument = new Document();
+           PdfWriter myWriter = PdfWriter.getInstance(myDocument, new FileOutputStream(filePath ));
+           PdfPTable table = new PdfPTable(7);
+           myDocument.open();
+           
+           
+           float[] columnWidths = new float[] {8,8,8,12,10,8,15};
+           table.setWidths(columnWidths);
+
+           table.setWidthPercentage(100); //set table width to 100%
+           
+          
+          myDocument.add(new Paragraph("Finished Weekly Micro Loan Repayment Report ",FontFactory.getFont(FontFactory.TIMES_BOLD,20,Font.BOLD )));
+          myDocument.add(new Paragraph(new Date().toString()));
+          myDocument.add(new Paragraph("-------------------------------------------------------------------------------------------"));
+          table.addCell(new PdfPCell(new Paragraph("Micro Loan ID",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));      
+          table.addCell(new PdfPCell(new Paragraph("Number of Installement",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
+          table.addCell(new PdfPCell(new Paragraph("Installement Number",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
+          table.addCell(new PdfPCell(new Paragraph("Pay Amount",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
+          table.addCell(new PdfPCell(new Paragraph("Pay Date",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
+          table.addCell(new PdfPCell(new Paragraph("Customer ID",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
+          table.addCell(new PdfPCell(new Paragraph("Customer Name",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
+          
+          
+          
+          while(rs.next()){
+              
+           table.addCell(new PdfPCell(new Paragraph(rs.getString(1),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
+           table.addCell(new PdfPCell(new Paragraph(rs.getString(2),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
+           table.addCell(new PdfPCell(new Paragraph(rs.getString(3),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
+           table.addCell(new PdfPCell(new Paragraph(rs.getString(4),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
+           table.addCell(new PdfPCell(new Paragraph(rs.getString(5),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
+           table.addCell(new PdfPCell(new Paragraph(rs.getString(6),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
+           table.addCell(new PdfPCell(new Paragraph(rs.getString(7),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
+                  
+            }
+           
+           myDocument.add(table);
+           myDocument.add(new Paragraph("--------------------------------------------------------------------------------------------"));
+           myDocument.close();  
+           JOptionPane.showMessageDialog(null,"Report was successfully generated");
+            
+     }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);  
+         
+     }
+     finally {
+            
+            try{
+                rs.close();
+                pst.close();
+                
+            }
+            catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+         
+            }
+     }
+    }
+        
+    }//GEN-LAST:event_jMenuItem24ActionPerformed
+
+    private void jMenuItem25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem25ActionPerformed
+        
+        //monthly micro loan repayment report
+            JFileChooser dialog = new JFileChooser();
+            dialog.setSelectedFile(new File("finished-monthly-micro-loan-repayment-report.pdf"));
+            int dialogResult = dialog.showSaveDialog(null);
+            if (dialogResult==JFileChooser.APPROVE_OPTION){
+            String filePath = dialog.getSelectedFile().getPath();
+           
+        try {
+            
+
+            String sql = "SELECT microloan.microLoanId,microloan.numberOfInstallement,"
+                + "installementNo, remainingInstallement , payedAmount, remainingAmountOfLoan ,payDate ,"
+                + "customerdetails.id , customerdetails.name "
+                + "FROM microloanrepayment "
+                + "INNER JOIN customerdetails ON (microloanrepayment.customerId=customerdetails.id) "
+                + "INNER JOIN microloan ON (microloanrepayment.microLoanId=microloan.microLoanId)"
+                + "WHERE microloan.loanType = 'Monthly' AND microloanrepayment.userId=? AND microloanrepayment.is_deleted=1";
+ 
+            pst=conn.prepareStatement(sql);
+            pst.setString(1, User.userid);
+            rs=pst.executeQuery();
+
+            
+           Document myDocument = new Document();
+           PdfWriter myWriter = PdfWriter.getInstance(myDocument, new FileOutputStream(filePath ));
+           PdfPTable table = new PdfPTable(7);
+           myDocument.open();
+           
+           
+           float[] columnWidths = new float[] {8,8,8,12,10,8,15};
+           table.setWidths(columnWidths);
+
+           table.setWidthPercentage(100); //set table width to 100%
+           
+          
+          myDocument.add(new Paragraph("Finished Monthly Micro Loan Repayment Report ",FontFactory.getFont(FontFactory.TIMES_BOLD,20,Font.BOLD )));
+          myDocument.add(new Paragraph(new Date().toString()));
+          myDocument.add(new Paragraph("-------------------------------------------------------------------------------------------"));
+          table.addCell(new PdfPCell(new Paragraph("Micro Loan ID",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));      
+          table.addCell(new PdfPCell(new Paragraph("Number of Installement",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
+          table.addCell(new PdfPCell(new Paragraph("Installement Number",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
+          table.addCell(new PdfPCell(new Paragraph("Pay Amount",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));       
+          table.addCell(new PdfPCell(new Paragraph("Pay Date",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
+          table.addCell(new PdfPCell(new Paragraph("Customer ID",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
+          table.addCell(new PdfPCell(new Paragraph("Customer Name",FontFactory.getFont(FontFactory.TIMES_ROMAN,9,Font.BOLD))));
+          
+          
+          
+          while(rs.next()){
+              
+           table.addCell(new PdfPCell(new Paragraph(rs.getString(1),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
+           table.addCell(new PdfPCell(new Paragraph(rs.getString(2),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
+           table.addCell(new PdfPCell(new Paragraph(rs.getString(3),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
+           table.addCell(new PdfPCell(new Paragraph(rs.getString(4),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
+           table.addCell(new PdfPCell(new Paragraph(rs.getString(5),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
+           table.addCell(new PdfPCell(new Paragraph(rs.getString(6),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
+           table.addCell(new PdfPCell(new Paragraph(rs.getString(7),FontFactory.getFont(FontFactory.TIMES_ROMAN,8,Font.PLAIN))));
+                  
+            }
+           
+           myDocument.add(table);
+           myDocument.add(new Paragraph("--------------------------------------------------------------------------------------------"));
+           myDocument.close();  
+           JOptionPane.showMessageDialog(null,"Report was successfully generated");
+            
+     }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);  
+         
+     }
+     finally {
+            
+            try{
+                rs.close();
+                pst.close();
+                
+            }
+            catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+         
+            }
+     }
+    }
+        
+        
+    }//GEN-LAST:event_jMenuItem25ActionPerformed
+
+    private void jMenuItem26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem26ActionPerformed
+        ProfitShare ps = new ProfitShare();
+        ps.setVisible(true);
+    }//GEN-LAST:event_jMenuItem26ActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -1485,6 +1895,8 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu10;
+    private javax.swing.JMenu jMenu11;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
@@ -1508,6 +1920,11 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem20;
     private javax.swing.JMenuItem jMenuItem21;
+    private javax.swing.JMenuItem jMenuItem22;
+    private javax.swing.JMenuItem jMenuItem23;
+    private javax.swing.JMenuItem jMenuItem24;
+    private javax.swing.JMenuItem jMenuItem25;
+    private javax.swing.JMenuItem jMenuItem26;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;

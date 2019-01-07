@@ -13,7 +13,7 @@ public class FinishedLoansPop extends javax.swing.JFrame {
     ResultSet rs;
 
     public FinishedLoansPop() {
-        super("Finished Micro Loans");
+        super("Finished Micro Loans Details");
         initComponents();
         conn = DBconnect.connect();
         setIcon();
