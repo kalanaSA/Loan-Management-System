@@ -18,6 +18,8 @@ public class ProfitShare extends javax.swing.JFrame {
     Connection conn;
     PreparedStatement pst;
     ResultSet rs;
+    
+    User numberOnly = new User();
 
     public ProfitShare() {
         
@@ -310,6 +312,12 @@ public class ProfitShare extends javax.swing.JFrame {
 
         jTextField20.setEditable(false);
 
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField1KeyTyped(evt);
+            }
+        });
+
         jButton3.setText("Change");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -386,7 +394,7 @@ public class ProfitShare extends javax.swing.JFrame {
                                         .addComponent(jTextField20, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addComponent(jLabel58)
                             .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 100, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(362, 362, 362)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -418,7 +426,7 @@ public class ProfitShare extends javax.swing.JFrame {
                                 .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel16)))))
-                .addGap(0, 339, Short.MAX_VALUE))
+                .addGap(0, 327, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -428,8 +436,8 @@ public class ProfitShare extends javax.swing.JFrame {
                         .addComponent(jLabel24))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 1069, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(43, Short.MAX_VALUE))
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 1065, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -524,6 +532,12 @@ public class ProfitShare extends javax.swing.JFrame {
         jLabel6.setText("Total Amount of Invested :");
 
         jTextField23.setEditable(false);
+
+        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField2KeyTyped(evt);
+            }
+        });
 
         jButton4.setText("Change");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -675,8 +689,8 @@ public class ProfitShare extends javax.swing.JFrame {
                         .addComponent(jLabel25))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 1069, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(43, Short.MAX_VALUE))
+                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 1065, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -771,6 +785,12 @@ public class ProfitShare extends javax.swing.JFrame {
         jLabel32.setText("Total Amount of Invested :");
 
         jTextField27.setEditable(false);
+
+        jTextField16.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField16KeyTyped(evt);
+            }
+        });
 
         jButton7.setText("Change");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -922,8 +942,8 @@ public class ProfitShare extends javax.swing.JFrame {
                         .addComponent(jLabel31))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 1069, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(43, Short.MAX_VALUE))
+                        .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 1065, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -998,22 +1018,25 @@ public class ProfitShare extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1125, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 657, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 657, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        setSize(new java.awt.Dimension(1153, 696));
+        setSize(new java.awt.Dimension(1141, 696));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-        //get total payedAmount from microloanrepayment************************************************************
+        
+        String mspa = null;
+        String fspa = null;
+//        String final1 = null;
+//        String final2 = null;
+        
+        //get total payedAmount from microloanrepayment*******************************
         String query1 = "SELECT SUM(payedAmount) "
         + "FROM microloanrepayment "
         + "WHERE microloanrepayment.time_stamp >= CAST(? AS DATE) AND microloanrepayment.time_stamp <= CAST(? AS DATE) "
@@ -1032,58 +1055,19 @@ public class ProfitShare extends javax.swing.JFrame {
             rs = pst.executeQuery();
 
             if(rs.next()){
-                String spa = rs.getString("SUM(payedAmount)");
-                double sumOfPayedAmount = Double.parseDouble(spa);
-                Double roundedSumOfPayedAmount = Math.round(sumOfPayedAmount*100.0)/100.0;
-                String f = String.valueOf(roundedSumOfPayedAmount);
-                jTextField5.setText(f);
+                mspa = rs.getString("SUM(payedAmount)");
+//                double mSumOfPayedAmount = Double.parseDouble(mspa);
+//                double mRoundedSumOfPayedAmount = Math.round(mSumOfPayedAmount*100.0)/100.0;
+//                final1 = String.valueOf(mRoundedSumOfPayedAmount);
+                
             }
 
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
         }
-
-        //get total amountOfLoan from microloan********************************************************************
-        String query2 = "SELECT SUM(amountOfLoan) "
-        + "FROM microloan "
-        + "WHERE microloan.time_stamp >= CAST(? AS DATE) AND microloan.time_stamp <= CAST(? AS DATE) "
-        + "AND microloan.userId=? AND microloan.is_deleted=1 ";
-
-        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
-        String date3 = sdf2.format(jDateChooser1.getDate());
-        String date4 = sdf2.format(jDateChooser2.getDate());
-
-        try{
-            pst=conn.prepareStatement(query2);
-            pst.setString(1 , date3);
-            pst.setString(2 , date4);
-            pst.setString(3 , User.userid);
-            rs=pst.executeQuery();
-
-            if(rs.next()){
-                String sal = rs.getString("SUM(amountOfLoan)");
-                double sumAmountOfLoan = Double.parseDouble(sal);
-                Double roundedSumAmountOfLoan = Math.round(sumAmountOfLoan*100.0)/100.0;
-                String f = String.valueOf(roundedSumAmountOfLoan);
-                jTextField19.setText(f);
-            }
-
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
-        }
-
-
-        //total profit from microloans***********************************************
-        Double mtotalPayedAmount = Double.parseDouble(jTextField5.getText());
-        Double mtotalAmountOfLoan = Double.parseDouble(jTextField19.getText());
-        Double totalProfitMicroLoan = mtotalPayedAmount - mtotalAmountOfLoan;
-        Double roundedTotalProfitMicroLoan = Math.round(totalProfitMicroLoan*100.0)/100.0;
-        String tpm = String.valueOf(roundedTotalProfitMicroLoan);
-        jTextField20.setText(tpm);
-
+       
                 
-                
-        //get total payedAmount from fixloanrepayment*********************************************************************
+        //get total payedAmount from fixloanrepayment*****************************
         //SUM(payedAmount)=totalProfit
         String query3 = "SELECT SUM(payedAmount) "
         + "FROM fixloanrepayment "
@@ -1104,11 +1088,10 @@ public class ProfitShare extends javax.swing.JFrame {
 
             if(rs.next()){
 
-                String spa = rs.getString("SUM(payedAmount)");
-                double sumOfPayedAmount = Double.parseDouble(spa);
-                Double roundedsumOfPayedAmount = Math.round(sumOfPayedAmount*100.0)/100.0;
-                String f2 = String.valueOf(roundedsumOfPayedAmount);
-                jTextField8.setText(f2);
+                fspa = rs.getString("SUM(payedAmount)");
+//                double fSumOfPayedAmount = Double.parseDouble(fspa);
+//                double fRoundedsumOfPayedAmount = Math.round(fSumOfPayedAmount*100.0)/100.0;
+//                final2 = String.valueOf(fRoundedsumOfPayedAmount);
 
             }
 
@@ -1116,26 +1099,163 @@ public class ProfitShare extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e);
         }
                 
+    
+
+        
+        if(mspa != null && fspa != null){   //****************************************************************************
+            
+        jTextField5.setText(mspa);
+        jTextField8.setText(fspa);
+        
+        
+        //get total amountOfLoan from microloan*********************************
+        String query2 = "SELECT SUM(amountOfLoan) "
+        + "FROM microloan "
+        + "WHERE microloan.time_stamp >= CAST(? AS DATE) AND microloan.time_stamp <= CAST(? AS DATE) "
+        + "AND microloan.userId=? AND microloan.is_deleted=1 ";
+
+        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+        String date3 = sdf2.format(jDateChooser1.getDate());
+        String date4 = sdf2.format(jDateChooser2.getDate());
+
+        try{
+            pst=conn.prepareStatement(query2);
+            pst.setString(1 , date3);
+            pst.setString(2 , date4);
+            pst.setString(3 , User.userid);
+            rs=pst.executeQuery();
+
+            if(rs.next()){
+                String sal = rs.getString("SUM(amountOfLoan)");
+                double sumAmountOfLoan = Double.parseDouble(sal);
+                double roundedSumAmountOfLoan = Math.round(sumAmountOfLoan*100.0)/100.0;
+                String f = String.valueOf(roundedSumAmountOfLoan);
+                jTextField19.setText(f);
+            }
+
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+        
+        //total profit from microloans*********************************************
+        double mtotalPayedAmount = Double.parseDouble(jTextField5.getText());
+        double mtotalAmountOfLoan = Double.parseDouble(jTextField19.getText());
+        double totalProfitMicroLoan = mtotalPayedAmount - mtotalAmountOfLoan;
+        double roundedTotalProfitMicroLoan = Math.round(totalProfitMicroLoan*100.0)/100.0;
+        String tpm = String.valueOf(roundedTotalProfitMicroLoan);
+        jTextField20.setText(tpm);
 
         //total profit from fixloans***********************************************
-        Double ftotalPayedAmount = Double.parseDouble(jTextField8.getText());
-        Double roundedTotalProfitFixLoan = Math.round(ftotalPayedAmount*100.0)/100.0;
+        double ftotalPayedAmount = Double.parseDouble(jTextField8.getText());
+        double roundedTotalProfitFixLoan = Math.round(ftotalPayedAmount*100.0)/100.0;
 
         
-        
-        //total profit********************************************************************************
-        Double totalProfit  = roundedTotalProfitMicroLoan + roundedTotalProfitFixLoan ;
+        //total profit***************************************************************
+        double totalProfit  = roundedTotalProfitMicroLoan + roundedTotalProfitFixLoan ;
         String fp = String.valueOf(totalProfit);
         jTextField9.setText(fp);
 
   
 
-        //set profit share for profile 1**************************************************************
+        //set profit share for profile 1*******************************************
         double percentageForProf1 = Double.parseDouble(jTextField3.getText());
         double shareForProf1 = totalProfit*(percentageForProf1/100);
         double roundedShareForProf1 = Math.round(shareForProf1 * 100.0)/100.0;
         String s1 = String.valueOf(roundedShareForProf1);
         jTextField6.setText(s1);
+        
+        
+        }else if(mspa != null && fspa == null){ //************************************************************************
+           
+        jTextField5.setText(mspa);
+        jTextField8.setText("0.00");
+        
+            
+        //get total amountOfLoan from microloan*********************************
+        String query2 = "SELECT SUM(amountOfLoan) "
+        + "FROM microloan "
+        + "WHERE microloan.time_stamp >= CAST(? AS DATE) AND microloan.time_stamp <= CAST(? AS DATE) "
+        + "AND microloan.userId=? AND microloan.is_deleted=1 ";
+
+        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+        String date3 = sdf2.format(jDateChooser1.getDate());
+        String date4 = sdf2.format(jDateChooser2.getDate());
+
+        try{
+            pst=conn.prepareStatement(query2);
+            pst.setString(1 , date3);
+            pst.setString(2 , date4);
+            pst.setString(3 , User.userid);
+            rs=pst.executeQuery();
+
+            if(rs.next()){
+                String sal = rs.getString("SUM(amountOfLoan)");
+                double sumAmountOfLoan = Double.parseDouble(sal);
+                double roundedSumAmountOfLoan = Math.round(sumAmountOfLoan*100.0)/100.0;
+                String f = String.valueOf(roundedSumAmountOfLoan);
+                jTextField19.setText(f);
+            }
+
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+        
+        //total profit from microloans******************************************
+        double mtotalPayedAmount = Double.parseDouble(jTextField5.getText());
+        double mtotalAmountOfLoan = Double.parseDouble(jTextField19.getText());
+        double totalProfitMicroLoan = mtotalPayedAmount - mtotalAmountOfLoan;
+        double roundedTotalProfitMicroLoan = Math.round(totalProfitMicroLoan*100.0)/100.0;
+        String tpm = String.valueOf(roundedTotalProfitMicroLoan);
+        jTextField20.setText(tpm);
+        
+        //total profit**********************************************************
+        double totalProfit  = roundedTotalProfitMicroLoan ;
+        String fp = String.valueOf(totalProfit);
+        jTextField9.setText(fp);
+
+  
+
+        //set profit share for profile 1****************************************
+        double percentageForProf1 = Double.parseDouble(jTextField3.getText());
+        double shareForProf1 = totalProfit*(percentageForProf1/100);
+        double roundedShareForProf1 = Math.round(shareForProf1 * 100.0)/100.0;
+        String s1 = String.valueOf(roundedShareForProf1);
+        jTextField6.setText(s1);
+            
+        
+        }else if(mspa == null && fspa != null){ //**************************************************************************
+        
+         jTextField8.setText(fspa);
+         jTextField5.setText("0.00");
+         jTextField19.setText("0.00");
+         jTextField20.setText("0.00");
+
+         
+            
+        //total profit from fixloans****************************************
+        double ftotalPayedAmount = Double.parseDouble(jTextField8.getText());
+        double roundedTotalProfitFixLoan = Math.round(ftotalPayedAmount*100.0)/100.0;
+        
+        
+        //total profit**********************************************************
+        double totalProfit  =  roundedTotalProfitFixLoan ;
+        String fp = String.valueOf(totalProfit);
+        jTextField9.setText(fp);
+
+  
+
+        //set profit share for profile 1****************************************
+        double percentageForProf1 = Double.parseDouble(jTextField3.getText());
+        double shareForProf1 = totalProfit*(percentageForProf1/100);
+        double roundedShareForProf1 = Math.round(shareForProf1 * 100.0)/100.0;
+        String s1 = String.valueOf(roundedShareForProf1);
+        jTextField6.setText(s1);
+        
+            
+        }else if(mspa == null && fspa == null){ //************************************************************************
+            JOptionPane.showMessageDialog(null, "There has no finished loans yet!");
+        }
+        
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -1187,7 +1307,12 @@ public class ProfitShare extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         
-        //get total payedAmount from microloanrepayment
+        String mspa = null;
+        String fspa = null;
+//        String final1 = null;
+//        String final2 = null;
+        
+        //get total payedAmount from microloanrepayment*******************************
         String query1 = "SELECT SUM(payedAmount) "
         + "FROM microloanrepayment "
         + "WHERE microloanrepayment.time_stamp >= CAST(? AS DATE) AND microloanrepayment.time_stamp <= CAST(? AS DATE) "
@@ -1206,59 +1331,19 @@ public class ProfitShare extends javax.swing.JFrame {
             rs = pst.executeQuery();
 
             if(rs.next()){
-                String spa = rs.getString("SUM(payedAmount)");
-                double sumOfPayedAmount = Double.parseDouble(spa);
-                Double roundedSumOfPayedAmount = Math.round(sumOfPayedAmount*100.0)/100.0;
-                String f = String.valueOf(roundedSumOfPayedAmount);
-                jTextField12.setText(f);
+                mspa = rs.getString("SUM(payedAmount)");
+//                double mSumOfPayedAmount = Double.parseDouble(mspa);
+//                double mRoundedSumOfPayedAmount = Math.round(mSumOfPayedAmount*100.0)/100.0;
+//                final1 = String.valueOf(mRoundedSumOfPayedAmount);
+                
             }
 
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
         }
-
-        //get total amountOfLoan from microloan
-        String query2 = "SELECT SUM(amountOfLoan) "
-        + "FROM microloan "
-        + "WHERE microloan.time_stamp >= CAST(? AS DATE) AND microloan.time_stamp <= CAST(? AS DATE) "
-        + "AND microloan.userId=? AND microloan.is_deleted=1 ";
-
-        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
-        String date3 = sdf2.format(jDateChooser3.getDate());
-        String date4 = sdf2.format(jDateChooser4.getDate());
-
-        try{
-            pst=conn.prepareStatement(query2);
-            pst.setString(1 , date3);
-            pst.setString(2 , date4);
-            pst.setString(3 , User.userid);
-            rs=pst.executeQuery();
-
-            if(rs.next()){
-                String sal = rs.getString("SUM(amountOfLoan)");
-                double sumAmountOfLoan = Double.parseDouble(sal);
-                Double roundedSumAmountOfLoan = Math.round(sumAmountOfLoan*100.0)/100.0;
-                String f = String.valueOf(roundedSumAmountOfLoan);
-                jTextField26.setText(f);
-            }
-
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
-        }
-
-
-        //total profit from microloans
-        Double mtotalPayedAmount = Double.parseDouble(jTextField12.getText());
-        Double mtotalAmountOfLoan = Double.parseDouble(jTextField26.getText());
-        Double totalProfitMicroLoan = mtotalPayedAmount - mtotalAmountOfLoan;
-        Double roundedTotalProfitMicroLoan = Math.round(totalProfitMicroLoan*100.0)/100.0;
-        String tpm = String.valueOf(roundedTotalProfitMicroLoan);
-        jTextField23.setText(tpm);
-
-        /****************************************************************************************************************/
-
-
-        //get total payedAmount from fixloanrepayment*********************************************************************
+       
+                
+        //get total payedAmount from fixloanrepayment*****************************
         //SUM(payedAmount)=totalProfit
         String query3 = "SELECT SUM(payedAmount) "
         + "FROM fixloanrepayment "
@@ -1279,11 +1364,10 @@ public class ProfitShare extends javax.swing.JFrame {
 
             if(rs.next()){
 
-                String spa = rs.getString("SUM(payedAmount)");
-                double sumOfPayedAmount = Double.parseDouble(spa);
-                Double roundedsumOfPayedAmount = Math.round(sumOfPayedAmount*100.0)/100.0;
-                String f2 = String.valueOf(roundedsumOfPayedAmount);
-                jTextField11.setText(f2);
+                fspa = rs.getString("SUM(payedAmount)");
+//                double fSumOfPayedAmount = Double.parseDouble(fspa);
+//                double fRoundedsumOfPayedAmount = Math.round(fSumOfPayedAmount*100.0)/100.0;
+//                final2 = String.valueOf(fRoundedsumOfPayedAmount);
 
             }
 
@@ -1291,26 +1375,162 @@ public class ProfitShare extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e);
         }
                 
-
-        //total profit from fixloans***********************************************
-        Double ftotalPayedAmount = Double.parseDouble(jTextField11.getText());
-        Double roundedTotalProfitFixLoan = Math.round(ftotalPayedAmount*100.0)/100.0;
+    
 
         
+        if(mspa != null && fspa != null){   //****************************************************************************
+            
+        jTextField12.setText(mspa);
+        jTextField11.setText(fspa);
+        
+        
+        //get total amountOfLoan from microloan*********************************
+        String query2 = "SELECT SUM(amountOfLoan) "
+        + "FROM microloan "
+        + "WHERE microloan.time_stamp >= CAST(? AS DATE) AND microloan.time_stamp <= CAST(? AS DATE) "
+        + "AND microloan.userId=? AND microloan.is_deleted=1 ";
 
-        //total profit***************************************************************************
-        Double totalProfit  = roundedTotalProfitMicroLoan + roundedTotalProfitFixLoan ;
+        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+        String date3 = sdf2.format(jDateChooser3.getDate());
+        String date4 = sdf2.format(jDateChooser4.getDate());
+
+        try{
+            pst=conn.prepareStatement(query2);
+            pst.setString(1 , date3);
+            pst.setString(2 , date4);
+            pst.setString(3 , User.userid);
+            rs=pst.executeQuery();
+
+            if(rs.next()){
+                String sal = rs.getString("SUM(amountOfLoan)");
+                double sumAmountOfLoan = Double.parseDouble(sal);
+                double roundedSumAmountOfLoan = Math.round(sumAmountOfLoan*100.0)/100.0;
+                String f = String.valueOf(roundedSumAmountOfLoan);
+                jTextField26.setText(f);
+            }
+
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+        
+        //total profit from microloans*********************************************
+        double mtotalPayedAmount = Double.parseDouble(jTextField12.getText());
+        double mtotalAmountOfLoan = Double.parseDouble(jTextField26.getText());
+        double totalProfitMicroLoan = mtotalPayedAmount - mtotalAmountOfLoan;
+        double roundedTotalProfitMicroLoan = Math.round(totalProfitMicroLoan*100.0)/100.0;
+        String tpm = String.valueOf(roundedTotalProfitMicroLoan);
+        jTextField23.setText(tpm);
+
+        //total profit from fixloans***********************************************
+        double ftotalPayedAmount = Double.parseDouble(jTextField11.getText());
+        double roundedTotalProfitFixLoan = Math.round(ftotalPayedAmount*100.0)/100.0;
+
+        
+        //total profit***************************************************************
+        double totalProfit  = roundedTotalProfitMicroLoan + roundedTotalProfitFixLoan ;
         String fp = String.valueOf(totalProfit);
         jTextField10.setText(fp);
 
-        
+  
 
-        //set profit share for profile 1**********************************************************
+        //set profit share for profile 1*******************************************
         double percentageForProf1 = Double.parseDouble(jTextField4.getText());
         double shareForProf1 = totalProfit*(percentageForProf1/100);
         double roundedShareForProf1 = Math.round(shareForProf1 * 100.0)/100.0;
         String s1 = String.valueOf(roundedShareForProf1);
         jTextField7.setText(s1);
+        
+        
+        }else if(mspa != null && fspa == null){ //************************************************************************
+           
+        jTextField12.setText(mspa);
+        jTextField11.setText("0.00");
+        
+            
+        //get total amountOfLoan from microloan*********************************
+        String query2 = "SELECT SUM(amountOfLoan) "
+        + "FROM microloan "
+        + "WHERE microloan.time_stamp >= CAST(? AS DATE) AND microloan.time_stamp <= CAST(? AS DATE) "
+        + "AND microloan.userId=? AND microloan.is_deleted=1 ";
+
+        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+        String date3 = sdf2.format(jDateChooser3.getDate());
+        String date4 = sdf2.format(jDateChooser4.getDate());
+
+        try{
+            pst=conn.prepareStatement(query2);
+            pst.setString(1 , date3);
+            pst.setString(2 , date4);
+            pst.setString(3 , User.userid);
+            rs=pst.executeQuery();
+
+            if(rs.next()){
+                String sal = rs.getString("SUM(amountOfLoan)");
+                double sumAmountOfLoan = Double.parseDouble(sal);
+                double roundedSumAmountOfLoan = Math.round(sumAmountOfLoan*100.0)/100.0;
+                String f = String.valueOf(roundedSumAmountOfLoan);
+                jTextField26.setText(f);
+            }
+
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+        
+        //total profit from microloans*********************************************
+        double mtotalPayedAmount = Double.parseDouble(jTextField12.getText());
+        double mtotalAmountOfLoan = Double.parseDouble(jTextField26.getText());
+        double totalProfitMicroLoan = mtotalPayedAmount - mtotalAmountOfLoan;
+        double roundedTotalProfitMicroLoan = Math.round(totalProfitMicroLoan*100.0)/100.0;
+        String tpm = String.valueOf(roundedTotalProfitMicroLoan);
+        jTextField23.setText(tpm);
+        
+        //total profit**********************************************************
+        double totalProfit  = roundedTotalProfitMicroLoan ;
+        String fp = String.valueOf(totalProfit);
+        jTextField10.setText(fp);
+
+  
+
+        //set profit share for profile 1****************************************
+        double percentageForProf1 = Double.parseDouble(jTextField4.getText());
+        double shareForProf1 = totalProfit*(percentageForProf1/100);
+        double roundedShareForProf1 = Math.round(shareForProf1 * 100.0)/100.0;
+        String s1 = String.valueOf(roundedShareForProf1);
+        jTextField7.setText(s1);
+            
+        
+        }else if(mspa == null && fspa != null){ //**************************************************************************
+        
+         jTextField11.setText(fspa);
+         jTextField12.setText("0.00");
+         jTextField26.setText("0.00");
+         jTextField23.setText("0.00");
+
+         
+            
+        //total profit from fixloans***********************************************
+        double ftotalPayedAmount = Double.parseDouble(jTextField11.getText());
+        double roundedTotalProfitFixLoan = Math.round(ftotalPayedAmount*100.0)/100.0;
+        
+        
+        //total profit**********************************************************
+        double totalProfit  =  roundedTotalProfitFixLoan ;
+        String fp = String.valueOf(totalProfit);
+        jTextField10.setText(fp);
+
+  
+
+        //set profit share for profile 1****************************************
+        double percentageForProf1 = Double.parseDouble(jTextField4.getText());
+        double shareForProf1 = totalProfit*(percentageForProf1/100);
+        double roundedShareForProf1 = Math.round(shareForProf1 * 100.0)/100.0;
+        String s1 = String.valueOf(roundedShareForProf1);
+        jTextField7.setText(s1);
+        
+            
+        }else if(mspa == null && fspa == null){ //************************************************************************
+            JOptionPane.showMessageDialog(null, "There has no finished loans yet!");
+        }
            
         
         
@@ -1345,7 +1565,12 @@ public class ProfitShare extends javax.swing.JFrame {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         
-        //get total payedAmount from microloanrepayment
+         String mspa = null;
+         String fspa = null;
+//        String final1 = null;
+//        String final2 = null;
+        
+        //get total payedAmount from microloanrepayment*******************************
         String query1 = "SELECT SUM(payedAmount) "
         + "FROM microloanrepayment "
         + "WHERE microloanrepayment.time_stamp >= CAST(? AS DATE) AND microloanrepayment.time_stamp <= CAST(? AS DATE) "
@@ -1364,59 +1589,19 @@ public class ProfitShare extends javax.swing.JFrame {
             rs = pst.executeQuery();
 
             if(rs.next()){
-                String spa = rs.getString("SUM(payedAmount)");
-                double sumOfPayedAmount = Double.parseDouble(spa);
-                Double roundedSumOfPayedAmount = Math.round(sumOfPayedAmount*100.0)/100.0;
-                String f = String.valueOf(roundedSumOfPayedAmount);
-                jTextField18.setText(f);
+                mspa = rs.getString("SUM(payedAmount)");
+//                double mSumOfPayedAmount = Double.parseDouble(mspa);
+//                double mRoundedSumOfPayedAmount = Math.round(mSumOfPayedAmount*100.0)/100.0;
+//                final1 = String.valueOf(mRoundedSumOfPayedAmount);
+                
             }
 
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
         }
-
-        //get total amountOfLoan from microloan
-        String query2 = "SELECT SUM(amountOfLoan) "
-        + "FROM microloan "
-        + "WHERE microloan.time_stamp >= CAST(? AS DATE) AND microloan.time_stamp <= CAST(? AS DATE) "
-        + "AND microloan.userId=? AND microloan.is_deleted=1 ";
-
-        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
-        String date3 = sdf2.format(jDateChooser5.getDate());
-        String date4 = sdf2.format(jDateChooser6.getDate());
-
-        try{
-            pst=conn.prepareStatement(query2);
-            pst.setString(1 , date3);
-            pst.setString(2 , date4);
-            pst.setString(3 , User.userid);
-            rs=pst.executeQuery();
-
-            if(rs.next()){
-                String sal = rs.getString("SUM(amountOfLoan)");
-                double sumAmountOfLoan = Double.parseDouble(sal);
-                Double roundedSumAmountOfLoan = Math.round(sumAmountOfLoan*100.0)/100.0;
-                String f = String.valueOf(roundedSumAmountOfLoan);
-                jTextField30.setText(f);
-            }
-
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
-        }
-
-
-        //total profit from microloans
-        Double mtotalPayedAmount = Double.parseDouble(jTextField18.getText());
-        Double mtotalAmountOfLoan = Double.parseDouble(jTextField30.getText());
-        Double totalProfitMicroLoan = mtotalPayedAmount - mtotalAmountOfLoan;
-        Double roundedTotalProfitMicroLoan = Math.round(totalProfitMicroLoan*100.0)/100.0;
-        String tpm = String.valueOf(roundedTotalProfitMicroLoan);
-        jTextField27.setText(tpm);
-
-        /****************************************************************************************************************/
-
-
-        //get total payedAmount from fixloanrepayment*********************************************************************
+       
+                
+        //get total payedAmount from fixloanrepayment*****************************
         //SUM(payedAmount)=totalProfit
         String query3 = "SELECT SUM(payedAmount) "
         + "FROM fixloanrepayment "
@@ -1437,11 +1622,10 @@ public class ProfitShare extends javax.swing.JFrame {
 
             if(rs.next()){
 
-                String spa = rs.getString("SUM(payedAmount)");
-                double sumOfPayedAmount = Double.parseDouble(spa);
-                Double roundedsumOfPayedAmount = Math.round(sumOfPayedAmount*100.0)/100.0;
-                String f2 = String.valueOf(roundedsumOfPayedAmount);
-                jTextField17.setText(f2);
+                fspa = rs.getString("SUM(payedAmount)");
+//                double fSumOfPayedAmount = Double.parseDouble(fspa);
+//                double fRoundedsumOfPayedAmount = Math.round(fSumOfPayedAmount*100.0)/100.0;
+//                final2 = String.valueOf(fRoundedsumOfPayedAmount);
 
             }
 
@@ -1449,26 +1633,163 @@ public class ProfitShare extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e);
         }
                 
+    
+
+        
+        if(mspa != null && fspa != null){   //****************************************************************************
+            
+        jTextField18.setText(mspa);
+        jTextField17.setText(fspa);
+        
+        
+        //get total amountOfLoan from microloan*********************************
+        String query2 = "SELECT SUM(amountOfLoan) "
+        + "FROM microloan "
+        + "WHERE microloan.time_stamp >= CAST(? AS DATE) AND microloan.time_stamp <= CAST(? AS DATE) "
+        + "AND microloan.userId=? AND microloan.is_deleted=1 ";
+
+        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+        String date3 = sdf2.format(jDateChooser5.getDate());
+        String date4 = sdf2.format(jDateChooser6.getDate());
+
+        try{
+            pst=conn.prepareStatement(query2);
+            pst.setString(1 , date3);
+            pst.setString(2 , date4);
+            pst.setString(3 , User.userid);
+            rs=pst.executeQuery();
+
+            if(rs.next()){
+                String sal = rs.getString("SUM(amountOfLoan)");
+                double sumAmountOfLoan = Double.parseDouble(sal);
+                double roundedSumAmountOfLoan = Math.round(sumAmountOfLoan*100.0)/100.0;
+                String f = String.valueOf(roundedSumAmountOfLoan);
+                jTextField30.setText(f);
+            }
+
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+        
+        //total profit from microloans*********************************************
+        double mtotalPayedAmount = Double.parseDouble(jTextField18.getText());
+        double mtotalAmountOfLoan = Double.parseDouble(jTextField30.getText());
+        double totalProfitMicroLoan = mtotalPayedAmount - mtotalAmountOfLoan;
+        double roundedTotalProfitMicroLoan = Math.round(totalProfitMicroLoan*100.0)/100.0;
+        String tpm = String.valueOf(roundedTotalProfitMicroLoan);
+        jTextField27.setText(tpm);
 
         //total profit from fixloans***********************************************
-        Double ftotalPayedAmount = Double.parseDouble(jTextField17.getText());
-        Double roundedTotalProfitFixLoan = Math.round(ftotalPayedAmount*100.0)/100.0;
+        double ftotalPayedAmount = Double.parseDouble(jTextField8.getText());
+        double roundedTotalProfitFixLoan = Math.round(ftotalPayedAmount*100.0)/100.0;
 
         
-
-        //total profit*****************************************************************************
-        Double totalProfit  = roundedTotalProfitMicroLoan + roundedTotalProfitFixLoan ;
+        //total profit***************************************************************
+        double totalProfit  = roundedTotalProfitMicroLoan + roundedTotalProfitFixLoan ;
         String fp = String.valueOf(totalProfit);
-        jTextField15.setText(fp);
+        jTextField17.setText(fp);
 
-        
+  
 
-        //set profit share for profile 1************************************************************
+        //set profit share for profile 1*******************************************
         double percentageForProf1 = Double.parseDouble(jTextField14.getText());
         double shareForProf1 = totalProfit*(percentageForProf1/100);
         double roundedShareForProf1 = Math.round(shareForProf1 * 100.0)/100.0;
         String s1 = String.valueOf(roundedShareForProf1);
         jTextField13.setText(s1);
+        
+        
+        }else if(mspa != null && fspa == null){ //************************************************************************
+           
+        jTextField18.setText(mspa);
+        jTextField17.setText("0.00");
+        
+            
+        //get total amountOfLoan from microloan*********************************
+        String query2 = "SELECT SUM(amountOfLoan) "
+        + "FROM microloan "
+        + "WHERE microloan.time_stamp >= CAST(? AS DATE) AND microloan.time_stamp <= CAST(? AS DATE) "
+        + "AND microloan.userId=? AND microloan.is_deleted=1 ";
+
+        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+        String date3 = sdf2.format(jDateChooser5.getDate());
+        String date4 = sdf2.format(jDateChooser6.getDate());
+
+        try{
+            pst=conn.prepareStatement(query2);
+            pst.setString(1 , date3);
+            pst.setString(2 , date4);
+            pst.setString(3 , User.userid);
+            rs=pst.executeQuery();
+
+            if(rs.next()){
+                String sal = rs.getString("SUM(amountOfLoan)");
+                double sumAmountOfLoan = Double.parseDouble(sal);
+                double roundedSumAmountOfLoan = Math.round(sumAmountOfLoan*100.0)/100.0;
+                String f = String.valueOf(roundedSumAmountOfLoan);
+                jTextField30.setText(f);
+            }
+
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+        
+        //total profit from microloans*********************************************
+        double mtotalPayedAmount = Double.parseDouble(jTextField18.getText());
+        double mtotalAmountOfLoan = Double.parseDouble(jTextField30.getText());
+        double totalProfitMicroLoan = mtotalPayedAmount - mtotalAmountOfLoan;
+        double roundedTotalProfitMicroLoan = Math.round(totalProfitMicroLoan*100.0)/100.0;
+        String tpm = String.valueOf(roundedTotalProfitMicroLoan);
+        jTextField27.setText(tpm);
+
+        
+        //total profit**********************************************************
+        double totalProfit  = roundedTotalProfitMicroLoan ;
+        String fp = String.valueOf(totalProfit);
+        jTextField15.setText(fp);
+
+  
+
+        //set profit share for profile 1****************************************
+        double percentageForProf1 = Double.parseDouble(jTextField14.getText());
+        double shareForProf1 = totalProfit*(percentageForProf1/100);
+        double roundedShareForProf1 = Math.round(shareForProf1 * 100.0)/100.0;
+        String s1 = String.valueOf(roundedShareForProf1);
+        jTextField13.setText(s1);
+            
+        
+        }else if(mspa == null && fspa != null){ //**************************************************************************
+        
+         jTextField17.setText(fspa);
+         jTextField18.setText("0.00");
+         jTextField30.setText("0.00");
+         jTextField27.setText("0.00");
+
+         
+            
+        //total profit from fixloans****************************************
+        double ftotalPayedAmount = Double.parseDouble(jTextField17.getText());
+        double roundedTotalProfitFixLoan = Math.round(ftotalPayedAmount*100.0)/100.0;
+        
+        
+        //total profit**********************************************************
+        double totalProfit  =  roundedTotalProfitFixLoan ;
+        String fp = String.valueOf(totalProfit);
+        jTextField15.setText(fp);
+
+  
+
+        //set profit share for profile 1****************************************
+        double percentageForProf1 = Double.parseDouble(jTextField14.getText());
+        double shareForProf1 = totalProfit*(percentageForProf1/100);
+        double roundedShareForProf1 = Math.round(shareForProf1 * 100.0)/100.0;
+        String s1 = String.valueOf(roundedShareForProf1);
+        jTextField13.setText(s1);
+        
+            
+        }else if(mspa == null && fspa == null){ //************************************************************************
+            JOptionPane.showMessageDialog(null, "There has no finished loans yet!");
+        }
         
     }//GEN-LAST:event_jButton8ActionPerformed
 
@@ -1479,6 +1800,36 @@ public class ProfitShare extends javax.swing.JFrame {
     private void jTextField17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField17ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField17ActionPerformed
+
+    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+        
+        try{
+            numberOnly.NumbersOnly(evt);
+        
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "Billing System Error");
+        }
+    }//GEN-LAST:event_jTextField1KeyTyped
+
+    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
+        
+        try{
+            numberOnly.NumbersOnly(evt);
+        
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "Billing System Error");
+        }
+    }//GEN-LAST:event_jTextField2KeyTyped
+
+    private void jTextField16KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField16KeyTyped
+        
+        try{
+            numberOnly.NumbersOnly(evt);
+        
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "Billing System Error");
+        }
+    }//GEN-LAST:event_jTextField16KeyTyped
 
  
     public static void main(String args[]) {

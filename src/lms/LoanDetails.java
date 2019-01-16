@@ -13,6 +13,8 @@ public class LoanDetails extends javax.swing.JFrame {
     Connection conn;
     PreparedStatement pst;
     ResultSet rs;
+    
+    User numberOnly = new User();
 
     public LoanDetails() {
         super("Loan Details");
@@ -26,16 +28,24 @@ public class LoanDetails extends javax.swing.JFrame {
         fixLoanTable();
         customerDetailsTable();
         
-        //set column width jtable 1
-//        jTable3.getColumnModel().getColumn(0).setPreferredWidth(10);
-//        jTable3.getColumnModel().getColumn(1).setPreferredWidth(60);
-//        jTable3.getColumnModel().getColumn(2).setPreferredWidth(10);
-//        jTable3.getColumnModel().getColumn(3).setPreferredWidth(30);
-//        jTable3.getColumnModel().getColumn(4).setPreferredWidth(25);
-//        jTable3.getColumnModel().getColumn(6).setPreferredWidth(25);
-//        jTable3.getColumnModel().getColumn(7).setPreferredWidth(25);
-//        jTable3.getColumnModel().getColumn(8).setPreferredWidth(10);
-//        jTable3.getColumnModel().getColumn(9).setPreferredWidth(100);
+        microLoanDailyTableSetColumnWidth();
+        microLoanWeeklyTableSetColumnWidth();
+        microLoanMonthlyTableSetColumnWidth();
+        
+        
+        
+        
+        //set column width jtable 5 (microLoanDailyTable)
+        jTable5.getColumnModel().getColumn(0).setPreferredWidth(5);
+        jTable5.getColumnModel().getColumn(1).setPreferredWidth(30);
+        jTable5.getColumnModel().getColumn(2).setPreferredWidth(10);
+        jTable5.getColumnModel().getColumn(3).setPreferredWidth(20);
+        jTable5.getColumnModel().getColumn(4).setPreferredWidth(5);
+        jTable5.getColumnModel().getColumn(5).setPreferredWidth(25);
+        jTable5.getColumnModel().getColumn(6).setPreferredWidth(20);
+        jTable5.getColumnModel().getColumn(7).setPreferredWidth(20);
+        jTable5.getColumnModel().getColumn(8).setPreferredWidth(5);
+        jTable5.getColumnModel().getColumn(9).setPreferredWidth(100);
                 
     }
 
@@ -66,6 +76,9 @@ public class LoanDetails extends javax.swing.JFrame {
             }
         }
         
+        //set column width jtable 3
+        microLoanDailyTableSetColumnWidth();
+        
   
     }
     
@@ -95,6 +108,9 @@ public class LoanDetails extends javax.swing.JFrame {
                 
             }
         }
+        
+        //set column width jtable 4
+        microLoanWeeklyTableSetColumnWidth();
   
     }
        
@@ -124,7 +140,10 @@ public class LoanDetails extends javax.swing.JFrame {
                 
             }
         }
-  
+        
+        //set column width jtable 5
+        microLoanMonthlyTableSetColumnWidth();
+        
     }
     
         public void fixLoanTable(){
@@ -158,7 +177,8 @@ public class LoanDetails extends javax.swing.JFrame {
         
         public void customerDetailsTable(){
         
-            String sql = "SELECT id,name,nic,address,resistance,contactNo,gender "
+            String sql = "SELECT id AS Customer_ID,name AS Customer_Name ,nic AS NIC_Number,address AS Address,"
+                    + "resistance AS Resistance ,contactNo AS Contact_NO ,gender AS Gender "
                     + "FROM customerdetails "
                     + "WHERE userId=? AND is_deleted=0 ";
             
@@ -174,6 +194,50 @@ public class LoanDetails extends javax.swing.JFrame {
             }
         
         }
+        
+        
+        
+        //set column width jtable 3 (microLoanDailyTable)
+        public void microLoanDailyTableSetColumnWidth(){
+        jTable3.getColumnModel().getColumn(0).setPreferredWidth(5);
+        jTable3.getColumnModel().getColumn(1).setPreferredWidth(30);
+        jTable3.getColumnModel().getColumn(2).setPreferredWidth(10);
+        jTable3.getColumnModel().getColumn(3).setPreferredWidth(20);
+        jTable3.getColumnModel().getColumn(4).setPreferredWidth(5);
+        jTable3.getColumnModel().getColumn(5).setPreferredWidth(25);
+        jTable3.getColumnModel().getColumn(6).setPreferredWidth(20);
+        jTable3.getColumnModel().getColumn(7).setPreferredWidth(20);
+        jTable3.getColumnModel().getColumn(8).setPreferredWidth(5);
+        jTable3.getColumnModel().getColumn(9).setPreferredWidth(100);
+        }
+        
+        //set column width jtable 4 (microLoanWeeklyTable)
+        public void microLoanWeeklyTableSetColumnWidth(){    
+        jTable4.getColumnModel().getColumn(0).setPreferredWidth(5);
+        jTable4.getColumnModel().getColumn(1).setPreferredWidth(30);
+        jTable4.getColumnModel().getColumn(2).setPreferredWidth(10);
+        jTable4.getColumnModel().getColumn(3).setPreferredWidth(20);
+        jTable4.getColumnModel().getColumn(4).setPreferredWidth(5);
+        jTable4.getColumnModel().getColumn(5).setPreferredWidth(25);
+        jTable4.getColumnModel().getColumn(6).setPreferredWidth(20);
+        jTable4.getColumnModel().getColumn(7).setPreferredWidth(20);
+        jTable4.getColumnModel().getColumn(8).setPreferredWidth(5);
+        jTable4.getColumnModel().getColumn(9).setPreferredWidth(100);
+        }
+        
+        //set column width jtable 5 (microLoanMonthlyTable)
+        public void microLoanMonthlyTableSetColumnWidth(){       
+        jTable5.getColumnModel().getColumn(0).setPreferredWidth(5);
+        jTable5.getColumnModel().getColumn(1).setPreferredWidth(30);
+        jTable5.getColumnModel().getColumn(2).setPreferredWidth(10);
+        jTable5.getColumnModel().getColumn(3).setPreferredWidth(20);
+        jTable5.getColumnModel().getColumn(4).setPreferredWidth(5);
+        jTable5.getColumnModel().getColumn(5).setPreferredWidth(25);
+        jTable5.getColumnModel().getColumn(6).setPreferredWidth(20);
+        jTable5.getColumnModel().getColumn(7).setPreferredWidth(20);
+        jTable5.getColumnModel().getColumn(8).setPreferredWidth(5);
+        jTable5.getColumnModel().getColumn(9).setPreferredWidth(100);
+        }
     
 
     @SuppressWarnings("unchecked")
@@ -188,6 +252,8 @@ public class LoanDetails extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jTextField5 = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable4 = new javax.swing.JTable();
@@ -195,6 +261,8 @@ public class LoanDetails extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jTextField7 = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTable5 = new javax.swing.JTable();
@@ -202,6 +270,8 @@ public class LoanDetails extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         jButton6 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jTextField8 = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         jTable6 = new javax.swing.JTable();
@@ -209,12 +279,16 @@ public class LoanDetails extends javax.swing.JFrame {
         jTextField4 = new javax.swing.JTextField();
         jButton8 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        jTextField9 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jTextField6 = new javax.swing.JTextField();
         jScrollPane7 = new javax.swing.JScrollPane();
         jTable7 = new javax.swing.JTable();
         jButton9 = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        jTextField10 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -266,6 +340,18 @@ public class LoanDetails extends javax.swing.JFrame {
             }
         });
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel5.setText("Search Loan ID : ");
+
+        jTextField5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField5KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField5KeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -278,6 +364,10 @@ public class LoanDetails extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(97, 97, 97)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -292,9 +382,11 @@ public class LoanDetails extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1)
+                    .addComponent(jLabel5)
+                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Daily Micro-Loan Service", jPanel3);
@@ -346,6 +438,18 @@ public class LoanDetails extends javax.swing.JFrame {
             }
         });
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel7.setText("Search Loan ID : ");
+
+        jTextField7.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField7KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField7KeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -358,6 +462,10 @@ public class LoanDetails extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(97, 97, 97)
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -372,9 +480,11 @@ public class LoanDetails extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton4)
-                    .addComponent(jButton3))
+                    .addComponent(jButton3)
+                    .addComponent(jLabel7)
+                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE))
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Weekly  Micro-Loan Service", jPanel4);
@@ -417,6 +527,18 @@ public class LoanDetails extends javax.swing.JFrame {
             }
         });
 
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel8.setText("Search Loan ID : ");
+
+        jTextField8.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField8KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField8KeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -424,12 +546,16 @@ public class LoanDetails extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 1298, Short.MAX_VALUE)
+                    .addComponent(jScrollPane5)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(97, 97, 97)
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
                         .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -439,13 +565,16 @@ public class LoanDetails extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6)
-                    .addComponent(jButton5))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton6)
+                        .addComponent(jButton5)
+                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE))
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Monthly Micro-Loan Service", jPanel5);
@@ -488,6 +617,18 @@ public class LoanDetails extends javax.swing.JFrame {
             }
         });
 
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel9.setText("Search Loan ID : ");
+
+        jTextField9.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField9KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField9KeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -500,6 +641,10 @@ public class LoanDetails extends javax.swing.JFrame {
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(97, 97, 97)
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -509,14 +654,21 @@ public class LoanDetails extends javax.swing.JFrame {
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton8)
-                    .addComponent(jButton7))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton8)
+                            .addComponent(jButton7)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE))
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Fix-Loan Service", jPanel6);
@@ -551,6 +703,18 @@ public class LoanDetails extends javax.swing.JFrame {
             }
         });
 
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel10.setText("Search customer ID : ");
+
+        jTextField10.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField10KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField10KeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -563,7 +727,11 @@ public class LoanDetails extends javax.swing.JFrame {
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 755, Short.MAX_VALUE)
+                        .addGap(97, 97, 97)
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 212, Short.MAX_VALUE)
                         .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -574,9 +742,11 @@ public class LoanDetails extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton9))
+                    .addComponent(jButton9)
+                    .addComponent(jLabel10)
+                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE))
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Customer Details", jPanel1);
@@ -585,14 +755,14 @@ public class LoanDetails extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jTabbedPane1)
         );
 
-        setSize(new java.awt.Dimension(1339, 603));
+        setSize(new java.awt.Dimension(1339, 706));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -601,6 +771,8 @@ public class LoanDetails extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel4MouseClicked
 
     private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+        
+        jTextField5.setText("");
         
         String sql = "SELECT microLoanId AS Micro_Loan_ID , amountOfLoan AS Amount_of_Loan,"
                     + "interestRate AS Interest_Rate , numberOfInstallement AS No_of_Installement , loanType AS Loan_Type,"
@@ -628,10 +800,15 @@ public class LoanDetails extends javax.swing.JFrame {
                 
             }
         }
+        
+        //set column width jtable 3
+        microLoanDailyTableSetColumnWidth();
 
     }//GEN-LAST:event_jTextField1KeyReleased
 
     private void jTextField2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyReleased
+        
+        jTextField7.setText("");
         
         String sql = "SELECT microLoanId AS Micro_Loan_ID , amountOfLoan AS Amount_of_Loan,"
                     + "interestRate AS Interest_Rate , numberOfInstallement AS No_of_Installement , loanType AS Loan_Type,"
@@ -658,10 +835,15 @@ public class LoanDetails extends javax.swing.JFrame {
                 
             }
         }
+        
+        //set column width jtable 4
+        microLoanWeeklyTableSetColumnWidth();
     }//GEN-LAST:event_jTextField2KeyReleased
 
     private void jTextField3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyReleased
-              
+        
+        jTextField8.setText("");
+        
         String sql = "SELECT microLoanId AS Micro_Loan_ID , amountOfLoan AS Amount_of_Loan,"
                     + "interestRate AS Interest_Rate , numberOfInstallement AS No_of_Installement , loanType AS Loan_Type,"
                     + "installementAmount AS Installement_Amount ,issueDate AS Issue_Date , dueDate AS Due_Date ,"
@@ -688,9 +870,14 @@ public class LoanDetails extends javax.swing.JFrame {
             }
         }
         
+        //set column width jtable 5
+        microLoanMonthlyTableSetColumnWidth();
+        
     }//GEN-LAST:event_jTextField3KeyReleased
 
     private void jTextField4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyReleased
+        
+        jTextField9.setText("");
         
         String sql = "SELECT fixLoanId AS Fix_Loan_ID , amountOfLoan AS Amount_of_Loan , interestRate AS Interest_Rate,"
                 + "installementAmount AS Installement_Amount , issueDate AS Issue_Date,"
@@ -773,6 +960,9 @@ public class LoanDetails extends javax.swing.JFrame {
             pst.execute();
             
             microLoanDailyTable();
+            jTextField1.setText("");
+            jTextField5.setText("");
+           
             JOptionPane.showMessageDialog(null, "Record Deleted Successfully!");
             
         }catch(Exception e){
@@ -817,6 +1007,9 @@ public class LoanDetails extends javax.swing.JFrame {
             pst.execute();
             
             microLoanWeeklyTable();
+            jTextField2.setText("");
+            jTextField7.setText("");
+        
             JOptionPane.showMessageDialog(null, "Record Deleted Successfully!");
             
         }catch(Exception e){
@@ -859,6 +1052,9 @@ public class LoanDetails extends javax.swing.JFrame {
             pst.execute();
             
             microLoanMonthlyTable();
+            jTextField3.setText("");
+            jTextField8.setText("");
+        
             JOptionPane.showMessageDialog(null, "Record Deleted Successfully!");
             
         }catch(Exception e){
@@ -901,6 +1097,9 @@ public class LoanDetails extends javax.swing.JFrame {
             pst.execute();
             
             fixLoanTable();
+            jTextField4.setText("");
+            jTextField9.setText("");
+        
             JOptionPane.showMessageDialog(null, "Record Deleted Successfully!");
             
         }catch(Exception e){
@@ -921,7 +1120,11 @@ public class LoanDetails extends javax.swing.JFrame {
 
     private void jTextField6KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField6KeyReleased
         
-        String sql = "SELECT id,name,nic,address,resistance,contactNo,gender FROM customerdetails "
+        jTextField10.setText("");
+        
+        String sql = "SELECT id AS Customer_ID,name AS Customer_Name,nic AS NIC_Number,address AS Address,"
+                + "resistance AS Resistance,contactNo AS Contact_NO,gender AS Gender "
+                + "FROM customerdetails "
                 + "WHERE name=? and userId=? AND is_deleted=0 ";
         try{
             pst = conn.prepareStatement(sql);
@@ -940,30 +1143,241 @@ public class LoanDetails extends javax.swing.JFrame {
         
         microLoanDailyTable();
         jTextField1.setText("");
+        jTextField5.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         
         microLoanWeeklyTable();
         jTextField2.setText("");
+        jTextField7.setText("");
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         
         microLoanMonthlyTable();
         jTextField3.setText("");
+        jTextField8.setText("");
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         
         fixLoanTable();
         jTextField4.setText("");
+        jTextField9.setText("");
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         jTextField6.setText("");
+        jTextField10.setText("");
         customerDetailsTable();
     }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jTextField5KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyTyped
+        
+        try{
+            numberOnly.NumbersOnly(evt);
+        
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "loan System Error");
+        }
+       
+    }//GEN-LAST:event_jTextField5KeyTyped
+
+    private void jTextField5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyReleased
+        
+                jTextField1.setText("");
+        
+                String sql = "SELECT microLoanId AS Micro_Loan_ID , amountOfLoan AS Amount_of_Loan,"
+                    + "interestRate AS Interest_Rate , numberOfInstallement AS No_of_Installement , loanType AS Loan_Type,"
+                    + "installementAmount AS Installement_Amount ,issueDate AS Issue_Date , dueDate AS Due_Date ,"
+                    + "customerdetails.id AS Customer_ID,customerdetails.name AS Customer_Name "
+                    + "FROM microloan "
+                    + "INNER JOIN customerdetails ON (microloan.customerId=customerdetails.id) "
+                    + "WHERE microLoanId=? AND loanType='Daily' AND microloan.userId=? AND microloan.is_deleted=0 ";
+                    
+        try{
+            pst = conn.prepareStatement(sql);
+            pst.setString(1 , jTextField5.getText());
+            pst.setString(2 , User.userid);
+            rs = pst.executeQuery();
+            
+            jTable3.setModel(DbUtils.resultSetToTableModel(rs));
+            
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }finally{
+            try{
+                rs.close();
+                pst.close();
+            }catch(Exception e){
+                
+            }
+        }
+        
+        //set column width jtable 3
+        microLoanDailyTableSetColumnWidth();
+    }//GEN-LAST:event_jTextField5KeyReleased
+
+    private void jTextField7KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField7KeyReleased
+        
+        jTextField2.setText("");
+        
+        String sql = "SELECT microLoanId AS Micro_Loan_ID , amountOfLoan AS Amount_of_Loan,"
+                    + "interestRate AS Interest_Rate , numberOfInstallement AS No_of_Installement , loanType AS Loan_Type,"
+                    + "installementAmount AS Installement_Amount ,issueDate AS Issue_Date , dueDate AS Due_Date ,"
+                    + "customerdetails.id AS Customer_ID,customerdetails.name AS Customer_Name "
+                    + "FROM microloan "
+                    + "INNER JOIN customerdetails ON (microloan.customerId=customerdetails.id) "
+                    + "WHERE microLoanId=? AND loanType='Weekly' AND microloan.userId=? AND microloan.is_deleted=0 ";
+        try{
+            pst = conn.prepareStatement(sql);
+            pst.setString(1 , jTextField7.getText());
+            pst.setString(2 , User.userid);
+            rs = pst.executeQuery();
+            
+            jTable4.setModel(DbUtils.resultSetToTableModel(rs));
+            
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }finally{
+            try{
+                rs.close();
+                pst.close();
+            }catch(Exception e){
+                
+            }
+        }
+        
+        //set column width jtable 4
+        microLoanWeeklyTableSetColumnWidth();
+    }//GEN-LAST:event_jTextField7KeyReleased
+
+    private void jTextField8KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField8KeyReleased
+        
+        jTextField3.setText("");
+        
+        String sql = "SELECT microLoanId AS Micro_Loan_ID , amountOfLoan AS Amount_of_Loan,"
+                    + "interestRate AS Interest_Rate , numberOfInstallement AS No_of_Installement , loanType AS Loan_Type,"
+                    + "installementAmount AS Installement_Amount ,issueDate AS Issue_Date , dueDate AS Due_Date ,"
+                    + "customerdetails.id AS Customer_ID,customerdetails.name AS Customer_Name "
+                    + "FROM microloan "
+                    + "INNER JOIN customerdetails ON (microloan.customerId=customerdetails.id) "
+                    + "WHERE microLoanId=? AND loanType='Monthly' AND microloan.userId=? AND microloan.is_deleted=0 ";
+        try{
+            pst = conn.prepareStatement(sql);
+            pst.setString(1 , jTextField8.getText());
+            pst.setString(2 , User.userid);
+            rs = pst.executeQuery();
+            
+            jTable5.setModel(DbUtils.resultSetToTableModel(rs));
+            
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }finally{
+            try{
+                rs.close();
+                pst.close();
+            }catch(Exception e){
+                
+            }
+        }
+        
+        //set column width jtable 5
+        microLoanMonthlyTableSetColumnWidth();
+    }//GEN-LAST:event_jTextField8KeyReleased
+
+    private void jTextField9KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField9KeyReleased
+        
+        jTextField4.setText("");
+        
+        String sql = "SELECT fixLoanId AS Fix_Loan_ID , amountOfLoan AS Amount_of_Loan , interestRate AS Interest_Rate,"
+                + "installementAmount AS Installement_Amount , issueDate AS Issue_Date,"
+                + "customerdetails.id AS Customer_ID , customerdetails.name AS Customer_Name "
+                + "FROM fixloan "
+                + "INNER JOIN customerdetails ON (fixloan.customerId=customerdetails.id) "
+                + "WHERE fixLoanId=? and fixloan.userId=? AND fixloan.is_deleted=0 ";
+        try{
+            pst = conn.prepareStatement(sql);
+            pst.setString(1 , jTextField9.getText());
+            pst.setString(2 , User.userid);
+            rs = pst.executeQuery();
+            
+            jTable6.setModel(DbUtils.resultSetToTableModel(rs));
+            
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }finally{
+            try{
+                rs.close();
+                pst.close();
+            }catch(Exception e){
+                
+            }
+        }
+    }//GEN-LAST:event_jTextField9KeyReleased
+
+    private void jTextField10KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField10KeyReleased
+        
+        jTextField6.setText("");
+        
+        String sql = "SELECT id AS Customer_ID,name AS Customer_Name,nic AS NIC_Number,address AS Address,"
+                + "resistance AS Resistance,contactNo AS Contact_NO,gender AS Gender "
+                + "FROM customerdetails "
+                + "WHERE id=? and userId=? AND is_deleted=0 ";
+        try{
+            pst = conn.prepareStatement(sql);
+            pst.setString(1, jTextField10.getText());
+            pst.setString(2, User.userid);
+            rs = pst.executeQuery();
+            
+            jTable7.setModel(DbUtils.resultSetToTableModel(rs));
+        
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+      
+    }//GEN-LAST:event_jTextField10KeyReleased
+
+    private void jTextField7KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField7KeyTyped
+        
+        try{
+            numberOnly.NumbersOnly(evt);
+        
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "loan System Error");
+        }
+    }//GEN-LAST:event_jTextField7KeyTyped
+
+    private void jTextField8KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField8KeyTyped
+        
+        try{
+            numberOnly.NumbersOnly(evt);
+        
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "loan System Error");
+        }
+    }//GEN-LAST:event_jTextField8KeyTyped
+
+    private void jTextField9KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField9KeyTyped
+        
+        try{
+            numberOnly.NumbersOnly(evt);
+        
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "loan System Error");
+        }
+    }//GEN-LAST:event_jTextField9KeyTyped
+
+    private void jTextField10KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField10KeyTyped
+        
+        try{
+            numberOnly.NumbersOnly(evt);
+        
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "loan System Error");
+        }
+    }//GEN-LAST:event_jTextField10KeyTyped
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -1011,10 +1425,15 @@ public class LoanDetails extends javax.swing.JFrame {
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1032,10 +1451,15 @@ public class LoanDetails extends javax.swing.JFrame {
     private javax.swing.JTable jTable6;
     private javax.swing.JTable jTable7;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField jTextField8;
+    private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
 
     private void setIcon() {

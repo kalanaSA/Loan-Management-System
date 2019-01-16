@@ -4,19 +4,27 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class AddCustomer extends javax.swing.JFrame {
     
@@ -24,6 +32,8 @@ public class AddCustomer extends javax.swing.JFrame {
     PreparedStatement pst;
     ResultSet rs;
 
+    User numberOnly = new User();
+    
     public AddCustomer() {
         super("Add Customer");
         initComponents();
@@ -33,6 +43,17 @@ public class AddCustomer extends javax.swing.JFrame {
         jLabel12.setText(String.valueOf(User.username));
     }
     
+    public void clearAll(){
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jTextField3.setText("");
+        jTextField4.setText("");
+        jTextField5.setText("");
+        jRadioButton1.setSelected(false);
+        jRadioButton2.setSelected(false);
+        jLabel8.setIcon(null);
+        jLabel9.setIcon(null);
+    } 
       
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -63,6 +84,7 @@ public class AddCustomer extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
+        jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -79,9 +101,20 @@ public class AddCustomer extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel6.setText("Contact No");
 
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
+
         jTextField5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField5ActionPerformed(evt);
+            }
+        });
+        jTextField5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField5KeyTyped(evt);
             }
         });
 
@@ -115,14 +148,14 @@ public class AddCustomer extends javax.swing.JFrame {
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
+                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -137,14 +170,14 @@ public class AddCustomer extends javax.swing.JFrame {
             jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
+                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jDesktopPane2Layout.setVerticalGroup(
             jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -202,78 +235,78 @@ public class AddCustomer extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(46, 46, 46)
+                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addComponent(jLabel7)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jRadioButton2)
+                                                .addGap(236, 236, 236))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addGap(99, 99, 99)
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(jTextField2)
+                                                        .addComponent(jTextField3)
+                                                        .addGroup(layout.createSequentialGroup()
+                                                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                            .addGap(0, 0, Short.MAX_VALUE))))
+                                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addComponent(jLabel13)
+                                                    .addGap(42, 42, 42)
+                                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(46, 46, 46)
+                                        .addComponent(jButton3)
+                                        .addGap(124, 124, 124)
+                                        .addComponent(jButton4))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(31, 31, 31)
+                                        .addComponent(jDesktopPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(50, 50, 50))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(79, 79, 79)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(30, 30, 30)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(99, 99, 99)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jTextField1)
-                                                .addComponent(jTextField2)
-                                                .addComponent(jTextField3)))
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel13)
-                                            .addGap(42, 42, 42)
-                                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel7)
-                                        .addGap(59, 59, 59)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jRadioButton2))
-                                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jButton3)
-                                .addGap(95, 95, 95))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jDesktopPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(106, 106, 106)
-                                    .addComponent(jButton4)))
-                            .addComponent(jDesktopPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(58, 58, 58))))
+                                .addComponent(jLabel11)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 1109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(26, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addComponent(jLabel10)
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                        .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3)
-                        .addGap(32, 32, 32)
-                        .addComponent(jDesktopPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4)
-                        .addGap(41, 41, 41))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(71, 71, 71)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3))
@@ -296,21 +329,27 @@ public class AddCustomer extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jRadioButton2)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jRadioButton1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel7)
+                            .addComponent(jRadioButton1)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jDesktopPane2)
+                            .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton3)
+                            .addComponent(jButton4)
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(57, 57, 57)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel12))
-                        .addContainerGap())))
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(60, 60, 60)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel12))
+                .addContainerGap())
         );
 
-        setSize(new java.awt.Dimension(1007, 644));
+        setSize(new java.awt.Dimension(1176, 640));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -320,13 +359,7 @@ public class AddCustomer extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
        
-        jTextField1.setText("");
-        jTextField2.setText("");
-        jTextField3.setText("");
-        jTextField4.setText("");
-        jTextField5.setText("");
-        jRadioButton1.setSelected(false);
-        jRadioButton2.setSelected(false);
+        clearAll();
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -337,32 +370,34 @@ public class AddCustomer extends javax.swing.JFrame {
     }//GEN-LAST:event_jRadioButton2ActionPerformed
         
    
-        public static void imageIoWrite() {
-    	 BufferedImage bImage = null;
-         try {
-             File initialImage = new File("Desktop/image.jpg");
-             bImage = ImageIO.read(initialImage);
-
-             //ImageIO.write(bImage, "gif", new File("C://Users/Rou/Desktop/image.gif"));
-             ImageIO.write(bImage, "jpg", new File("Desktop/image.png"));
-             //ImageIO.write(bImage, "bmp", new File("C://Users/Rou/Desktop/image.bmp"));
-
-         } catch (IOException e) {
-               System.out.println("Exception occured :" + e.getMessage());
-         }
-         System.out.println("Images were written succesfully.");
-    }
+//        public static void imageIoWrite() {
+//    	 BufferedImage bImage = null;
+//         try {
+//             File initialImage = new File("Desktop/image.jpg");
+//             bImage = ImageIO.read(initialImage);
+//
+//             //ImageIO.write(bImage, "gif", new File("C://Users/Rou/Desktop/image.gif"));
+//             ImageIO.write(bImage, "jpg", new File("Desktop/image.png"));
+//             //ImageIO.write(bImage, "bmp", new File("C://Users/Rou/Desktop/image.bmp"));
+//
+//         } catch (IOException e) {
+//               System.out.println("Exception occured :" + e.getMessage());
+//         }
+//         System.out.println("Images were written succesfully.");
+//    }
     
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
-        imageIoWrite();
+        //imageIoWrite();
         
         int x = JOptionPane.showConfirmDialog(null, "Are you sure want add this record !");
         if(x==0){
-            String sql = "INSERT INTO customerdetails(name,nic,address,resistance,contactNo,gender,"
-                    + "img1,img2,userId,is_deleted)"
+            
+            String sql = "INSERT INTO customerdetails(name,nic,address,resistance,contactNo,gender,img1,img2,"
+                    + "userId,is_deleted)"
                     + " VALUES(?,?,?,?,?,?,?,?,?,0)";
+   
             
         try{
             pst = conn.prepareStatement(sql);
@@ -372,34 +407,25 @@ public class AddCustomer extends javax.swing.JFrame {
             pst.setString(4 , jTextField4.getText());
             pst.setString(5 , jTextField5.getText());
             pst.setString(6 , gender);
-            pst.setBytes(7 , person_image1);
-            pst.setBytes(8 , person_image2);
+            pst.setString(7 , filename1);
+            pst.setString(8 , filename2);
             pst.setString(9 , User.userid);
             pst.execute();
             
+            System.out.println(filename1);
+            System.out.println(filename2);
+            
             JOptionPane.showMessageDialog(null, "Record Added Successfully !");
-            jTextField1.setText("");
-            jTextField2.setText("");
-            jTextField3.setText("");
-            jTextField4.setText("");
-            jTextField5.setText("");
-            jRadioButton1.setSelected(false);
-            jRadioButton2.setSelected(false);
             
-            
-            
+            clearAll();
+   
             
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
-        }finally{
-            try{
-                rs.close();
-                pst.close();
-            }catch(Exception e){
-                
-            }
         }
+ 
         }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
@@ -410,67 +436,166 @@ public class AddCustomer extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         
+        String imageName1 = jTextField2.getText();
+        
         JFileChooser chooser=new JFileChooser();
         chooser.showOpenDialog(null);
-        File f=chooser.getSelectedFile();
+        File f=chooser.getSelectedFile(); 
         
         filename1=f.getAbsolutePath();
+        System.out.println(filename1);
         ImageIcon imageIcon= new ImageIcon (new ImageIcon(filename1).getImage().getScaledInstance(jLabel8.getWidth(), jLabel8.getHeight(), Image.SCALE_DEFAULT));   
         jLabel8.setIcon(imageIcon);
         
         try{
-              
-            File image = new File(filename1);
-            FileInputStream fix = new FileInputStream(image);
-            ByteArrayOutputStream bos = new ByteArrayOutputStream();
-            byte[] buf = new byte[1024];
+            //File image = new File(filename1);
+            FileInputStream fileInputStream = new FileInputStream(filename1);
+            FileOutputStream fileOutputStream = new FileOutputStream("NIC_images\\"+imageName1+"f.jpg");
+            BufferedInputStream bin = new BufferedInputStream(fileInputStream);
+            BufferedOutputStream bou = new BufferedOutputStream(fileOutputStream);
+
+                int b = 0;
+                while(b!=-1){
+                    b = bin.read();
+                    bou.write(b);
+                }
+                bin.close();
+                bou.close();
             
-            for(int number;(number = fix.read(buf))!=-1;){
-                bos.write(buf,0,number);
+            }catch(IOException e){
+                    
             }
             
-            person_image1 = bos.toByteArray();
-            
+
         
         
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
-        }
+//        
+//    JFileChooser chooser = new JFileChooser();
+//    FileFilter ft = new FileNameExtensionFilter("Image Files", "jpg", "png", "jpeg");
+//    //FileFilter ft2 = new FileNameExtensionFilter("PDF Files", "pdf");
+//
+//    chooser.addChoosableFileFilter(ft);
+//    //chooser.addChoosableFileFilter(ft2);
+//    chooser.showOpenDialog(null);
+//    File f = chooser.getSelectedFile();
+//    filename1 = f.getAbsolutePath().toString();
+//    
+//
+//    BufferedImage img = null;
+    
+//    try {
+//        img = ImageIO.read(new File(filename1));
+//        
+//        FileInputStream fileInputStream = new FileInputStream(filename1);
+//        FileOutputStream fileOutputStream = new FileOutputStream("C:\\Users\\Kalana-PC\\Downloads\\Compressed");
+//        BufferedInputStream bin = new BufferedInputStream(fileInputStream);
+//        BufferedOutputStream bou = new BufferedOutputStream(fileOutputStream);
+//        
+//        int b = 0;
+//        while(b!=-1){
+//            b = bin.read();
+//            bou.write(b);
+//        }
+//        bin.close();
+//        bou.close();
+//        
+//    } catch (IOException e) {       
+//        e.printStackTrace();
+//    }
+//
+//    Image dimg = img.getScaledInstance(jLabel8.getWidth(), jLabel8.getHeight(), Image.SCALE_SMOOTH);
+//
+//
+//    ImageIcon icon = new ImageIcon(dimg);
+//    jLabel8.setText("");
+//    jLabel8.setIcon(icon);
+//        
+
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-                
+        
+        String imageName2 = jTextField2.getText();
+        
         JFileChooser chooser=new JFileChooser();
         chooser.showOpenDialog(null);
-        File f=chooser.getSelectedFile();
+        File f=chooser.getSelectedFile(); 
         
         filename2=f.getAbsolutePath();
+        System.out.println(filename2);
         ImageIcon imageIcon= new ImageIcon (new ImageIcon(filename2).getImage().getScaledInstance(jLabel9.getWidth(), jLabel9.getHeight(), Image.SCALE_DEFAULT));   
         jLabel9.setIcon(imageIcon);
         
         try{
-              
-            File image = new File(filename2);
-            FileInputStream fix = new FileInputStream(image);
-            ByteArrayOutputStream bos = new ByteArrayOutputStream();
-            byte[] buf = new byte[1024];
+            //File image = new File(filename2);
+            FileInputStream fileInputStream = new FileInputStream(filename2);
+            FileOutputStream fileOutputStream = new FileOutputStream("NIC_images\\"+imageName2+"b.jpg");
+            BufferedInputStream bin = new BufferedInputStream(fileInputStream);
+            BufferedOutputStream bou = new BufferedOutputStream(fileOutputStream);
+
+                int b = 0;
+                while(b!=-1){
+                    b = bin.read();
+                    bou.write(b);
+                }
+                bin.close();
+                bou.close();
             
-            for(int number;(number = fix.read(buf))!=-1;){
-                bos.write(buf,0,number);
+            }catch(IOException e){
+                    
             }
-            
-            person_image2 = bos.toByteArray();
-            
         
         
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
-        }
+        
+        
+        
+//        JFileChooser chooser=new JFileChooser();
+//        chooser.showOpenDialog(null);
+//        File f=chooser.getSelectedFile();
+//        
+//        filename2=f.getAbsolutePath();
+//        ImageIcon imageIcon= new ImageIcon (new ImageIcon(filename2).getImage().getScaledInstance(jLabel9.getWidth(), jLabel9.getHeight(), Image.SCALE_DEFAULT));   
+//        jLabel9.setIcon(imageIcon);
+//        
+//        try{
+//              
+//            File image = new File(filename2);
+//            FileInputStream fix = new FileInputStream(image);
+//            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+//            byte[] buf = new byte[1024];
+//            
+//            for(int number;(number = fix.read(buf))!=-1;){
+//                bos.write(buf,0,number);
+//            }
+//            
+//            person_image2 = bos.toByteArray();
+//            
+//        
+//        
+//        }catch(Exception e){
+//            JOptionPane.showMessageDialog(null, e);
+//        }
+
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jTextField5KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyTyped
+        try{
+            numberOnly.NumbersOnly(evt);
+        
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "loan System Error");
+        }
+    }//GEN-LAST:event_jTextField5KeyTyped
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
 
   
     public static void main(String args[]) {
@@ -528,6 +653,7 @@ public class AddCustomer extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
@@ -537,6 +663,7 @@ public class AddCustomer extends javax.swing.JFrame {
  
     private String gender;
     
+        
     //for attach image1
     private ImageIcon format1=null;
     String filename1=null;
@@ -546,6 +673,8 @@ public class AddCustomer extends javax.swing.JFrame {
     private ImageIcon format2=null;
     String filename2=null;
     byte[] person_image2=null;
+    
+    
 
     private void setIcon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("img/loan.png")));
