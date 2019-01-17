@@ -18,11 +18,26 @@ public class DeletedCustomers extends javax.swing.JFrame {
     public DeletedCustomers() {
         super("Deleted Customers Details");
         initComponents();
+        setExtendedState(DeletedCustomers.MAXIMIZED_BOTH);
         conn = DBconnect.connect();
         setIcon();
         
         deletedCustomers();
+        
+        customerDetailsTableSetColumnWidth();
     }
+    
+    //set column width jtable 7 (customerDetailsTable)
+        public void customerDetailsTableSetColumnWidth(){       
+        jTable1.getColumnModel().getColumn(0).setPreferredWidth(5);
+        jTable1.getColumnModel().getColumn(1).setPreferredWidth(200);
+        jTable1.getColumnModel().getColumn(2).setPreferredWidth(20);
+        jTable1.getColumnModel().getColumn(3).setPreferredWidth(200);
+        jTable1.getColumnModel().getColumn(4).setPreferredWidth(200);
+        jTable1.getColumnModel().getColumn(5).setPreferredWidth(30);
+        jTable1.getColumnModel().getColumn(6).setPreferredWidth(5);
+        
+        }
     
     public void deletedCustomers(){
         
@@ -128,8 +143,8 @@ public class DeletedCustomers extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 502, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE))
         );
 
         setSize(new java.awt.Dimension(1293, 607));
@@ -151,6 +166,7 @@ public class DeletedCustomers extends javax.swing.JFrame {
             rs = pst.executeQuery();
             
             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+            customerDetailsTableSetColumnWidth();
         
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
@@ -172,6 +188,7 @@ public class DeletedCustomers extends javax.swing.JFrame {
             rs = pst.executeQuery();
             
             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+            customerDetailsTableSetColumnWidth();
         
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
@@ -193,6 +210,7 @@ public class DeletedCustomers extends javax.swing.JFrame {
         jTextField1.setText("");
         jTextField2.setText("");
         deletedCustomers();
+        customerDetailsTableSetColumnWidth();
     }//GEN-LAST:event_jButton1ActionPerformed
 
  

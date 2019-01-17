@@ -22,6 +22,7 @@ public class FinishedLoans extends javax.swing.JFrame {
     public FinishedLoans() {
         super("Finished Loans");
         initComponents();
+        setExtendedState(FinishedLoans.MAXIMIZED_BOTH);
         conn = DBconnect.connect();
         setIcon();
         
@@ -30,13 +31,21 @@ public class FinishedLoans extends javax.swing.JFrame {
         finishedMonthlyMicroLoanTable();
         finishedFixLoanTable();
         
+        microLoanDailyTableSetColumnWidth();
+        microLoanWeeklyTableSetColumnWidth();
+        microLoanMonthlyTableSetColumnWidth();
+        fixLoanTableSetColumnWidth();
+        
     }
     
 
     public void finishedDailyMicroLoanTable(){
         
-        String sql ="SELECT microLoanId,amountOfLoan,interestRate,numberOfInstallement,loanType,installementAmount,"
-                + "issueDate,dueDate,customerId,customerdetails.name "
+        String sql ="SELECT microLoanId AS Micro_Loan_ID,amountOfLoan AS Amount_Of_Loan,interestRate AS Interest_Rate,"
+                + "numberOfInstallement AS NO_Of_Installement,loanType AS Loan_Type,"
+                + "installementAmount AS Installement_Amount,"
+                + "issueDate AS Issue_Date,dueDate AS Due_Date,customerId AS Customer_ID,"
+                + "customerdetails.name AS Customer_Name "
                 + "FROM microloan "
                 + "INNER JOIN customerdetails ON (microloan.customerId=customerdetails.id) "
                 + "WHERE microloan.loanType='Daily' AND microloan.is_deleted=1 ";
@@ -54,8 +63,11 @@ public class FinishedLoans extends javax.swing.JFrame {
     
     public void finishedWeeklyMicroLoanTable(){
         
-        String sql ="SELECT microLoanId,amountOfLoan,interestRate,numberOfInstallement,loanType,installementAmount,"
-                + "issueDate,dueDate,customerId,customerdetails.name "
+        String sql ="SELECT microLoanId AS Micro_Loan_ID,amountOfLoan AS Amount_Of_Loan,interestRate AS Interest_Rate,"
+                + "numberOfInstallement AS NO_Of_Installement,loanType AS Loan_Type,"
+                + "installementAmount AS Installement_Amount,"
+                + "issueDate AS Issue_Date,dueDate AS Due_Date,customerId AS Customer_ID,"
+                + "customerdetails.name AS Customer_Name "
                 + "FROM microloan "
                 + "INNER JOIN customerdetails ON (microloan.customerId=customerdetails.id) "
                 + "WHERE microloan.loanType='Weekly' AND microloan.is_deleted=1 ";
@@ -73,8 +85,11 @@ public class FinishedLoans extends javax.swing.JFrame {
     
     public void finishedMonthlyMicroLoanTable(){
         
-        String sql ="SELECT microLoanId,amountOfLoan,interestRate,numberOfInstallement,loanType,installementAmount,"
-                + "issueDate,dueDate,customerId,customerdetails.name "
+        String sql ="SELECT microLoanId AS Micro_Loan_ID,amountOfLoan AS Amount_Of_Loan,interestRate AS Interest_Rate,"
+                + "numberOfInstallement AS NO_Of_Installement,loanType AS LoanType,"
+                + "installementAmount AS Installement_Amount,"
+                + "issueDate AS Issue_Date,dueDate AS Due_Date,customerId AS Customer_ID,"
+                + "customerdetails.name AS Customer_Name "
                 + "FROM microloan "
                 + "INNER JOIN customerdetails ON (microloan.customerId=customerdetails.id) "
                 + "WHERE microloan.loanType='Monthly' AND microloan.is_deleted=1 ";
@@ -92,8 +107,9 @@ public class FinishedLoans extends javax.swing.JFrame {
     
     public void finishedFixLoanTable(){
         
-        String sql ="SELECT fixLoanId,amountOfLoan,interestRate,installementAmount,"
-                + "issueDate,customerId,customerdetails.name "
+        String sql ="SELECT fixLoanId AS Fix_Loan_ID,amountOfLoan AS Amount_Of_Loan,interestRate AS Interest_Rate,"
+                + "installementAmount AS Installement_Amount,"
+                + "issueDate AS Issue_Date,customerId AS Customer_ID,customerdetails.name AS Customer_Name "
                 + "FROM fixloan "
                 + "INNER JOIN customerdetails ON (fixloan.customerId=customerdetails.id) "
                 + "WHERE fixloan.is_deleted=1 ";
@@ -108,8 +124,63 @@ public class FinishedLoans extends javax.swing.JFrame {
         }
     }
     
-    //object for FinishedLoansPop
-    FinishedLoansPop flp = new FinishedLoansPop();
+    //set column width jtable 1 (microLoanDailyTable)
+        public void microLoanDailyTableSetColumnWidth(){
+        jTable1.getColumnModel().getColumn(0).setPreferredWidth(5);
+        jTable1.getColumnModel().getColumn(1).setPreferredWidth(30);
+        jTable1.getColumnModel().getColumn(2).setPreferredWidth(10);
+        jTable1.getColumnModel().getColumn(3).setPreferredWidth(20);
+        jTable1.getColumnModel().getColumn(4).setPreferredWidth(5);
+        jTable1.getColumnModel().getColumn(5).setPreferredWidth(25);
+        jTable1.getColumnModel().getColumn(6).setPreferredWidth(20);
+        jTable1.getColumnModel().getColumn(7).setPreferredWidth(20);
+        jTable1.getColumnModel().getColumn(8).setPreferredWidth(5);
+        jTable1.getColumnModel().getColumn(9).setPreferredWidth(150);
+        }
+        
+        //set column width jtable 3 (microLoanWeeklyTable)
+        public void microLoanWeeklyTableSetColumnWidth(){    
+        jTable3.getColumnModel().getColumn(0).setPreferredWidth(5);
+        jTable3.getColumnModel().getColumn(1).setPreferredWidth(30);
+        jTable3.getColumnModel().getColumn(2).setPreferredWidth(10);
+        jTable3.getColumnModel().getColumn(3).setPreferredWidth(20);
+        jTable3.getColumnModel().getColumn(4).setPreferredWidth(5);
+        jTable3.getColumnModel().getColumn(5).setPreferredWidth(25);
+        jTable3.getColumnModel().getColumn(6).setPreferredWidth(20);
+        jTable3.getColumnModel().getColumn(7).setPreferredWidth(20);
+        jTable3.getColumnModel().getColumn(8).setPreferredWidth(5);
+        jTable3.getColumnModel().getColumn(9).setPreferredWidth(150);
+        }
+        
+        //set column width jtable 4 (microLoanMonthlyTable)
+        public void microLoanMonthlyTableSetColumnWidth(){       
+        jTable4.getColumnModel().getColumn(0).setPreferredWidth(5);
+        jTable4.getColumnModel().getColumn(1).setPreferredWidth(30);
+        jTable4.getColumnModel().getColumn(2).setPreferredWidth(10);
+        jTable4.getColumnModel().getColumn(3).setPreferredWidth(20);
+        jTable4.getColumnModel().getColumn(4).setPreferredWidth(5);
+        jTable4.getColumnModel().getColumn(5).setPreferredWidth(25);
+        jTable4.getColumnModel().getColumn(6).setPreferredWidth(20);
+        jTable4.getColumnModel().getColumn(7).setPreferredWidth(20);
+        jTable4.getColumnModel().getColumn(8).setPreferredWidth(5);
+        jTable4.getColumnModel().getColumn(9).setPreferredWidth(150);
+        }
+        
+        //set column width jtable 2 (microLoanMonthlyTable)
+        public void fixLoanTableSetColumnWidth(){       
+        jTable2.getColumnModel().getColumn(0).setPreferredWidth(5);
+        jTable2.getColumnModel().getColumn(1).setPreferredWidth(30);
+        jTable2.getColumnModel().getColumn(2).setPreferredWidth(10);
+        jTable2.getColumnModel().getColumn(3).setPreferredWidth(25);
+        jTable2.getColumnModel().getColumn(4).setPreferredWidth(20);
+        jTable2.getColumnModel().getColumn(5).setPreferredWidth(5);
+        jTable2.getColumnModel().getColumn(6).setPreferredWidth(150);
+        
+        }
+    
+    
+        //object for FinishedLoansPop
+        FinishedLoansPop flp = new FinishedLoansPop();
     
 
     @SuppressWarnings("unchecked")
@@ -466,7 +537,7 @@ public class FinishedLoans extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 12, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -474,7 +545,7 @@ public class FinishedLoans extends javax.swing.JFrame {
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Finished Fix-Loans", jPanel2);
@@ -487,7 +558,7 @@ public class FinishedLoans extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jTabbedPane1)
         );
 
         setSize(new java.awt.Dimension(1335, 693));
@@ -576,7 +647,7 @@ public class FinishedLoans extends javax.swing.JFrame {
         
         try{
             String sql = "SELECT installementNo AS Installement_Number, fixloan.installementAmount AS Installement_Amount , "
-                + "payedAmount AS Payed_Amount , payDate "
+                + "payedAmount AS Payed_Amount "
                 + "FROM fixloanrepayment "
                 + "INNER JOIN customerdetails ON (fixloanrepayment.customerId=customerdetails.id) "
                 + "INNER JOIN fixloan ON (fixloanrepayment.fixLoanId=fixloan.fixLoanId)"
@@ -633,6 +704,7 @@ public class FinishedLoans extends javax.swing.JFrame {
             rs = pst.executeQuery();
             
             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+            microLoanDailyTableSetColumnWidth();
             
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
@@ -665,6 +737,7 @@ public class FinishedLoans extends javax.swing.JFrame {
             rs = pst.executeQuery();
             
             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+            microLoanDailyTableSetColumnWidth();
             
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
@@ -696,6 +769,7 @@ public class FinishedLoans extends javax.swing.JFrame {
             rs = pst.executeQuery();
 
             jTable2.setModel(DbUtils.resultSetToTableModel(rs));
+            fixLoanTableSetColumnWidth();
 
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
@@ -726,6 +800,7 @@ public class FinishedLoans extends javax.swing.JFrame {
             rs = pst.executeQuery();
 
             jTable2.setModel(DbUtils.resultSetToTableModel(rs));
+            fixLoanTableSetColumnWidth();
 
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
@@ -764,6 +839,7 @@ public class FinishedLoans extends javax.swing.JFrame {
         jTextField3.setText("");
         jTextField4.setText("");
         finishedFixLoanTable();
+        fixLoanTableSetColumnWidth();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -771,6 +847,7 @@ public class FinishedLoans extends javax.swing.JFrame {
         jTextField1.setText("");
         jTextField2.setText("");
         finishedDailyMicroLoanTable();
+        microLoanDailyTableSetColumnWidth();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable3MouseClicked
@@ -852,6 +929,7 @@ public class FinishedLoans extends javax.swing.JFrame {
             rs = pst.executeQuery();
             
             jTable3.setModel(DbUtils.resultSetToTableModel(rs));
+            microLoanWeeklyTableSetColumnWidth();
             
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
@@ -884,6 +962,7 @@ public class FinishedLoans extends javax.swing.JFrame {
             rs = pst.executeQuery();
             
             jTable3.setModel(DbUtils.resultSetToTableModel(rs));
+            microLoanWeeklyTableSetColumnWidth();
             
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
@@ -906,6 +985,7 @@ public class FinishedLoans extends javax.swing.JFrame {
         jTextField5.setText("");
         jTextField6.setText("");
         finishedWeeklyMicroLoanTable();
+        microLoanWeeklyTableSetColumnWidth();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTable4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable4MouseClicked
@@ -987,6 +1067,7 @@ public class FinishedLoans extends javax.swing.JFrame {
             rs = pst.executeQuery();
             
             jTable4.setModel(DbUtils.resultSetToTableModel(rs));
+            microLoanMonthlyTableSetColumnWidth();
 
             
         }catch(Exception e){
@@ -1020,6 +1101,7 @@ public class FinishedLoans extends javax.swing.JFrame {
             rs = pst.executeQuery();
             
             jTable4.setModel(DbUtils.resultSetToTableModel(rs));
+            microLoanMonthlyTableSetColumnWidth();
             
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);

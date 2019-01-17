@@ -19,6 +19,7 @@ public class LoanDetails extends javax.swing.JFrame {
     public LoanDetails() {
         super("Loan Details");
         initComponents();
+        setExtendedState(LoanDetails.MAXIMIZED_BOTH);
         conn = DBconnect.connect();
         setIcon();
         
@@ -31,21 +32,8 @@ public class LoanDetails extends javax.swing.JFrame {
         microLoanDailyTableSetColumnWidth();
         microLoanWeeklyTableSetColumnWidth();
         microLoanMonthlyTableSetColumnWidth();
-        
-        
-        
-        
-        //set column width jtable 5 (microLoanDailyTable)
-        jTable5.getColumnModel().getColumn(0).setPreferredWidth(5);
-        jTable5.getColumnModel().getColumn(1).setPreferredWidth(30);
-        jTable5.getColumnModel().getColumn(2).setPreferredWidth(10);
-        jTable5.getColumnModel().getColumn(3).setPreferredWidth(20);
-        jTable5.getColumnModel().getColumn(4).setPreferredWidth(5);
-        jTable5.getColumnModel().getColumn(5).setPreferredWidth(25);
-        jTable5.getColumnModel().getColumn(6).setPreferredWidth(20);
-        jTable5.getColumnModel().getColumn(7).setPreferredWidth(20);
-        jTable5.getColumnModel().getColumn(8).setPreferredWidth(5);
-        jTable5.getColumnModel().getColumn(9).setPreferredWidth(100);
+        fixLoanTableSetColumnWidth();
+        customerDetailsTableSetColumnWidth();
                 
     }
 
@@ -208,7 +196,7 @@ public class LoanDetails extends javax.swing.JFrame {
         jTable3.getColumnModel().getColumn(6).setPreferredWidth(20);
         jTable3.getColumnModel().getColumn(7).setPreferredWidth(20);
         jTable3.getColumnModel().getColumn(8).setPreferredWidth(5);
-        jTable3.getColumnModel().getColumn(9).setPreferredWidth(100);
+        jTable3.getColumnModel().getColumn(9).setPreferredWidth(150);
         }
         
         //set column width jtable 4 (microLoanWeeklyTable)
@@ -222,7 +210,7 @@ public class LoanDetails extends javax.swing.JFrame {
         jTable4.getColumnModel().getColumn(6).setPreferredWidth(20);
         jTable4.getColumnModel().getColumn(7).setPreferredWidth(20);
         jTable4.getColumnModel().getColumn(8).setPreferredWidth(5);
-        jTable4.getColumnModel().getColumn(9).setPreferredWidth(100);
+        jTable4.getColumnModel().getColumn(9).setPreferredWidth(150);
         }
         
         //set column width jtable 5 (microLoanMonthlyTable)
@@ -236,7 +224,31 @@ public class LoanDetails extends javax.swing.JFrame {
         jTable5.getColumnModel().getColumn(6).setPreferredWidth(20);
         jTable5.getColumnModel().getColumn(7).setPreferredWidth(20);
         jTable5.getColumnModel().getColumn(8).setPreferredWidth(5);
-        jTable5.getColumnModel().getColumn(9).setPreferredWidth(100);
+        jTable5.getColumnModel().getColumn(9).setPreferredWidth(150);
+        }
+        
+        //set column width jtable 6 (FixLoanMonthlyTable)
+        public void fixLoanTableSetColumnWidth(){       
+        jTable6.getColumnModel().getColumn(0).setPreferredWidth(5);
+        jTable6.getColumnModel().getColumn(1).setPreferredWidth(30);
+        jTable6.getColumnModel().getColumn(2).setPreferredWidth(10);
+        jTable6.getColumnModel().getColumn(3).setPreferredWidth(25);
+        jTable6.getColumnModel().getColumn(4).setPreferredWidth(20);
+        jTable6.getColumnModel().getColumn(5).setPreferredWidth(5);
+        jTable6.getColumnModel().getColumn(6).setPreferredWidth(150);
+        
+        }
+        
+        //set column width jtable 7 (customerDetailsTable)
+        public void customerDetailsTableSetColumnWidth(){       
+        jTable7.getColumnModel().getColumn(0).setPreferredWidth(5);
+        jTable7.getColumnModel().getColumn(1).setPreferredWidth(200);
+        jTable7.getColumnModel().getColumn(2).setPreferredWidth(20);
+        jTable7.getColumnModel().getColumn(3).setPreferredWidth(200);
+        jTable7.getColumnModel().getColumn(4).setPreferredWidth(200);
+        jTable7.getColumnModel().getColumn(5).setPreferredWidth(30);
+        jTable7.getColumnModel().getColumn(6).setPreferredWidth(5);
+        
         }
     
 
@@ -878,6 +890,7 @@ public class LoanDetails extends javax.swing.JFrame {
     private void jTextField4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyReleased
         
         jTextField9.setText("");
+  
         
         String sql = "SELECT fixLoanId AS Fix_Loan_ID , amountOfLoan AS Amount_of_Loan , interestRate AS Interest_Rate,"
                 + "installementAmount AS Installement_Amount , issueDate AS Issue_Date,"
@@ -903,6 +916,8 @@ public class LoanDetails extends javax.swing.JFrame {
                 
             }
         }
+        //set column width jtable 5
+        fixLoanTableSetColumnWidth();
         
     }//GEN-LAST:event_jTextField4KeyReleased
 
@@ -945,7 +960,7 @@ public class LoanDetails extends javax.swing.JFrame {
             
             
         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, "please select the loan you want to delete!");
                     
         }    
         
@@ -967,7 +982,7 @@ public class LoanDetails extends javax.swing.JFrame {
             
         }catch(Exception e){
             
-            JOptionPane.showMessageDialog(null, e);
+            //JOptionPane.showMessageDialog(null, e);
             
         }
         
@@ -1133,6 +1148,7 @@ public class LoanDetails extends javax.swing.JFrame {
             rs = pst.executeQuery();
             
             jTable7.setModel(DbUtils.resultSetToTableModel(rs));
+            customerDetailsTableSetColumnWidth();
         
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
@@ -1142,6 +1158,7 @@ public class LoanDetails extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
         microLoanDailyTable();
+        microLoanDailyTableSetColumnWidth();
         jTextField1.setText("");
         jTextField5.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -1149,6 +1166,7 @@ public class LoanDetails extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         
         microLoanWeeklyTable();
+        microLoanWeeklyTableSetColumnWidth();
         jTextField2.setText("");
         jTextField7.setText("");
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -1156,6 +1174,7 @@ public class LoanDetails extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         
         microLoanMonthlyTable();
+        microLoanMonthlyTableSetColumnWidth();
         jTextField3.setText("");
         jTextField8.setText("");
     }//GEN-LAST:event_jButton5ActionPerformed
@@ -1163,14 +1182,17 @@ public class LoanDetails extends javax.swing.JFrame {
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         
         fixLoanTable();
+        fixLoanTableSetColumnWidth();
         jTextField4.setText("");
         jTextField9.setText("");
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        
         jTextField6.setText("");
         jTextField10.setText("");
         customerDetailsTable();
+        customerDetailsTableSetColumnWidth();
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jTextField5KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyTyped
@@ -1315,6 +1337,9 @@ public class LoanDetails extends javax.swing.JFrame {
                 
             }
         }
+        
+        //set column width jtable 5
+        fixLoanTableSetColumnWidth();
     }//GEN-LAST:event_jTextField9KeyReleased
 
     private void jTextField10KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField10KeyReleased
@@ -1332,6 +1357,7 @@ public class LoanDetails extends javax.swing.JFrame {
             rs = pst.executeQuery();
             
             jTable7.setModel(DbUtils.resultSetToTableModel(rs));
+            customerDetailsTableSetColumnWidth();
         
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);

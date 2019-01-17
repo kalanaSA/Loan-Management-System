@@ -24,6 +24,7 @@ public class Repayment extends javax.swing.JFrame {
     public Repayment() {
         super("Repayment");
         initComponents();
+        setExtendedState(Repayment.MAXIMIZED_BOTH);
         conn = DBconnect.connect();
         jLabel24.setText(String.valueOf(User.username));
         jLabel32.setText(String.valueOf(User.username));
@@ -41,7 +42,10 @@ public class Repayment extends javax.swing.JFrame {
         jDateChooser4.setDate(new Date());
         jDateChooser2.setDate(new Date());
             
-        
+        microLoanDailyTableSetColumnWidth();
+        microLoanWeeklyTableSetColumnWidth();
+        microLoanMonthlyTableSetColumnWidth();
+        fixLoanTableSetColumnWidth();
 
     }
     
@@ -198,6 +202,60 @@ public class Repayment extends javax.swing.JFrame {
         txt_finstallementNo.setText("");
         jDateChooser2.setDate(new Date());
     }
+    
+    
+    //set column width jtable 3 (microLoanDailyTable)
+        public void microLoanDailyTableSetColumnWidth(){
+        jTable1.getColumnModel().getColumn(0).setPreferredWidth(5);
+        jTable1.getColumnModel().getColumn(1).setPreferredWidth(30);
+        jTable1.getColumnModel().getColumn(2).setPreferredWidth(10);
+        jTable1.getColumnModel().getColumn(3).setPreferredWidth(20);
+        jTable1.getColumnModel().getColumn(4).setPreferredWidth(5);
+        jTable1.getColumnModel().getColumn(5).setPreferredWidth(25);
+        jTable1.getColumnModel().getColumn(6).setPreferredWidth(20);
+        jTable1.getColumnModel().getColumn(7).setPreferredWidth(20);
+        jTable1.getColumnModel().getColumn(8).setPreferredWidth(5);
+        jTable1.getColumnModel().getColumn(9).setPreferredWidth(150);
+        }
+        
+        //set column width jtable 4 (microLoanWeeklyTable)
+        public void microLoanWeeklyTableSetColumnWidth(){    
+        jTable3.getColumnModel().getColumn(0).setPreferredWidth(5);
+        jTable3.getColumnModel().getColumn(1).setPreferredWidth(30);
+        jTable3.getColumnModel().getColumn(2).setPreferredWidth(10);
+        jTable3.getColumnModel().getColumn(3).setPreferredWidth(20);
+        jTable3.getColumnModel().getColumn(4).setPreferredWidth(5);
+        jTable3.getColumnModel().getColumn(5).setPreferredWidth(25);
+        jTable3.getColumnModel().getColumn(6).setPreferredWidth(20);
+        jTable3.getColumnModel().getColumn(7).setPreferredWidth(20);
+        jTable3.getColumnModel().getColumn(8).setPreferredWidth(5);
+        jTable3.getColumnModel().getColumn(9).setPreferredWidth(150);
+        }
+        
+        //set column width jtable 5 (microLoanMonthlyTable)
+        public void microLoanMonthlyTableSetColumnWidth(){       
+        jTable4.getColumnModel().getColumn(0).setPreferredWidth(5);
+        jTable4.getColumnModel().getColumn(1).setPreferredWidth(30);
+        jTable4.getColumnModel().getColumn(2).setPreferredWidth(10);
+        jTable4.getColumnModel().getColumn(3).setPreferredWidth(20);
+        jTable4.getColumnModel().getColumn(4).setPreferredWidth(5);
+        jTable4.getColumnModel().getColumn(5).setPreferredWidth(25);
+        jTable4.getColumnModel().getColumn(6).setPreferredWidth(20);
+        jTable4.getColumnModel().getColumn(7).setPreferredWidth(20);
+        jTable4.getColumnModel().getColumn(8).setPreferredWidth(5);
+        jTable4.getColumnModel().getColumn(9).setPreferredWidth(150);
+        }
+        
+        public void fixLoanTableSetColumnWidth(){       
+        jTable2.getColumnModel().getColumn(0).setPreferredWidth(5);
+        jTable2.getColumnModel().getColumn(1).setPreferredWidth(30);
+        jTable2.getColumnModel().getColumn(2).setPreferredWidth(10);
+        jTable2.getColumnModel().getColumn(3).setPreferredWidth(25);
+        jTable2.getColumnModel().getColumn(4).setPreferredWidth(20);
+        jTable2.getColumnModel().getColumn(5).setPreferredWidth(5);
+        jTable2.getColumnModel().getColumn(6).setPreferredWidth(150);
+        
+        }
 
   
     @SuppressWarnings("unchecked")
@@ -1577,6 +1635,7 @@ public class Repayment extends javax.swing.JFrame {
 
         fixLoanClearAll();
         fixLoanTable();
+        fixLoanTableSetColumnWidth();
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jTable2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseEntered
@@ -1644,6 +1703,7 @@ public class Repayment extends javax.swing.JFrame {
             rs = pst.executeQuery();
 
             jTable2.setModel(DbUtils.resultSetToTableModel(rs));
+            fixLoanTableSetColumnWidth();
 
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
@@ -1662,6 +1722,7 @@ public class Repayment extends javax.swing.JFrame {
         
         dailyMicroLoanClearAll();
         dailyMicroLoanTable();
+        microLoanDailyTableSetColumnWidth();
         
     }//GEN-LAST:event_jButton11ActionPerformed
 
@@ -1938,6 +1999,7 @@ public class Repayment extends javax.swing.JFrame {
             rs = pst.executeQuery();
 
             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+            microLoanDailyTableSetColumnWidth();
 
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
@@ -1949,12 +2011,14 @@ public class Repayment extends javax.swing.JFrame {
 
             }
         }
+        
     }//GEN-LAST:event_txt_searchKeyReleased
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         
         weeklyMicroLoanClearAll();
         weeklyMicroLoanTable();
+        microLoanWeeklyTableSetColumnWidth();
         
     }//GEN-LAST:event_jButton12ActionPerformed
 
@@ -1980,6 +2044,7 @@ public class Repayment extends javax.swing.JFrame {
             rs = pst.executeQuery();
 
             jTable3.setModel(DbUtils.resultSetToTableModel(rs));
+            microLoanWeeklyTableSetColumnWidth();
 
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
@@ -2242,6 +2307,7 @@ public class Repayment extends javax.swing.JFrame {
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
         monthlyMicroLoanClearAll();
         monthlyMicroLoanTable();
+        microLoanMonthlyTableSetColumnWidth();
     }//GEN-LAST:event_jButton17ActionPerformed
 
     private void jTextField19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField19ActionPerformed
@@ -2266,6 +2332,7 @@ public class Repayment extends javax.swing.JFrame {
             rs = pst.executeQuery();
 
             jTable4.setModel(DbUtils.resultSetToTableModel(rs));
+            microLoanMonthlyTableSetColumnWidth();
 
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
@@ -2691,6 +2758,7 @@ public class Repayment extends javax.swing.JFrame {
             rs = pst.executeQuery();
 
             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+            microLoanDailyTableSetColumnWidth();
 
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
@@ -2702,6 +2770,7 @@ public class Repayment extends javax.swing.JFrame {
 
             }
         }
+        
     }//GEN-LAST:event_jTextField23KeyReleased
 
     private void jTextField24KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField24KeyReleased
@@ -2722,6 +2791,7 @@ public class Repayment extends javax.swing.JFrame {
             rs = pst.executeQuery();
 
             jTable3.setModel(DbUtils.resultSetToTableModel(rs));
+            microLoanWeeklyTableSetColumnWidth();
 
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
@@ -2753,6 +2823,7 @@ public class Repayment extends javax.swing.JFrame {
             rs = pst.executeQuery();
 
             jTable4.setModel(DbUtils.resultSetToTableModel(rs));
+            microLoanMonthlyTableSetColumnWidth();
 
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
@@ -2783,6 +2854,7 @@ public class Repayment extends javax.swing.JFrame {
             rs = pst.executeQuery();
 
             jTable2.setModel(DbUtils.resultSetToTableModel(rs));
+            fixLoanTableSetColumnWidth();
 
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
