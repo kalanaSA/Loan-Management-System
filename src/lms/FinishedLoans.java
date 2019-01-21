@@ -20,7 +20,7 @@ public class FinishedLoans extends javax.swing.JFrame {
     
   
     public FinishedLoans() {
-        super("Finished Loans");
+        super("Finished Loans Details");
         initComponents();
         setExtendedState(FinishedLoans.MAXIMIZED_BOTH);
         conn = DBconnect.connect();
@@ -36,13 +36,15 @@ public class FinishedLoans extends javax.swing.JFrame {
         microLoanMonthlyTableSetColumnWidth();
         fixLoanTableSetColumnWidth();
         
+        customerdetailsFetch();
+        
     }
     
 
     public void finishedDailyMicroLoanTable(){
         
-        String sql ="SELECT microLoanId AS Micro_Loan_ID,amountOfLoan AS Amount_Of_Loan,interestRate AS Interest_Rate,"
-                + "numberOfInstallement AS NO_Of_Installement,loanType AS Loan_Type,"
+        String sql ="SELECT microLoanId AS Micro_Loan_ID,amountOfLoan AS Capital,interestRate AS Interest_Rate,"
+                + "numberOfInstallement AS NO_of_Installement,loanType AS Loan_Type,"
                 + "installementAmount AS Installement_Amount,"
                 + "issueDate AS Issue_Date,dueDate AS Due_Date,customerId AS Customer_ID,"
                 + "customerdetails.name AS Customer_Name "
@@ -56,15 +58,22 @@ public class FinishedLoans extends javax.swing.JFrame {
             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
             
         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, "Can't fetch data from database, check internet connection & try again!");
+        }finally{
+            try{
+                rs.close();
+                pst.close();
+            }catch(Exception e){
+
+            }
         }
         
     }
     
     public void finishedWeeklyMicroLoanTable(){
         
-        String sql ="SELECT microLoanId AS Micro_Loan_ID,amountOfLoan AS Amount_Of_Loan,interestRate AS Interest_Rate,"
-                + "numberOfInstallement AS NO_Of_Installement,loanType AS Loan_Type,"
+        String sql ="SELECT microLoanId AS Micro_Loan_ID,amountOfLoan AS Capital,interestRate AS Interest_Rate,"
+                + "numberOfInstallement AS NO_of_Installement,loanType AS Loan_Type,"
                 + "installementAmount AS Installement_Amount,"
                 + "issueDate AS Issue_Date,dueDate AS Due_Date,customerId AS Customer_ID,"
                 + "customerdetails.name AS Customer_Name "
@@ -78,15 +87,22 @@ public class FinishedLoans extends javax.swing.JFrame {
             jTable3.setModel(DbUtils.resultSetToTableModel(rs));
             
         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, "Can't fetch data from database, check internet connection & try again!");
+        }finally{
+            try{
+                rs.close();
+                pst.close();
+            }catch(Exception e){
+
+            }
         }
         
     }
     
     public void finishedMonthlyMicroLoanTable(){
         
-        String sql ="SELECT microLoanId AS Micro_Loan_ID,amountOfLoan AS Amount_Of_Loan,interestRate AS Interest_Rate,"
-                + "numberOfInstallement AS NO_Of_Installement,loanType AS LoanType,"
+        String sql ="SELECT microLoanId AS Micro_Loan_ID,amountOfLoan AS Capital,interestRate AS Interest_Rate,"
+                + "numberOfInstallement AS NO_of_Installement,loanType AS Loan_Type,"
                 + "installementAmount AS Installement_Amount,"
                 + "issueDate AS Issue_Date,dueDate AS Due_Date,customerId AS Customer_ID,"
                 + "customerdetails.name AS Customer_Name "
@@ -100,14 +116,21 @@ public class FinishedLoans extends javax.swing.JFrame {
             jTable4.setModel(DbUtils.resultSetToTableModel(rs));
             
         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, "Can't fetch data from database, check internet connection & try again!");
+        }finally{
+            try{
+                rs.close();
+                pst.close();
+            }catch(Exception e){
+
+            }
         }
         
     }
     
     public void finishedFixLoanTable(){
         
-        String sql ="SELECT fixLoanId AS Fix_Loan_ID,amountOfLoan AS Amount_Of_Loan,interestRate AS Interest_Rate,"
+        String sql ="SELECT fixLoanId AS Fix_Loan_ID,amountOfLoan AS Capital,interestRate AS Interest_Rate,"
                 + "installementAmount AS Installement_Amount,"
                 + "issueDate AS Issue_Date,customerId AS Customer_ID,customerdetails.name AS Customer_Name "
                 + "FROM fixloan "
@@ -120,7 +143,14 @@ public class FinishedLoans extends javax.swing.JFrame {
             jTable2.setModel(DbUtils.resultSetToTableModel(rs));
             
         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, "Can't fetch data from database, check internet connection & try again!");
+        }finally{
+            try{
+                rs.close();
+                pst.close();
+            }catch(Exception e){
+
+            }
         }
     }
     
@@ -177,6 +207,34 @@ public class FinishedLoans extends javax.swing.JFrame {
         jTable2.getColumnModel().getColumn(6).setPreferredWidth(150);
         
         }
+        
+        public void customerdetailsFetch(){
+        
+        String sql = "SELECT id,name,nic From customerdetails WHERE userId=? AND is_deleted=0" ;
+        
+        try{
+            pst = conn.prepareStatement(sql);
+            pst.setString(1 , User.userid);
+            rs = pst.executeQuery();
+            
+            while(rs.next()){
+//                String id = rs.getString("id");
+                String name = rs.getString("name");
+//                String nic = rs.getString("nic");
+//                String sentence = name;
+                
+
+                jComboBox4.addItem(name);
+                jComboBox3.addItem(name);
+                jComboBox2.addItem(name);
+                jComboBox1.addItem(name);
+            }
+  
+        }catch(Exception e){
+            
+        }
+        
+    }
     
     
         //object for FinishedLoansPop
@@ -193,35 +251,37 @@ public class FinishedLoans extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jComboBox4 = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
+        jComboBox3 = new javax.swing.JComboBox<>();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTable4 = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
+        jComboBox2 = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTabbedPane1MouseClicked(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -245,23 +305,11 @@ public class FinishedLoans extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jTable1);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel1.setText("Search Name : ");
+        jLabel1.setText("Search Name/ID/Loan ID :");
 
         jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextField1KeyReleased(evt);
-            }
-        });
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel2.setText("Search Loan ID : ");
-
-        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField2KeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField2KeyTyped(evt);
             }
         });
 
@@ -270,6 +318,13 @@ public class FinishedLoans extends javax.swing.JFrame {
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "select the name" }));
+        jComboBox4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox4ActionPerformed(evt);
             }
         });
 
@@ -283,10 +338,8 @@ public class FinishedLoans extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(97, 97, 97)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58)
+                .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -298,9 +351,8 @@ public class FinishedLoans extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1)
+                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE))
         );
@@ -326,23 +378,11 @@ public class FinishedLoans extends javax.swing.JFrame {
         jScrollPane4.setViewportView(jTable3);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel5.setText("Search Name : ");
+        jLabel5.setText("Search Name/ID/Loan ID :");
 
         jTextField5.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextField5KeyReleased(evt);
-            }
-        });
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel6.setText("Search Loan ID : ");
-
-        jTextField6.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField6KeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField6KeyTyped(evt);
             }
         });
 
@@ -351,6 +391,13 @@ public class FinishedLoans extends javax.swing.JFrame {
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
+            }
+        });
+
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "select the name" }));
+        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox3ActionPerformed(evt);
             }
         });
 
@@ -364,10 +411,8 @@ public class FinishedLoans extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(97, 97, 97)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58)
+                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -375,13 +420,16 @@ public class FinishedLoans extends javax.swing.JFrame {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton3)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE))
         );
@@ -407,23 +455,11 @@ public class FinishedLoans extends javax.swing.JFrame {
         jScrollPane5.setViewportView(jTable4);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel7.setText("Search Name : ");
+        jLabel7.setText("Search Name/ID/Loan ID :");
 
         jTextField7.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextField7KeyReleased(evt);
-            }
-        });
-
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel8.setText("Search Loan ID : ");
-
-        jTextField8.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField8KeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField8KeyTyped(evt);
             }
         });
 
@@ -432,6 +468,13 @@ public class FinishedLoans extends javax.swing.JFrame {
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
+            }
+        });
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "select the name" }));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
             }
         });
 
@@ -445,10 +488,8 @@ public class FinishedLoans extends javax.swing.JFrame {
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(97, 97, 97)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58)
+                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -460,9 +501,8 @@ public class FinishedLoans extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4))
+                    .addComponent(jButton4)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE))
         );
@@ -488,23 +528,11 @@ public class FinishedLoans extends javax.swing.JFrame {
         jScrollPane3.setViewportView(jTable2);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel3.setText("Search Name : ");
+        jLabel3.setText("Search Name/ID/Loan ID :");
 
         jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextField3KeyReleased(evt);
-            }
-        });
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel4.setText("Search Loan ID : ");
-
-        jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField4KeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField4KeyTyped(evt);
             }
         });
 
@@ -513,6 +541,13 @@ public class FinishedLoans extends javax.swing.JFrame {
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
+            }
+        });
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "select the name" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
             }
         });
 
@@ -526,10 +561,8 @@ public class FinishedLoans extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(97, 97, 97)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -538,12 +571,12 @@ public class FinishedLoans extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton2))
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE))
         );
@@ -586,7 +619,9 @@ public class FinishedLoans extends javax.swing.JFrame {
         flp.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         
         try{
-            String sql = "SELECT installementNo AS Installement_Number , remainingInstallement AS Remaining_Installements, "
+            //change******************
+            String sql = "SELECT installementNo AS Installement_Number ,installementAge AS Installement_Age , "
+                + "remainingInstallement AS Remaining_Installements, "
                 + "microloan.installementAmount AS Installement_Amount , payedAmount AS Payed_Amount,"
                 + "payDate AS Pay_Date , remainingAmountOfLoan AS Remaining_Amount "
                 + "FROM microloanrepayment "
@@ -687,27 +722,29 @@ public class FinishedLoans extends javax.swing.JFrame {
 
     private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
         
-        jTextField2.setText("");
         
-        String sql = "SELECT microLoanId AS Micro_Loan_ID , amountOfLoan AS Amount_of_Loan,"
-                    + "interestRate AS Interest_Rate , numberOfInstallement AS No_of_Installement , loanType AS Loan_Type,"
-                    + "installementAmount AS Installement_Amount ,issueDate AS Issue_Date , dueDate AS Due_Date ,"
-                    + "customerdetails.id AS Customer_ID,customerdetails.name AS Customer_Name "
-                    + "FROM microloan "
-                    + "INNER JOIN customerdetails ON (microloan.customerId=customerdetails.id) "
-                    + "WHERE name=? AND microloan.loanType= 'Daily' AND microloan.userId=? AND microloan.is_deleted=1 ";
+        String sql = "SELECT microLoanId AS Micro_Loan_ID , amountOfLoan AS Capital,"
+        + "interestRate AS Interest_Rate , numberOfInstallement AS NO_of_Installement , loanType AS Loan_Type,"
+        + "installementAmount AS Installement_Amount ,issueDate AS Issue_Date , dueDate AS Due_Date ,"
+        + "customerdetails.id AS Customer_ID,customerdetails.name AS Customer_Name "
+        + "FROM microloan "
+        + "INNER JOIN customerdetails ON (microloan.customerId=customerdetails.id) "
+        + "WHERE name=? AND microloan.userId='"+User.userid+"' AND loanType='Daily' AND microloan.is_deleted=1 "
+                + "OR id=? AND microloan.userId='"+User.userid+"' AND loanType='Daily' AND microloan.is_deleted=1 "
+                + "OR microLoanId=? AND microloan.userId='"+User.userid+"' AND loanType='Daily' AND microloan.is_deleted=1 ";
                     
         try{
             pst = conn.prepareStatement(sql);
             pst.setString(1 , jTextField1.getText());
-            pst.setString(2 , User.userid);
+            pst.setString(2 , jTextField1.getText());
+            pst.setString(3 , jTextField1.getText());
             rs = pst.executeQuery();
             
             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
             microLoanDailyTableSetColumnWidth();
             
         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, "Can't fetch data from database, check internet connection & try again!");
         }finally{
             try{
                 rs.close();
@@ -718,61 +755,30 @@ public class FinishedLoans extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTextField1KeyReleased
 
-    private void jTextField2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyReleased
-
-        jTextField1.setText("");
-        
-        String sql = "SELECT microLoanId AS Micro_Loan_ID , amountOfLoan AS Amount_of_Loan,"
-                    + "interestRate AS Interest_Rate , numberOfInstallement AS No_of_Installement , loanType AS Loan_Type,"
-                    + "installementAmount AS Installement_Amount ,issueDate AS Issue_Date , dueDate AS Due_Date ,"
-                    + "customerdetails.id AS Customer_ID,customerdetails.name AS Customer_Name "
-                    + "FROM microloan "
-                    + "INNER JOIN customerdetails ON (microloan.customerId=customerdetails.id) "
-                    + "WHERE microLoanId=? AND microloan.loanType='Daily' AND microloan.userId=? AND microloan.is_deleted=1 ";
-                    
-        try{
-            pst = conn.prepareStatement(sql);
-            pst.setString(1 , jTextField2.getText());
-            pst.setString(2 , User.userid);
-            rs = pst.executeQuery();
-            
-            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-            microLoanDailyTableSetColumnWidth();
-            
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
-        }finally{
-            try{
-                rs.close();
-                pst.close();
-            }catch(Exception e){
-                
-            }
-        }
-        
-    }//GEN-LAST:event_jTextField2KeyReleased
-
     private void jTextField3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyReleased
 
-        jTextField4.setText("");
         
-        String sql = "SELECT fixLoanId AS Fix_Loan_ID , amountOfLoan AS Amount_of_Loan , interestRate AS Interest_Rate,"
+        String sql = "SELECT fixLoanId AS Fix_Loan_ID , amountOfLoan AS Capital , interestRate AS Interest_Rate,"
         + "installementAmount AS Installement_Amount , issueDate AS Issue_Date,"
         + "customerdetails.id AS Customer_ID , customerdetails.name AS Customer_Name "
         + "FROM fixloan "
         + "INNER JOIN customerdetails ON (fixloan.customerId=customerdetails.id) "
-        + "WHERE name=? and fixloan.userId=? AND fixloan.is_deleted=1 ";
+        + "WHERE name=? AND fixloan.userId='"+User.userid+"' AND fixloan.is_deleted=1 "
+                + "OR id=? AND fixloan.userId='"+User.userid+"' AND fixloan.is_deleted=1 "
+                + "OR fixLoanId=? AND fixloan.userId='"+User.userid+"' AND fixloan.is_deleted=1 ";
+        
         try{
             pst = conn.prepareStatement(sql);
             pst.setString(1 , jTextField3.getText());
-            pst.setString(2 , User.userid);
+            pst.setString(2 , jTextField3.getText());
+            pst.setString(3 , jTextField3.getText());
             rs = pst.executeQuery();
 
             jTable2.setModel(DbUtils.resultSetToTableModel(rs));
             fixLoanTableSetColumnWidth();
 
         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, "Can't fetch data from database, check internet connection & try again!");
         }finally{
             try{
                 rs.close();
@@ -783,61 +789,9 @@ public class FinishedLoans extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTextField3KeyReleased
 
-    private void jTextField4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyReleased
-
-        jTextField3.setText("");
-        
-        String sql = "SELECT fixLoanId AS Fix_Loan_ID , amountOfLoan AS Amount_of_Loan , interestRate AS Interest_Rate,"
-        + "installementAmount AS Installement_Amount , issueDate AS Issue_Date,"
-        + "customerdetails.id AS Customer_ID , customerdetails.name AS Customer_Name "
-        + "FROM fixloan "
-        + "INNER JOIN customerdetails ON (fixloan.customerId=customerdetails.id) "
-        + "WHERE fixLoanId=? and fixloan.userId=? AND fixloan.is_deleted=1 ";
-        try{
-            pst = conn.prepareStatement(sql);
-            pst.setString(1 , jTextField4.getText());
-            pst.setString(2 , User.userid);
-            rs = pst.executeQuery();
-
-            jTable2.setModel(DbUtils.resultSetToTableModel(rs));
-            fixLoanTableSetColumnWidth();
-
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
-        }finally{
-            try{
-                rs.close();
-                pst.close();
-            }catch(Exception e){
-
-            }
-        }
-    }//GEN-LAST:event_jTextField4KeyReleased
-
-    private void jTextField4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyTyped
-        
-        try{
-            numberOnly.NumbersOnly(evt);
-        
-        }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(null, "loan System Error");
-        }
-    }//GEN-LAST:event_jTextField4KeyTyped
-
-    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
-        
-        try{
-            numberOnly.NumbersOnly(evt);
-        
-        }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(null, "loan System Error");
-        }
-    }//GEN-LAST:event_jTextField2KeyTyped
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         
         jTextField3.setText("");
-        jTextField4.setText("");
         finishedFixLoanTable();
         fixLoanTableSetColumnWidth();
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -845,7 +799,6 @@ public class FinishedLoans extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
         jTextField1.setText("");
-        jTextField2.setText("");
         finishedDailyMicroLoanTable();
         microLoanDailyTableSetColumnWidth();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -871,7 +824,8 @@ public class FinishedLoans extends javax.swing.JFrame {
         flp.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         
         try{
-            String sql = "SELECT installementNo AS Installement_Number , remainingInstallement AS Remaining_Installements, "
+            String sql = "SELECT installementNo AS Installement_Number ,installementAge AS Installement_Age ,"
+                + " remainingInstallement AS Remaining_Installements, "
                 + "microloan.installementAmount AS Installement_Amount , payedAmount AS Payed_Amount,"
                 + "payDate AS Pay_Date , remainingAmountOfLoan AS Remaining_Amount "
                 + "FROM microloanrepayment "
@@ -912,27 +866,29 @@ public class FinishedLoans extends javax.swing.JFrame {
 
     private void jTextField5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyReleased
         
-        jTextField6.setText("");
         
-        String sql = "SELECT microLoanId AS Micro_Loan_ID , amountOfLoan AS Amount_of_Loan,"
-                    + "interestRate AS Interest_Rate , numberOfInstallement AS No_of_Installement , loanType AS Loan_Type,"
+        String sql = "SELECT microLoanId AS Micro_Loan_ID , amountOfLoan AS Capital,"
+                    + "interestRate AS Interest_Rate , numberOfInstallement AS NO_of_Installement , loanType AS Loan_Type,"
                     + "installementAmount AS Installement_Amount ,issueDate AS Issue_Date , dueDate AS Due_Date ,"
                     + "customerdetails.id AS Customer_ID,customerdetails.name AS Customer_Name "
                     + "FROM microloan "
                     + "INNER JOIN customerdetails ON (microloan.customerId=customerdetails.id) "
-                    + "WHERE name=? AND microloan.loanType= 'Weekly' AND microloan.userId=? AND microloan.is_deleted=1 ";
+                    + "WHERE name=? AND microloan.userId='"+User.userid+"' AND loanType='Weekly' AND microloan.is_deleted=1 "
+                            + "OR id=? AND microloan.userId='"+User.userid+"' AND loanType='Weekly' AND microloan.is_deleted=1 "
+                            + "OR microLoanId=? AND microloan.userId='"+User.userid+"' AND loanType='Weekly' AND microloan.is_deleted=1 ";
                     
         try{
             pst = conn.prepareStatement(sql);
             pst.setString(1 , jTextField5.getText());
-            pst.setString(2 , User.userid);
+            pst.setString(2 , jTextField5.getText());
+            pst.setString(3 , jTextField5.getText());
             rs = pst.executeQuery();
             
             jTable3.setModel(DbUtils.resultSetToTableModel(rs));
             microLoanWeeklyTableSetColumnWidth();
             
         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, "Can't fetch data from database, check internet connection & try again!");
         }finally{
             try{
                 rs.close();
@@ -943,47 +899,9 @@ public class FinishedLoans extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTextField5KeyReleased
 
-    private void jTextField6KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField6KeyReleased
-        
-        jTextField5.setText("");
-        
-        String sql = "SELECT microLoanId AS Micro_Loan_ID , amountOfLoan AS Amount_of_Loan,"
-                    + "interestRate AS Interest_Rate , numberOfInstallement AS No_of_Installement , loanType AS Loan_Type,"
-                    + "installementAmount AS Installement_Amount ,issueDate AS Issue_Date , dueDate AS Due_Date ,"
-                    + "customerdetails.id AS Customer_ID,customerdetails.name AS Customer_Name "
-                    + "FROM microloan "
-                    + "INNER JOIN customerdetails ON (microloan.customerId=customerdetails.id) "
-                    + "WHERE microLoanId=? AND microloan.loanType='Weekly' AND microloan.userId=? AND microloan.is_deleted=1 ";
-                    
-        try{
-            pst = conn.prepareStatement(sql);
-            pst.setString(1 , jTextField6.getText());
-            pst.setString(2 , User.userid);
-            rs = pst.executeQuery();
-            
-            jTable3.setModel(DbUtils.resultSetToTableModel(rs));
-            microLoanWeeklyTableSetColumnWidth();
-            
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
-        }finally{
-            try{
-                rs.close();
-                pst.close();
-            }catch(Exception e){
-                
-            }
-        }
-    }//GEN-LAST:event_jTextField6KeyReleased
-
-    private void jTextField6KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField6KeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6KeyTyped
-
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         
         jTextField5.setText("");
-        jTextField6.setText("");
         finishedWeeklyMicroLoanTable();
         microLoanWeeklyTableSetColumnWidth();
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -1009,7 +927,8 @@ public class FinishedLoans extends javax.swing.JFrame {
         flp.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         
         try{
-            String sql = "SELECT installementNo AS Installement_Number , remainingInstallement AS Remaining_Installements, "
+            String sql = "SELECT installementNo AS Installement_Number ,installementAge AS Installement_Age , "
+                + "remainingInstallement AS Remaining_Installements, "
                 + "microloan.installementAmount AS Installement_Amount , payedAmount AS Payed_Amount,"
                 + "payDate AS Pay_Date , remainingAmountOfLoan AS Remaining_Amount "
                 + "FROM microloanrepayment "
@@ -1050,20 +969,22 @@ public class FinishedLoans extends javax.swing.JFrame {
 
     private void jTextField7KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField7KeyReleased
         
-        jTextField8.setText("");
         
-        String sql = "SELECT microLoanId AS Micro_Loan_ID , amountOfLoan AS Amount_of_Loan,"
-                    + "interestRate AS Interest_Rate , numberOfInstallement AS No_of_Installement , loanType AS Loan_Type,"
-                    + "installementAmount AS Installement_Amount ,issueDate AS Issue_Date , dueDate AS Due_Date ,"
-                    + "customerdetails.id AS Customer_ID,customerdetails.name AS Customer_Name "
-                    + "FROM microloan "
-                    + "INNER JOIN customerdetails ON (microloan.customerId=customerdetails.id) "
-                    + "WHERE name=? AND microloan.loanType= 'Monthly' AND microloan.userId=? AND microloan.is_deleted=1 ";
+        String sql = "SELECT microLoanId AS Micro_Loan_ID , amountOfLoan AS Capital,"
+        + "interestRate AS Interest_Rate , numberOfInstallement AS NO_of_Installement , loanType AS Loan_Type,"
+        + "installementAmount AS Installement_Amount ,issueDate AS Issue_Date , dueDate AS Due_Date ,"
+        + "customerdetails.id AS Customer_ID,customerdetails.name AS Customer_Name "
+        + "FROM microloan "
+        + "INNER JOIN customerdetails ON (microloan.customerId=customerdetails.id) "
+        + "WHERE name=? AND microloan.userId='"+User.userid+"' AND loanType='Monthly' AND microloan.is_deleted=1 "
+                            + "OR id=? AND microloan.userId='"+User.userid+"' AND loanType='Monthly' AND microloan.is_deleted=1 "
+                            + "OR microLoanId=? AND microloan.userId='"+User.userid+"' AND loanType='Monthly' AND microloan.is_deleted=1 ";
                     
         try{
             pst = conn.prepareStatement(sql);
             pst.setString(1 , jTextField7.getText());
-            pst.setString(2 , User.userid);
+            pst.setString(2 , jTextField7.getText());
+            pst.setString(3 , jTextField7.getText());
             rs = pst.executeQuery();
             
             jTable4.setModel(DbUtils.resultSetToTableModel(rs));
@@ -1071,7 +992,7 @@ public class FinishedLoans extends javax.swing.JFrame {
 
             
         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, "Can't fetch data from database, check internet connection & try again!");
         }finally{
             try{
                 rs.close();
@@ -1082,29 +1003,58 @@ public class FinishedLoans extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTextField7KeyReleased
 
-    private void jTextField8KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField8KeyReleased
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         
         jTextField7.setText("");
+        finishedMonthlyMicroLoanTable();
+        microLoanMonthlyTableSetColumnWidth();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jTable1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTable1MouseEntered
+
+    private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
         
-        String sql = "SELECT microLoanId AS Micro_Loan_ID , amountOfLoan AS Amount_of_Loan,"
-                    + "interestRate AS Interest_Rate , numberOfInstallement AS No_of_Installement , loanType AS Loan_Type,"
-                    + "installementAmount AS Installement_Amount ,issueDate AS Issue_Date , dueDate AS Due_Date ,"
-                    + "customerdetails.id AS Customer_ID,customerdetails.name AS Customer_Name "
-                    + "FROM microloan "
-                    + "INNER JOIN customerdetails ON (microloan.customerId=customerdetails.id) "
-                    + "WHERE microLoanId=? AND microloan.loanType='Monthly' AND microloan.userId=? AND microloan.is_deleted=1 ";
+        finishedDailyMicroLoanTable();
+        finishedWeeklyMicroLoanTable();
+        finishedMonthlyMicroLoanTable();
+        finishedFixLoanTable();
+        
+        jTextField1.setText("");
+        jTextField5.setText("");
+        jTextField7.setText("");
+        jTextField3.setText("");
+        
+        microLoanDailyTableSetColumnWidth();
+        microLoanWeeklyTableSetColumnWidth();
+        microLoanMonthlyTableSetColumnWidth();
+        fixLoanTableSetColumnWidth();
+        
+    }//GEN-LAST:event_jTabbedPane1MouseClicked
+
+    private void jComboBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox4ActionPerformed
+        
+        jTextField1.setText("");
+        
+        String sql = "SELECT microLoanId AS Micro_Loan_ID , amountOfLoan AS Capital,"
+        + "interestRate AS Interest_Rate , numberOfInstallement AS NO_of_Installement , loanType AS Loan_Type,"
+        + "installementAmount AS Installement_Amount ,issueDate AS Issue_Date , dueDate AS Due_Date ,"
+        + "customerdetails.id AS Customer_ID,customerdetails.name AS Customer_Name "
+        + "FROM microloan "
+        + "INNER JOIN customerdetails ON (microloan.customerId=customerdetails.id) "
+        + "WHERE name=? AND microloan.userId='"+User.userid+"' AND loanType='Daily' AND microloan.is_deleted=1 ";
                     
         try{
             pst = conn.prepareStatement(sql);
-            pst.setString(1 , jTextField8.getText());
-            pst.setString(2 , User.userid);
+            pst.setString(1 , jComboBox4.getSelectedItem().toString());
             rs = pst.executeQuery();
             
-            jTable4.setModel(DbUtils.resultSetToTableModel(rs));
-            microLoanMonthlyTableSetColumnWidth();
+            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+            microLoanDailyTableSetColumnWidth();
             
         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, "Can't fetch data from database, check internet connection & try again!");
         }finally{
             try{
                 rs.close();
@@ -1113,22 +1063,103 @@ public class FinishedLoans extends javax.swing.JFrame {
                 
             }
         }
-    }//GEN-LAST:event_jTextField8KeyReleased
+    }//GEN-LAST:event_jComboBox4ActionPerformed
 
-    private void jTextField8KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField8KeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField8KeyTyped
+    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+        
+        jTextField5.setText("");
+        
+        String sql = "SELECT microLoanId AS Micro_Loan_ID , amountOfLoan AS Capital,"
+                    + "interestRate AS Interest_Rate , numberOfInstallement AS NO_of_Installement , loanType AS Loan_Type,"
+                    + "installementAmount AS Installement_Amount ,issueDate AS Issue_Date , dueDate AS Due_Date ,"
+                    + "customerdetails.id AS Customer_ID,customerdetails.name AS Customer_Name "
+                    + "FROM microloan "
+                    + "INNER JOIN customerdetails ON (microloan.customerId=customerdetails.id) "
+                    + "WHERE name=? AND microloan.userId='"+User.userid+"' AND loanType='Weekly' AND microloan.is_deleted=1 ";
+                    
+        try{
+            pst = conn.prepareStatement(sql);
+            pst.setString(1 , jComboBox3.getSelectedItem().toString());
+            rs = pst.executeQuery();
+            
+            jTable3.setModel(DbUtils.resultSetToTableModel(rs));
+            microLoanWeeklyTableSetColumnWidth();
+            
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Can't fetch data from database, check internet connection & try again!");
+        }finally{
+            try{
+                rs.close();
+                pst.close();
+            }catch(Exception e){
+                
+            }
+        }
+    }//GEN-LAST:event_jComboBox3ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         
         jTextField7.setText("");
-        jTextField8.setText("");
-        finishedMonthlyMicroLoanTable();
-    }//GEN-LAST:event_jButton4ActionPerformed
+        
+        String sql = "SELECT microLoanId AS Micro_Loan_ID , amountOfLoan AS Capital,"
+        + "interestRate AS Interest_Rate , numberOfInstallement AS NO_of_Installement , loanType AS Loan_Type,"
+        + "installementAmount AS Installement_Amount ,issueDate AS Issue_Date , dueDate AS Due_Date ,"
+        + "customerdetails.id AS Customer_ID,customerdetails.name AS Customer_Name "
+        + "FROM microloan "
+        + "INNER JOIN customerdetails ON (microloan.customerId=customerdetails.id) "
+        + "WHERE name=? AND microloan.userId='"+User.userid+"' AND loanType='Monthly' AND microloan.is_deleted=1 ";
+                    
+        try{
+            pst = conn.prepareStatement(sql);
+            pst.setString(1 , jComboBox2.getSelectedItem().toString());
+            rs = pst.executeQuery();
+            
+            jTable4.setModel(DbUtils.resultSetToTableModel(rs));
+            microLoanMonthlyTableSetColumnWidth();
 
-    private void jTable1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTable1MouseEntered
+            
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Can't fetch data from database, check internet connection & try again!");
+        }finally{
+            try{
+                rs.close();
+                pst.close();
+            }catch(Exception e){
+                
+            }
+        }
+    }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        
+        jTextField3.setText("");
+        
+        String sql = "SELECT fixLoanId AS Fix_Loan_ID , amountOfLoan AS Capital , interestRate AS Interest_Rate,"
+        + "installementAmount AS Installement_Amount , issueDate AS Issue_Date,"
+        + "customerdetails.id AS Customer_ID , customerdetails.name AS Customer_Name "
+        + "FROM fixloan "
+        + "INNER JOIN customerdetails ON (fixloan.customerId=customerdetails.id) "
+        + "WHERE name=? AND fixloan.userId='"+User.userid+"' AND fixloan.is_deleted=1 ";
+        
+        try{
+            pst = conn.prepareStatement(sql);
+            pst.setString(1 , jComboBox1.getSelectedItem().toString());
+            rs = pst.executeQuery();
+
+            jTable2.setModel(DbUtils.resultSetToTableModel(rs));
+            fixLoanTableSetColumnWidth();
+
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Can't fetch data from database, check internet connection & try again!");
+        }finally{
+            try{
+                rs.close();
+                pst.close();
+            }catch(Exception e){
+
+            }
+        }
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -1169,14 +1200,14 @@ public class FinishedLoans extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -1191,13 +1222,9 @@ public class FinishedLoans extends javax.swing.JFrame {
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
     // End of variables declaration//GEN-END:variables
     
     private void setIcon() {

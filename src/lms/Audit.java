@@ -19,6 +19,7 @@ public class Audit extends javax.swing.JFrame {
         super("Login History");
         initComponents();
         conn = DBconnect.connect();
+        jLabel24.setText(String.valueOf(User.username));
         setIcon();
         
         updateTable();
@@ -65,7 +66,7 @@ public class Audit extends javax.swing.JFrame {
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel1.setText("Search Name");
+        jLabel1.setText("Search User Name/ID : ");
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -129,7 +130,7 @@ public class Audit extends javax.swing.JFrame {
                         .addGap(28, 28, 28)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -164,11 +165,12 @@ public class Audit extends javax.swing.JFrame {
 
     private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
 
-        String sql = "SELECT * FROM audit WHERE username=?";
+        String sql = "SELECT * FROM audit WHERE username=? OR userId=? ";
 
         try{
             pst=conn.prepareStatement(sql);
             pst.setString(1 ,jTextField1.getText());
+            pst.setString(2 ,jTextField1.getText());
             rs=pst.executeQuery();
 
             jTable1.setModel(DbUtils.resultSetToTableModel(rs));

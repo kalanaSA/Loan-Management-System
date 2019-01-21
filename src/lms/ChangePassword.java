@@ -59,7 +59,6 @@ public class ChangePassword extends javax.swing.JFrame {
 
         jTextField1.setBackground(new java.awt.Color(36, 47, 65));
         jTextField1.setForeground(new java.awt.Color(204, 204, 204));
-        jTextField1.setText("Enter username here");
         jTextField1.setBorder(null);
         jTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -69,7 +68,6 @@ public class ChangePassword extends javax.swing.JFrame {
 
         jPasswordField1.setBackground(new java.awt.Color(36, 47, 65));
         jPasswordField1.setForeground(new java.awt.Color(204, 204, 204));
-        jPasswordField1.setText("jPasswordField1");
         jPasswordField1.setBorder(null);
         jPasswordField1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -82,11 +80,15 @@ public class ChangePassword extends javax.swing.JFrame {
 
         jPasswordField2.setBackground(new java.awt.Color(36, 47, 65));
         jPasswordField2.setForeground(new java.awt.Color(204, 204, 204));
-        jPasswordField2.setText("jPasswordField2");
         jPasswordField2.setBorder(null);
         jPasswordField2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPasswordField2MouseClicked(evt);
+            }
+        });
+        jPasswordField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordField2ActionPerformed(evt);
             }
         });
 
@@ -223,14 +225,21 @@ public class ChangePassword extends javax.swing.JFrame {
                 pst.execute();
                 
                 JOptionPane.showMessageDialog(null, "password change successfully!");
+                jTextField1.setText("");
+                jPasswordField1.setText("");
+                jPasswordField2.setText("");
             }
             
         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, "Fill the all fields and try again!");
         }
 
         
     }//GEN-LAST:event_jPanel2MouseClicked
+
+    private void jPasswordField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordField2ActionPerformed
 
     
     public static void main(String args[]) {

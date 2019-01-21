@@ -25,6 +25,8 @@ public class DeletedCustomers extends javax.swing.JFrame {
         deletedCustomers();
         
         customerDetailsTableSetColumnWidth();
+        
+        customerdetailsFetch();
     }
     
     //set column width jtable 7 (customerDetailsTable)
@@ -42,7 +44,7 @@ public class DeletedCustomers extends javax.swing.JFrame {
     public void deletedCustomers(){
         
          String sql ="SELECT id AS Customer_ID,name AS Customer_Name,nic AS NIC_Number,address AS Address,"
-                + "resistance AS Resistance,contactNo AS Contact_NO ,gender AS Gender "
+                + "residence AS Residence,contactNo AS Contact_NO ,gender AS Gender "
                 + "FROM customerdetails "
                 + "WHERE is_deleted=1 ";
         
@@ -52,10 +54,33 @@ public class DeletedCustomers extends javax.swing.JFrame {
             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
             
         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, "Can't fetch data from database, check internet connection & try again!");
+        }  
+        
+    }
+    
+    
+    public void customerdetailsFetch(){
+        
+        String sql = "SELECT id,name,nic From customerdetails WHERE userId=? AND is_deleted=1" ;
+        
+        try{
+            pst = conn.prepareStatement(sql);
+            pst.setString(1 , User.userid);
+            rs = pst.executeQuery();
+            
+            while(rs.next()){
+//                String id = rs.getString("id");
+                String name = rs.getString("name");
+//                String nic = rs.getString("nic");
+//                String sentence = name;
+                
+                jComboBox1.addItem(name);
+            }
+  
+        }catch(Exception e){
+            
         }
-        
-        
         
     }
 
@@ -67,9 +92,8 @@ public class DeletedCustomers extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -87,23 +111,11 @@ public class DeletedCustomers extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel1.setText("Search Name : ");
+        jLabel1.setText("Search Customer Name/ID : ");
 
         jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextField1KeyReleased(evt);
-            }
-        });
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel2.setText("Search Customer ID : ");
-
-        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField2KeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField2KeyTyped(evt);
             }
         });
 
@@ -112,6 +124,13 @@ public class DeletedCustomers extends javax.swing.JFrame {
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "select the name" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
             }
         });
 
@@ -126,10 +145,8 @@ public class DeletedCustomers extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(58, 58, 58)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 195, Short.MAX_VALUE)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 238, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
         );
@@ -140,9 +157,8 @@ public class DeletedCustomers extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE))
         );
@@ -153,65 +169,53 @@ public class DeletedCustomers extends javax.swing.JFrame {
 
     private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
         
-        jTextField2.setText("");
         
         String sql = "SELECT id AS Customer_ID,name AS Customer_Name,nic AS NIC_Number,address AS Address,"
-                + "resistance AS Resistance,contactNo AS Contact_NO,gender AS Gender "
+                + "residence AS Residence,contactNo AS Contact_NO,gender AS Gender "
                 + "FROM customerdetails "
-                + "WHERE name=? and userId=? AND is_deleted=1 ";
+                + "WHERE name=? AND userId='"+User.userid+"' AND is_deleted=1 "
+                + "OR id=? AND userId='"+User.userid+"' AND is_deleted=1 ";
         try{
             pst = conn.prepareStatement(sql);
             pst.setString(1, jTextField1.getText());
-            pst.setString(2, User.userid);
+            pst.setString(2, jTextField1.getText());
             rs = pst.executeQuery();
             
             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
             customerDetailsTableSetColumnWidth();
         
         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, "Can't fetch data from database, check internet connection & try again!");
         }
     }//GEN-LAST:event_jTextField1KeyReleased
-
-    private void jTextField2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyReleased
-        
-        jTextField1.setText("");
-        
-        String sql = "SELECT id AS Customer_ID,name AS Customer_Name,nic AS NIC_Number,address AS Address,"
-                + "resistance AS Resistance,contactNo AS Contact_NO,gender AS Gender "
-                + "FROM customerdetails "
-                + "WHERE id=? and userId=? AND is_deleted=1 ";
-        try{
-            pst = conn.prepareStatement(sql);
-            pst.setString(1, jTextField2.getText());
-            pst.setString(2, User.userid);
-            rs = pst.executeQuery();
-            
-            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-            customerDetailsTableSetColumnWidth();
-        
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
-        }
-    }//GEN-LAST:event_jTextField2KeyReleased
-
-    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
-        
-        try{
-            numberOnly.NumbersOnly(evt);
-        
-        }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(null, "loan System Error");
-        }
-    }//GEN-LAST:event_jTextField2KeyTyped
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
         jTextField1.setText("");
-        jTextField2.setText("");
         deletedCustomers();
         customerDetailsTableSetColumnWidth();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        
+        jTextField1.setText("");
+        
+        String sql = "SELECT id AS Customer_ID,name AS Customer_Name,nic AS NIC_Number,address AS Address,"
+                + "residence AS Residence,contactNo AS Contact_NO,gender AS Gender "
+                + "FROM customerdetails "
+                + "WHERE name=? AND userId='"+User.userid+"' AND is_deleted=1 ";
+        try{
+            pst = conn.prepareStatement(sql);
+            pst.setString(1, jComboBox1.getSelectedItem().toString());
+            rs = pst.executeQuery();
+            
+            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+            customerDetailsTableSetColumnWidth();
+        
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Can't fetch data from database, check internet connection & try again!");
+        }
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
  
     public static void main(String args[]) {
@@ -249,12 +253,11 @@ public class DeletedCustomers extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 
     private void setIcon() {

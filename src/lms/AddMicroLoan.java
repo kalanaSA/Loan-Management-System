@@ -18,7 +18,7 @@ public class AddMicroLoan extends javax.swing.JFrame {
     ResultSet rs;
 
    User numberOnly = new User();
-    
+   
     
     public AddMicroLoan() {
         super("Add Micro-Loan");
@@ -28,10 +28,11 @@ public class AddMicroLoan extends javax.swing.JFrame {
                 
         jLabel18.setText(String.valueOf(User.username));
         jDateChooser1.setDate(new Date());
+        
+        customerdetailsFetch();
     }
     
-  
-    
+ 
     
     public void clearAll(){
         txt_search.setText("");
@@ -43,7 +44,6 @@ public class AddMicroLoan extends javax.swing.JFrame {
         jTextField6.setText("");
         jTextField7.setText("");
         jTextField8.setText("");
-        jTextField11.setText("");
         jComboBox1.setSelectedItem("1");
         jTextField9.setText("");
         jComboBox2.setSelectedItem("Daily");  
@@ -51,6 +51,32 @@ public class AddMicroLoan extends javax.swing.JFrame {
         jDateChooser1.setDate(new Date());
         jDateChooser2.setCalendar(null);
     }
+    
+    
+    public void customerdetailsFetch(){
+        
+        String sql = "SELECT id,name,nic From customerdetails WHERE userId=? AND is_deleted=0" ;
+        
+        try{
+            pst = conn.prepareStatement(sql);
+            pst.setString(1 , User.userid);
+            rs = pst.executeQuery();
+            
+            while(rs.next()){
+//                String id = rs.getString("id");
+                String name = rs.getString("name");
+//                String nic = rs.getString("nic");
+//                String sentence = name;
+                
+                jComboBox3.addItem(name);
+            }
+  
+        }catch(Exception e){
+            
+        }
+        
+    }
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -96,14 +122,13 @@ public class AddMicroLoan extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
-        jLabel21 = new javax.swing.JLabel();
-        jTextField11 = new javax.swing.JTextField();
+        jComboBox3 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel1.setText("Serach Name :");
+        jLabel1.setText("Serach Customer Name/ID :");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel2.setText("Customer ID");
@@ -118,7 +143,7 @@ public class AddMicroLoan extends javax.swing.JFrame {
         jLabel5.setText("Address");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel6.setText("Resistance");
+        jLabel6.setText("Residence");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel7.setText("Contact No");
@@ -143,7 +168,7 @@ public class AddMicroLoan extends javax.swing.JFrame {
         jSeparator1.setForeground(new java.awt.Color(102, 102, 102));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel8.setText("Amount of Loan ");
+        jLabel8.setText("Capital");
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel9.setText("Interest Rate ");
@@ -236,15 +261,10 @@ public class AddMicroLoan extends javax.swing.JFrame {
 
         jTextField7.setEditable(false);
 
-        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel21.setText("Search Customer ID :");
-
-        jTextField11.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField11KeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField11KeyTyped(evt);
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "select the name" }));
+        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox3ActionPerformed(evt);
             }
         });
 
@@ -263,12 +283,10 @@ public class AddMicroLoan extends javax.swing.JFrame {
                         .addGap(47, 47, 47)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txt_search, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(136, 136, 136)
-                        .addComponent(jLabel21)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 150, Short.MAX_VALUE))
+                        .addComponent(txt_search, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(109, 109, 109)
+                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 119, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(60, 60, 60)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -302,12 +320,12 @@ public class AddMicroLoan extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel10)
-                            .addComponent(jLabel8)
                             .addComponent(jLabel9)
                             .addComponent(jLabel11)
                             .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel15)
-                            .addComponent(jLabel16))
+                            .addComponent(jLabel16)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -346,8 +364,7 @@ public class AddMicroLoan extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txt_search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel21)
-                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -462,7 +479,7 @@ public class AddMicroLoan extends javax.swing.JFrame {
                 clearAll();
                 
             }catch(Exception e){
-                JOptionPane.showMessageDialog(null, e);
+                JOptionPane.showMessageDialog(null, "Fill the all fields and try again!");
             }finally{
                 try{
                     rs.close();
@@ -504,7 +521,6 @@ public class AddMicroLoan extends javax.swing.JFrame {
         jTextField6.setText("");
         jTextField7.setText("");
         jTextField8.setText("");
-        jTextField11.setText("");
         jComboBox1.setSelectedItem("1");
         jTextField9.setText("");
         jComboBox2.setSelectedItem("Daily");  
@@ -512,12 +528,13 @@ public class AddMicroLoan extends javax.swing.JFrame {
         jDateChooser1.setDate(new Date());
         jDateChooser2.setCalendar(null);
         
-        String sql = "SELECT * FROM customerdetails WHERE name=? and userId=?";
+        String sql = "SELECT * FROM customerdetails WHERE name=? AND userId='"+User.userid+"' AND is_deleted=0 "
+                + "OR id=? AND userId='"+User.userid+"' AND is_deleted=0 ";
         
         try{
             pst = conn.prepareStatement(sql);
             pst.setString(1 , txt_search.getText());
-            pst.setString(2 , User.userid);
+            pst.setString(2 , txt_search.getText());
             rs = pst.executeQuery();
             
             if(rs.next()){
@@ -530,7 +547,7 @@ public class AddMicroLoan extends javax.swing.JFrame {
                 jTextField3.setText(add3);
                 String add4 = rs.getString("address");
                 jTextField4.setText(add4);
-                String add5 = rs.getString("resistance");
+                String add5 = rs.getString("residence");
                 jTextField5.setText(add5);
                 String add6 = rs.getString("contactNo");
                 jTextField6.setText(add6);
@@ -580,19 +597,8 @@ public class AddMicroLoan extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTextField9KeyTyped
 
-    private void jTextField11KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField11KeyTyped
+    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
         
-        try{
-            numberOnly.NumbersOnly(evt);
-        
-        }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(null, "loan System Error");
-        }
-    }//GEN-LAST:event_jTextField11KeyTyped
-
-    private void jTextField11KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField11KeyReleased
-        
-        txt_search.setText("");
         jTextField1.setText("");
         jTextField2.setText("");
         jTextField3.setText("");
@@ -608,12 +614,11 @@ public class AddMicroLoan extends javax.swing.JFrame {
         jDateChooser1.setDate(new Date());
         jDateChooser2.setCalendar(null);
         
-        String sql = "SELECT * FROM customerdetails WHERE id=? AND userId=? AND is_deleted=0 ";
+        String sql = "SELECT * FROM customerdetails WHERE name=? AND userId='"+User.userid+"' AND is_deleted=0 ";
         
         try{
             pst = conn.prepareStatement(sql);
-            pst.setString(1 , jTextField11.getText());
-            pst.setString(2 , User.userid);
+            pst.setString(1 , jComboBox3.getSelectedItem().toString());
             rs = pst.executeQuery();
             
             if(rs.next()){
@@ -626,23 +631,12 @@ public class AddMicroLoan extends javax.swing.JFrame {
                 jTextField3.setText(add3);
                 String add4 = rs.getString("address");
                 jTextField4.setText(add4);
-                String add5 = rs.getString("resistance");
+                String add5 = rs.getString("residence");
                 jTextField5.setText(add5);
                 String add6 = rs.getString("contactNo");
                 jTextField6.setText(add6);
                 String add7 = rs.getString("gender");
                 jTextField7.setText(add7);
-                String add8 = rs.getString("img1");
-    
-                String add9 = rs.getString("img2");
-                
-                /*byte[] image = rs.getBytes("img1");
-                ImageIcon imageIcon= new ImageIcon (new ImageIcon(filename1).getImage().getScaledInstance(jLabel8.getWidth(), jLabel8.getHeight(), Image.SCALE_DEFAULT));   
-                jLabel8.setIcon(imageIcon);
-                byte[] image = rs.getBytes("img2");
-                ImageIcon imageIcon= new ImageIcon (new ImageIcon(filename2).getImage().getScaledInstance(jLabel9.getWidth(), jLabel9.getHeight(), Image.SCALE_DEFAULT));   
-                jLabel9.setIcon(imageIcon);*/
-                
 
             }
             
@@ -656,7 +650,7 @@ public class AddMicroLoan extends javax.swing.JFrame {
                 
             }
         }
-    }//GEN-LAST:event_jTextField11KeyReleased
+    }//GEN-LAST:event_jComboBox3ActionPerformed
 
    
     public static void main(String args[]) {
@@ -701,6 +695,7 @@ public class AddMicroLoan extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jComboBox3;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
@@ -716,7 +711,6 @@ public class AddMicroLoan extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -727,7 +721,6 @@ public class AddMicroLoan extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;

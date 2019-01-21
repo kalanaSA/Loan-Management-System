@@ -26,6 +26,8 @@ public class AddFixLoan extends javax.swing.JFrame {
         
         jLabel18.setText(String.valueOf(User.username));    
         jDateChooser1.setDate(new Date());
+        
+        customerdetailsFetch();
     }
     
     
@@ -41,9 +43,34 @@ public class AddFixLoan extends javax.swing.JFrame {
         jTextField8.setText("");
         jComboBox1.setSelectedItem("1");
         jTextField9.setText("");
-        jTextField10.setText("");
         jDateChooser1.setDate(new Date());
     }
+    
+    
+     public void customerdetailsFetch(){
+        
+        String sql = "SELECT id,name,nic From customerdetails WHERE userId=? AND is_deleted=0" ;
+        
+        try{
+            pst = conn.prepareStatement(sql);
+            pst.setString(1 , User.userid);
+            rs = pst.executeQuery();
+            
+            while(rs.next()){
+//                String id = rs.getString("id");
+                String name = rs.getString("name");
+//                String nic = rs.getString("nic");
+//                String sentence = name;
+                
+                jComboBox2.addItem(name);
+            }
+  
+        }catch(Exception e){
+            
+        }
+        
+    }
+     
 
  
     @SuppressWarnings("unchecked")
@@ -84,14 +111,13 @@ public class AddFixLoan extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
+        jComboBox2 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel1.setText("Serach Name :");
+        jLabel1.setText("Serach Customer Name/ID :");
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel13.setText("Customer Details :");
@@ -115,7 +141,7 @@ public class AddFixLoan extends javax.swing.JFrame {
         jLabel5.setText("Address");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel6.setText("Resistance");
+        jLabel6.setText("Residence");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel7.setText("Contact No");
@@ -154,7 +180,7 @@ public class AddFixLoan extends javax.swing.JFrame {
         jLabel18.setText("username");
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel8.setText("Amount of Loan");
+        jLabel8.setText("Capital");
 
         jTextField8.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -222,15 +248,10 @@ public class AddFixLoan extends javax.swing.JFrame {
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel19.setText("Loan Details :");
 
-        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel15.setText("Search Customer ID :");
-
-        jTextField10.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField10KeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField10KeyTyped(evt);
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "select the name" }));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
             }
         });
 
@@ -294,11 +315,9 @@ public class AddFixLoan extends javax.swing.JFrame {
                 .addGap(38, 38, 38)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txt_search, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(137, 137, 137)
-                .addComponent(jLabel15)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_search, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(149, 149, 149)
+                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -328,8 +347,7 @@ public class AddFixLoan extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txt_search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel15)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -415,15 +433,15 @@ public class AddFixLoan extends javax.swing.JFrame {
         jTextField8.setText("");
         jComboBox1.setSelectedItem("1");
         jTextField9.setText("");
-        jTextField10.setText("");
         jDateChooser1.setDate(new Date());
         
-        String sql = "SELECT * FROM customerdetails WHERE name=? and userId=?";
+        String sql = "SELECT * FROM customerdetails WHERE name=? AND userId='"+User.userid+"' AND is_deleted=0 "
+                + "OR id=? AND userId='"+User.userid+"' AND is_deleted=0 ";
 
         try{
             pst = conn.prepareStatement(sql);
             pst.setString(1 , txt_search.getText());
-            pst.setString(2 , User.userid);
+            pst.setString(2 , txt_search.getText());
             rs = pst.executeQuery();
 
             if(rs.next()){
@@ -436,7 +454,7 @@ public class AddFixLoan extends javax.swing.JFrame {
                 jTextField3.setText(add3);
                 String add4 = rs.getString("address");
                 jTextField4.setText(add4);
-                String add5 = rs.getString("resistance");
+                String add5 = rs.getString("residence");
                 jTextField5.setText(add5);
                 String add6 = rs.getString("contactNo");
                 jTextField6.setText(add6);
@@ -483,7 +501,7 @@ public class AddFixLoan extends javax.swing.JFrame {
                 clearAll();
                 
             }catch(Exception e){
-                JOptionPane.showMessageDialog(null, e);
+                JOptionPane.showMessageDialog(null, "Fill the all fields and try again!");
             }finally{
                 try{
                     rs.close();
@@ -540,19 +558,8 @@ public class AddFixLoan extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTextField8KeyTyped
 
-    private void jTextField10KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField10KeyTyped
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         
-        try{
-            numberOnly.NumbersOnly(evt);
-        
-        }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(null, "loan System Error");
-        }
-    }//GEN-LAST:event_jTextField10KeyTyped
-
-    private void jTextField10KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField10KeyReleased
-        
-        txt_search.setText("");
         jTextField1.setText("");
         jTextField2.setText("");
         jTextField3.setText("");
@@ -565,16 +572,15 @@ public class AddFixLoan extends javax.swing.JFrame {
         jTextField9.setText("");
         jDateChooser1.setDate(new Date());
         
-        String sql = "SELECT * FROM customerdetails WHERE id=? AND userId=? AND is_deleted=0 ";
-        
+        String sql = "SELECT * FROM customerdetails WHERE name=? AND userId='"+User.userid+"' AND is_deleted=0 ";
+
         try{
             pst = conn.prepareStatement(sql);
-            pst.setString(1 , jTextField10.getText());
-            pst.setString(2 , User.userid);
+            pst.setString(1 , jComboBox2.getSelectedItem().toString());
             rs = pst.executeQuery();
-            
+
             if(rs.next()){
-                
+
                 String add1 = rs.getString("id");
                 jTextField1.setText(add1);
                 String add2 = rs.getString("name");
@@ -583,26 +589,15 @@ public class AddFixLoan extends javax.swing.JFrame {
                 jTextField3.setText(add3);
                 String add4 = rs.getString("address");
                 jTextField4.setText(add4);
-                String add5 = rs.getString("resistance");
+                String add5 = rs.getString("residence");
                 jTextField5.setText(add5);
                 String add6 = rs.getString("contactNo");
                 jTextField6.setText(add6);
                 String add7 = rs.getString("gender");
                 jTextField7.setText(add7);
-                String add8 = rs.getString("img1");
-    
-                String add9 = rs.getString("img2");
-                
-                /*byte[] image = rs.getBytes("img1");
-                ImageIcon imageIcon= new ImageIcon (new ImageIcon(filename1).getImage().getScaledInstance(jLabel8.getWidth(), jLabel8.getHeight(), Image.SCALE_DEFAULT));   
-                jLabel8.setIcon(imageIcon);
-                byte[] image = rs.getBytes("img2");
-                ImageIcon imageIcon= new ImageIcon (new ImageIcon(filename2).getImage().getScaledInstance(jLabel9.getWidth(), jLabel9.getHeight(), Image.SCALE_DEFAULT));   
-                jLabel9.setIcon(imageIcon);*/
-                
 
             }
-            
+
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
         }finally{
@@ -610,10 +605,10 @@ public class AddFixLoan extends javax.swing.JFrame {
                 rs.close();
                 pst.close();
             }catch(Exception e){
-                
+
             }
         }
-    }//GEN-LAST:event_jTextField10KeyReleased
+    }//GEN-LAST:event_jComboBox2ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -655,6 +650,7 @@ public class AddFixLoan extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -662,7 +658,6 @@ public class AddFixLoan extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
@@ -676,7 +671,6 @@ public class AddFixLoan extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;

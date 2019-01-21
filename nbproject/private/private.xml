@@ -3,20 +3,25 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/D:/Projects/LoanManagementSystem/src/lms/Audit.java</file>
             <file>file:/D:/Projects/LoanManagementSystem/src/lms/DeletedCustomers.java</file>
             <file>file:/D:/Projects/LoanManagementSystem/src/lms/FinishedLoansPop.java</file>
+            <file>file:/D:/Projects/LoanManagementSystem/src/lms/ChangePassword.java</file>
             <file>file:/D:/Projects/LoanManagementSystem/src/lms/RepaymentDetails.java</file>
             <file>file:/D:/Projects/LoanManagementSystem/src/lms/FinishedLoans.java</file>
             <file>file:/D:/Projects/LoanManagementSystem/src/lms/LoanDetails.java</file>
-            <file>file:/D:/Projects/LoanManagementSystem/src/lms/Home.java</file>
             <file>file:/D:/Projects/LoanManagementSystem/src/lms/AddCustomer.java</file>
+            <file>file:/D:/Projects/LoanManagementSystem/src/lms/Home.java</file>
             <file>file:/D:/Projects/LoanManagementSystem/src/lms/SearchCustomer.java</file>
             <file>file:/D:/Projects/LoanManagementSystem/src/lms/AddFixLoan.java</file>
             <file>file:/D:/Projects/LoanManagementSystem/src/lms/Repayment.java</file>
+            <file>file:/D:/Projects/LoanManagementSystem/src/lms/DBconnect.java</file>
             <file>file:/D:/Projects/LoanManagementSystem/src/lms/RepaymentDetailsPop.java</file>
             <file>file:/D:/Projects/LoanManagementSystem/src/lms/Login.java</file>
-            <file>file:/D:/Projects/LoanManagementSystem/src/lms/AddMicroLoan.java</file>
+            <file>file:/D:/Projects/LoanManagementSystem/src/lms/User.java</file>
             <file>file:/D:/Projects/LoanManagementSystem/src/lms/ProfitShare.java</file>
+            <file>file:/D:/Projects/LoanManagementSystem/src/lms/AddMicroLoan.java</file>
+            <file>file:/D:/Projects/LoanManagementSystem/src/lms/LoanManagementSystem.java</file>
         </group>
     </open-files>
 </project-private>

@@ -44,6 +44,8 @@ public class Home extends javax.swing.JFrame {
         
     }
     
+    String filePath = null;
+    Process pr =null;
     //object for FineshedLoans
     //FinishedLoans fl = new FinishedLoans();
 
@@ -77,6 +79,8 @@ public class Home extends javax.swing.JFrame {
         jMenuItem11 = new javax.swing.JMenuItem();
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenuItem12 = new javax.swing.JMenuItem();
+        jMenuItem28 = new javax.swing.JMenuItem();
+        jMenuItem29 = new javax.swing.JMenuItem();
         jMenuItem26 = new javax.swing.JMenuItem();
         jMenuItem15 = new javax.swing.JMenuItem();
         jMenuItem14 = new javax.swing.JMenuItem();
@@ -102,9 +106,8 @@ public class Home extends javax.swing.JFrame {
         jMenuItem22 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
-        jMenu9 = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem27 = new javax.swing.JMenuItem();
+        jMenu12 = new javax.swing.JMenu();
+        jMenuItem30 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem18 = new javax.swing.JMenuItem();
 
@@ -113,9 +116,11 @@ public class Home extends javax.swing.JFrame {
 
         jPanel1.setLayout(null);
 
+        jButton3.setBackground(new java.awt.Color(204, 204, 204));
         jButton3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lms/img/Allowance.png"))); // NOI18N
         jButton3.setText("Micro Loan Service");
+        jButton3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -124,11 +129,13 @@ public class Home extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton3);
-        jButton3.setBounds(630, 270, 200, 60);
+        jButton3.setBounds(740, 290, 200, 60);
 
+        jButton1.setBackground(new java.awt.Color(204, 204, 204));
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lms/img/Add_Employee.png"))); // NOI18N
         jButton1.setText("Add Customer");
+        jButton1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -137,11 +144,13 @@ public class Home extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(630, 200, 200, 60);
+        jButton1.setBounds(740, 220, 200, 60);
 
+        jButton2.setBackground(new java.awt.Color(204, 204, 204));
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lms/img/Search_1.png"))); // NOI18N
         jButton2.setText("Search Customer");
+        jButton2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -150,11 +159,13 @@ public class Home extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton2);
-        jButton2.setBounds(840, 200, 210, 60);
+        jButton2.setBounds(950, 220, 210, 60);
 
+        jButton4.setBackground(new java.awt.Color(204, 204, 204));
         jButton4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lms/img/Allowance.png"))); // NOI18N
         jButton4.setText("Fix Loan Service");
+        jButton4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -163,11 +174,13 @@ public class Home extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton4);
-        jButton4.setBounds(840, 270, 210, 60);
+        jButton4.setBounds(950, 290, 210, 60);
 
+        jButton5.setBackground(new java.awt.Color(204, 204, 204));
         jButton5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lms/img/Update.png"))); // NOI18N
         jButton5.setText("Repayments");
+        jButton5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -176,11 +189,13 @@ public class Home extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton5);
-        jButton5.setBounds(840, 340, 210, 60);
+        jButton5.setBounds(950, 360, 210, 60);
 
+        jButton6.setBackground(new java.awt.Color(204, 204, 204));
         jButton6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lms/img/Payment.png"))); // NOI18N
         jButton6.setText("Loan Details");
+        jButton6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -189,7 +204,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton6);
-        jButton6.setBounds(630, 340, 200, 60);
+        jButton6.setBounds(740, 360, 200, 60);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lms/img/logout.png"))); // NOI18N
         jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -199,10 +214,9 @@ public class Home extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(1000, 30, 20, 30);
+        jLabel2.setBounds(1100, 20, 20, 30);
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setText("LOG OUT");
         jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -211,21 +225,25 @@ public class Home extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(990, 60, 50, 20);
+        jLabel3.setBounds(1090, 50, 60, 20);
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Logged In As :");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(20, 540, 81, 15);
+        jLabel4.setBounds(50, 550, 100, 20);
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("user");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(110, 540, 110, 15);
+        jLabel5.setBounds(150, 550, 110, 20);
 
+        jButton7.setBackground(new java.awt.Color(204, 204, 204));
         jButton7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lms/img/Search_1.png"))); // NOI18N
         jButton7.setText("Profit Share");
+        jButton7.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         jButton7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -234,11 +252,13 @@ public class Home extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton7);
-        jButton7.setBounds(840, 480, 210, 60);
+        jButton7.setBounds(950, 500, 210, 60);
 
+        jButton8.setBackground(new java.awt.Color(204, 204, 204));
         jButton8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lms/img/Update.png"))); // NOI18N
         jButton8.setText("Repayments Details");
+        jButton8.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         jButton8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton8.addActionListener(new java.awt.event.ActionListener() {
@@ -247,11 +267,13 @@ public class Home extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton8);
-        jButton8.setBounds(630, 410, 200, 60);
+        jButton8.setBounds(740, 430, 200, 60);
 
+        jButton9.setBackground(new java.awt.Color(204, 204, 204));
         jButton9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lms/img/Search_1.png"))); // NOI18N
         jButton9.setText("Deleted Customers");
+        jButton9.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         jButton9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton9.addActionListener(new java.awt.event.ActionListener() {
@@ -260,11 +282,13 @@ public class Home extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton9);
-        jButton9.setBounds(630, 480, 200, 60);
+        jButton9.setBounds(740, 500, 200, 60);
 
+        jButton10.setBackground(new java.awt.Color(204, 204, 204));
         jButton10.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lms/img/Payment.png"))); // NOI18N
         jButton10.setText("Finished Loans");
+        jButton10.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         jButton10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton10.addActionListener(new java.awt.event.ActionListener() {
@@ -273,11 +297,11 @@ public class Home extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton10);
-        jButton10.setBounds(840, 410, 210, 60);
+        jButton10.setBounds(950, 430, 210, 60);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lms/img/loan.jpeg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lms/img/homebackground.jpg"))); // NOI18N
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(0, 0, 1100, 590);
+        jLabel1.setBounds(0, 0, 1200, 600);
 
         jMenu1.setText("File");
 
@@ -337,6 +361,22 @@ public class Home extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItem12);
+
+        jMenuItem28.setText("finished loans");
+        jMenuItem28.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem28ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem28);
+
+        jMenuItem29.setText("deleted customers");
+        jMenuItem29.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem29ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem29);
 
         jMenuItem26.setText("profit share");
         jMenuItem26.addActionListener(new java.awt.event.ActionListener() {
@@ -508,25 +548,17 @@ public class Home extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
-        jMenu9.setText("show");
+        jMenu12.setText("Backup");
 
-        jMenuItem5.setText("Fineshed Loans");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem30.setText("backup data");
+        jMenuItem30.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+                jMenuItem30ActionPerformed(evt);
             }
         });
-        jMenu9.add(jMenuItem5);
+        jMenu12.add(jMenuItem30);
 
-        jMenuItem27.setText("Deleted Customers");
-        jMenuItem27.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem27ActionPerformed(evt);
-            }
-        });
-        jMenu9.add(jMenuItem27);
-
-        jMenuBar1.add(jMenu9);
+        jMenuBar1.add(jMenu12);
 
         jMenu4.setText("About");
 
@@ -546,14 +578,14 @@ public class Home extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1073, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1188, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 566, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 586, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(1089, 626));
+        setSize(new java.awt.Dimension(1204, 646));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -1503,32 +1535,6 @@ public class Home extends javax.swing.JFrame {
     }
     }//GEN-LAST:event_jMenuItem21ActionPerformed
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        
-        FinishedLoans fl = new FinishedLoans();
-        fl.setVisible(true);
-    
-/*        fl.setVisible(true);
-        fl.pack();
-        fl.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        String sql ="SELECT microLoanId,amountOfLoan,interestRate,numberOfInstallement,loanType,installementAmount,"
-                + "issueDate,dueDate "
-                + "FROM microloan "
-                + "WHERE is_deleted = 1 ";
-        
-        try{
-            
-            pst = conn.prepareStatement(sql);
-            rs = pst.executeQuery();
-            fl.jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-            
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
-       }
-        
-        */
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
-
     private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
         About a = new About();
         a.setVisible(true);
@@ -1886,11 +1892,6 @@ public class Home extends javax.swing.JFrame {
         ps.setVisible(true);
     }//GEN-LAST:event_jMenuItem26ActionPerformed
 
-    private void jMenuItem27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem27ActionPerformed
-        DeletedCustomers dc = new DeletedCustomers();
-        dc.setVisible(true);
-    }//GEN-LAST:event_jMenuItem27ActionPerformed
-
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         
         FinishedLoans fl = new FinishedLoans();
@@ -1902,6 +1903,60 @@ public class Home extends javax.swing.JFrame {
         DeletedCustomers dc = new DeletedCustomers();
         dc.setVisible(true);
     }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jMenuItem30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem30ActionPerformed
+        
+        String date = new SimpleDateFormat("yyy-mm-dd").format(new Date());
+            
+            JFileChooser dialog = new JFileChooser();
+            dialog.setSelectedFile(new File("database_backup("+date+").sql"));
+            int dialogResult = dialog.showSaveDialog(null);
+            if (dialogResult==JFileChooser.APPROVE_OPTION){
+            filePath = dialog.getSelectedFile().getPath();
+
+                int x = filePath.length();
+                
+                if(x>0){
+                    
+                    try{
+                        Runtime run = Runtime.getRuntime();
+                        pr=run.exec("C:\\xampp\\mysql\\bin\\mysqldump.exe -uroot --add-drop-database -B lmdb -r"+filePath);
+                        
+                        int processComplete = pr.waitFor();
+                        if(processComplete==0){
+                            JOptionPane.showMessageDialog(rootPane, "Successfully backup database");
+                        }else{
+                            JOptionPane.showMessageDialog(rootPane, "Failed to backup database");
+                        }
+                        
+                        
+                        
+                    }catch(Exception e){
+                        JOptionPane.showMessageDialog(rootPane, e);
+                    }
+                      
+                }else{
+                
+                    JOptionPane.showMessageDialog(rootPane, "Please select path");
+
+                }
+                
+  
+            
+            }
+    }//GEN-LAST:event_jMenuItem30ActionPerformed
+
+    private void jMenuItem29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem29ActionPerformed
+        
+        DeletedCustomers dc = new DeletedCustomers();
+        dc.setVisible(true);
+    }//GEN-LAST:event_jMenuItem29ActionPerformed
+
+    private void jMenuItem28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem28ActionPerformed
+        
+        FinishedLoans fl = new FinishedLoans();
+        fl.setVisible(true);
+    }//GEN-LAST:event_jMenuItem28ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -1961,6 +2016,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu11;
+    private javax.swing.JMenu jMenu12;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
@@ -1968,7 +2024,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
-    private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
@@ -1989,10 +2044,11 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem24;
     private javax.swing.JMenuItem jMenuItem25;
     private javax.swing.JMenuItem jMenuItem26;
-    private javax.swing.JMenuItem jMenuItem27;
+    private javax.swing.JMenuItem jMenuItem28;
+    private javax.swing.JMenuItem jMenuItem29;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem30;
     private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;

@@ -32,6 +32,8 @@ public class SearchCustomer extends javax.swing.JFrame {
         setIcon();
         
         jLabel12.setText(String.valueOf(User.username));
+        
+        customerdetailsFetch();
     }
 
     public void clearAll(){
@@ -43,9 +45,32 @@ public class SearchCustomer extends javax.swing.JFrame {
         jTextField5.setText("");
         jTextField6.setText("");
         jTextField7.setText("");
-        jTextField8.setText("");
         jLabel8.setIcon(null);
         jLabel9.setIcon(null);
+        
+    }
+    
+    public void customerdetailsFetch(){
+        
+        String sql = "SELECT id,name,nic From customerdetails WHERE userId=? AND is_deleted=0" ;
+        
+        try{
+            pst = conn.prepareStatement(sql);
+            pst.setString(1 , User.userid);
+            rs = pst.executeQuery();
+            
+            while(rs.next()){
+//                String id = rs.getString("id");
+                String name = rs.getString("name");
+//                String nic = rs.getString("nic");
+//                String sentence = name;
+                
+                jComboBox1.addItem(name);
+            }
+  
+        }catch(Exception e){
+            
+        }
         
     }
  
@@ -82,13 +107,11 @@ public class SearchCustomer extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
-        jLabel14 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
-        jDesktopPane2.setBackground(new java.awt.Color(255, 255, 255));
         jDesktopPane2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jDesktopPane2.setLayer(jLabel9, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -99,7 +122,7 @@ public class SearchCustomer extends javax.swing.JFrame {
             jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jDesktopPane2Layout.setVerticalGroup(
@@ -120,7 +143,7 @@ public class SearchCustomer extends javax.swing.JFrame {
         jLabel7.setText("Gender");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel1.setText("Search Name : ");
+        jLabel1.setText("Search Customer Name/ID : ");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel3.setText("Name");
@@ -136,7 +159,6 @@ public class SearchCustomer extends javax.swing.JFrame {
 
         jTextField1.setEditable(false);
 
-        jDesktopPane1.setBackground(new java.awt.Color(255, 255, 255));
         jDesktopPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jDesktopPane1.setLayer(jLabel8, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -147,7 +169,7 @@ public class SearchCustomer extends javax.swing.JFrame {
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jDesktopPane1Layout.setVerticalGroup(
@@ -222,15 +244,18 @@ public class SearchCustomer extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel13.setText("Resistence");
 
-        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel14.setText("Search Customer Id :");
-
-        jTextField8.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField8KeyReleased(evt);
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "select name" }));
+        jComboBox1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jComboBox1MouseClicked(evt);
             }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField8KeyTyped(evt);
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jComboBox1MousePressed(evt);
+            }
+        });
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
             }
         });
 
@@ -238,28 +263,6 @@ public class SearchCustomer extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_search, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(85, 85, 85)
-                        .addComponent(jLabel14)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator2)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel11)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel12)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addGap(33, 33, 33))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -294,7 +297,7 @@ public class SearchCustomer extends javax.swing.JFrame {
                                     .addComponent(jTextField4))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(79, Short.MAX_VALUE)
+                        .addContainerGap(80, Short.MAX_VALUE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -302,18 +305,38 @@ public class SearchCustomer extends javax.swing.JFrame {
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(75, 75, 75)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(60, 60, 60)
-                            .addComponent(jDesktopPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jButton4)
-                            .addGap(211, 211, 211)
-                            .addComponent(jButton5)
-                            .addGap(73, 73, 73))))
-                .addGap(52, 52, 52))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(47, 47, 47)
+                        .addComponent(jDesktopPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(82, 82, 82)
+                                .addComponent(jButton4)
+                                .addGap(211, 211, 211)
+                                .addComponent(jButton5)))
+                        .addGap(125, 125, 125))))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txt_search, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(105, 105, 105)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 1154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel11)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel12)))))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -322,8 +345,7 @@ public class SearchCustomer extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txt_search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
@@ -381,7 +403,7 @@ public class SearchCustomer extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        setSize(new java.awt.Dimension(1207, 652));
+        setSize(new java.awt.Dimension(1208, 652));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -398,16 +420,16 @@ public class SearchCustomer extends javax.swing.JFrame {
         jTextField5.setText("");
         jTextField6.setText("");
         jTextField7.setText("");
-        jTextField8.setText("");
         jLabel8.setIcon(null);
         jLabel9.setIcon(null);
         
-        String sql = "SELECT * FROM customerdetails WHERE name=? AND userId=? AND is_deleted=0 ";
+        String sql = "SELECT * FROM customerdetails WHERE name=? AND userId='"+User.userid+"' AND is_deleted=0 "
+                + "OR id=? AND userId='"+User.userid+"' AND is_deleted=0 ";
         
         try{
             pst = conn.prepareStatement(sql);
             pst.setString(1 , txt_search.getText());
-            pst.setString(2 , User.userid);
+            pst.setString(2 , txt_search.getText());
             rs = pst.executeQuery();
             
             if(rs.next()){
@@ -420,7 +442,7 @@ public class SearchCustomer extends javax.swing.JFrame {
                 jTextField3.setText(add3);
                 String add4 = rs.getString("address");
                 jTextField4.setText(add4);
-                String add5 = rs.getString("resistance");
+                String add5 = rs.getString("residence");
                 jTextField5.setText(add5);
                 String add6 = rs.getString("contactNo");
                 jTextField6.setText(add6);
@@ -456,7 +478,7 @@ public class SearchCustomer extends javax.swing.JFrame {
         
         int x = JOptionPane.showConfirmDialog(null, "Are you sure want update this Record?");
         if(x==0){
-        String sql = "UPDATE customerdetails SET name=?,nic=?,address=?,resistance=?,contactNo=?,gender=?,img1=?,img2=? "
+        String sql = "UPDATE customerdetails SET name=?,nic=?,address=?,residence=?,contactNo=?,gender=?,img1=?,img2=? "
                 + "WHERE id=? and userId=?";
         
         try{
@@ -478,7 +500,7 @@ public class SearchCustomer extends javax.swing.JFrame {
             clearAll();
             
         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, "Something went wrong check & try again!");
         }
      
      
@@ -550,7 +572,7 @@ public class SearchCustomer extends javax.swing.JFrame {
                 bou.close();
             
             }catch(IOException e){
-                    
+                    JOptionPane.showMessageDialog(null, "Something went wrong please check & try again!");
             }
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -583,7 +605,7 @@ public class SearchCustomer extends javax.swing.JFrame {
                 bou.close();
             
             }catch(IOException e){
-                    
+                    JOptionPane.showMessageDialog(null, "something went wrong please check & try again!");
             }
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -598,9 +620,12 @@ public class SearchCustomer extends javax.swing.JFrame {
      
     }//GEN-LAST:event_jTextField6KeyTyped
 
-    private void jTextField8KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField8KeyReleased
+    private void jComboBox1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox1MouseClicked
         
-        txt_search.setText("");
+    }//GEN-LAST:event_jComboBox1MouseClicked
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        
         jTextField1.setText("");
         jTextField2.setText("");
         jTextField3.setText("");
@@ -611,12 +636,12 @@ public class SearchCustomer extends javax.swing.JFrame {
         jLabel8.setIcon(null);
         jLabel9.setIcon(null);
         
-        String sql = "SELECT * FROM customerdetails WHERE id=? AND userId=? AND is_deleted=0 ";
+        String sql = "SELECT * FROM customerdetails WHERE name=? AND userId='"+User.userid+"' AND is_deleted=0 ";
         
         try{
             pst = conn.prepareStatement(sql);
-            pst.setString(1 , jTextField8.getText());
-            pst.setString(2 , User.userid);
+            pst.setString(1 , jComboBox1.getSelectedItem().toString());
+            
             rs = pst.executeQuery();
             
             if(rs.next()){
@@ -629,7 +654,7 @@ public class SearchCustomer extends javax.swing.JFrame {
                 jTextField3.setText(add3);
                 String add4 = rs.getString("address");
                 jTextField4.setText(add4);
-                String add5 = rs.getString("resistance");
+                String add5 = rs.getString("residence");
                 jTextField5.setText(add5);
                 String add6 = rs.getString("contactNo");
                 jTextField6.setText(add6);
@@ -659,17 +684,12 @@ public class SearchCustomer extends javax.swing.JFrame {
             }
         }
         
-    }//GEN-LAST:event_jTextField8KeyReleased
+        
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
-    private void jTextField8KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField8KeyTyped
-        
-        try{
-            numberOnly.NumbersOnly(evt);
-        
-        }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(null, "loan System Error");
-        }
-    }//GEN-LAST:event_jTextField8KeyTyped
+    private void jComboBox1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox1MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1MousePressed
 
 
     public static void main(String args[]) {
@@ -712,6 +732,7 @@ public class SearchCustomer extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JDesktopPane jDesktopPane2;
     private javax.swing.JLabel jLabel1;
@@ -719,7 +740,6 @@ public class SearchCustomer extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -736,7 +756,6 @@ public class SearchCustomer extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField txt_search;
     // End of variables declaration//GEN-END:variables
 

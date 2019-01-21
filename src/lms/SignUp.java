@@ -69,7 +69,6 @@ public class SignUp extends javax.swing.JFrame {
 
         jTextField1.setBackground(new java.awt.Color(36, 47, 65));
         jTextField1.setForeground(new java.awt.Color(204, 204, 204));
-        jTextField1.setText("Enter your name here");
         jTextField1.setBorder(null);
         jTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -79,7 +78,6 @@ public class SignUp extends javax.swing.JFrame {
 
         jTextField2.setBackground(new java.awt.Color(36, 47, 65));
         jTextField2.setForeground(new java.awt.Color(204, 204, 204));
-        jTextField2.setText("Enter username here");
         jTextField2.setBorder(null);
         jTextField2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -89,7 +87,6 @@ public class SignUp extends javax.swing.JFrame {
 
         jPasswordField1.setBackground(new java.awt.Color(36, 47, 65));
         jPasswordField1.setForeground(new java.awt.Color(204, 204, 204));
-        jPasswordField1.setText("enterxbhvbchvx");
         jPasswordField1.setBorder(null);
         jPasswordField1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -215,8 +212,13 @@ public class SignUp extends javax.swing.JFrame {
             
             JOptionPane.showMessageDialog(null, "signup successfully!");
             
+            jTextField1.setText("");
+            jTextField2.setText("");
+            jPasswordField1.setText("");
+                    
+  
         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, "Fill the all field and try again!");
         }
         
     }//GEN-LAST:event_jPanel3MouseClicked
