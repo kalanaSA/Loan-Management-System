@@ -1830,7 +1830,7 @@ public class Repayment extends javax.swing.JFrame {
                 
                
         
-        //when not first time pay ******************************************************************************
+        //when not first time pay *****************************************************************************************************************
                 if(spa != null){
                 
                 double sumOfPayedAmount = Double.parseDouble(spa);
@@ -1848,7 +1848,7 @@ public class Repayment extends javax.swing.JFrame {
                        roundedRemainingAmountOfLoan = Math.round(remainingAmountOfLoan*100.0)/100.0;
                 String rraol = String.valueOf(roundedRemainingAmountOfLoan);
                 
-                //change******************************
+                
                 //for calculate remaining installements
                 double noOfInstallement = Double.parseDouble(jTextField7.getText());
                 double installemenetAge = Double.parseDouble(jTextField23.getText());
@@ -1856,7 +1856,7 @@ public class Repayment extends javax.swing.JFrame {
                 double roundedRemainingInstallement = Math.round(remainingInstallement*100.0)/100.0;
                 String rri = String.valueOf(roundedRemainingInstallement);
                 
-                //change********************
+                
                 //for add repayment
                 String query2 = "INSERT INTO microloanrepayment(installementNo,installementAge,remainingInstallement,payDate,payedAmount,"
                         + "remainingAmountOfLoan,is_deleted,customerId,microLoanId,userId) "
@@ -1931,7 +1931,7 @@ public class Repayment extends javax.swing.JFrame {
                 
             }else{
                     
-                //when pay first time there has no sum(payedAmount) --->prevent null pointer exception ******************    
+                //when pay first time there has no sum(payedAmount) --->prevent null pointer exception *********************************************    
                 int r = jTable1.getSelectedRow();
                 String aol = jTable1.getValueAt(r, 1).toString();
                 double amountOfLoan = Double.parseDouble(aol);
@@ -1945,7 +1945,7 @@ public class Repayment extends javax.swing.JFrame {
                 roundedRemainingAmountOfLoan = Math.round(remainingAmountOfLoan*100.0)/100.0;
                 String rraol = String.valueOf(roundedRemainingAmountOfLoan);
 
-                //change*****************
+                
                 //for calculate remaining installements
                 double noOfInstallement = Double.parseDouble(jTextField7.getText());
                 double installementAge = Double.parseDouble(jTextField23.getText());
@@ -1953,7 +1953,18 @@ public class Repayment extends javax.swing.JFrame {
                 double roundedRemainingInstallement = Math.round(remainingInstallement*100.0)/100.0;
                 String rri = String.valueOf(roundedRemainingInstallement);
                 
-                //change************
+//                //for average calculate
+//                String cpa = jTextField8.getText();
+//                double currentPayedAmount = Double.parseDouble(cpa);
+//                String in = txt_minstallementNo.getText();
+//                double InstallementNo = Double.parseDouble(in);
+//                String ia = jTable1.getValueAt(r, 5).toString();
+//                double InstallementAmount = Double.parseDouble(ia);
+//                double average = currentPayAmount/InstallementNo*InstallementAmount;
+//                double roundedAverage = Math.round(average*100.0)/100.0;
+//                String a = String.valueOf(roundedAverage);
+//                    System.out.println(roundedAverage);
+                
                 //for add repayment
                 String query6 = "INSERT INTO microloanrepayment(installementNo,installementAge,remainingInstallement,"
                         + "payDate,payedAmount,remainingAmountOfLoan,is_deleted,customerId,microLoanId,userId) "

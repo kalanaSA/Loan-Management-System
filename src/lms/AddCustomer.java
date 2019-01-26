@@ -453,7 +453,7 @@ public class AddCustomer extends javax.swing.JFrame {
         try{
             //File image = new File(filename1);
             FileInputStream fileInputStream = new FileInputStream(filename1);
-            FileOutputStream fileOutputStream = new FileOutputStream("NIC_images\\"+imageName1+"f.jpg");
+            FileOutputStream fileOutputStream = new FileOutputStream("./NIC_images\\"+imageName1+"f.jpg");
             BufferedInputStream bin = new BufferedInputStream(fileInputStream);
             BufferedOutputStream bou = new BufferedOutputStream(fileOutputStream);
 

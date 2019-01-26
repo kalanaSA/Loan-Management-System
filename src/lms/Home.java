@@ -42,6 +42,9 @@ public class Home extends javax.swing.JFrame {
         
         jLabel5.setText(String.valueOf(User.username));
         
+        //visible false backup jmenu
+        jMenu12.setVisible(false);
+        
     }
     
     String filePath = null;
@@ -1920,7 +1923,7 @@ public class Home extends javax.swing.JFrame {
                     
                     try{
                         Runtime run = Runtime.getRuntime();
-                        pr=run.exec("C:\\xampp\\mysql\\bin\\mysqldump.exe -uroot --add-drop-database -B lmdb -r"+filePath);
+                        pr=run.exec("C:\\xampp\\mysql\\bin\\mysqldump.exe -uLM_user -pkalana123 --add-drop-database -B lmdb -r"+filePath);
                         
                         int processComplete = pr.waitFor();
                         if(processComplete==0){
