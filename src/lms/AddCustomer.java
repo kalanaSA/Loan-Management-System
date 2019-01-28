@@ -424,7 +424,7 @@ public class AddCustomer extends javax.swing.JFrame {
    
             
         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Fill the require fiels and try again!");
+            JOptionPane.showMessageDialog(null, e);
         }
  
         }
@@ -664,7 +664,7 @@ public class AddCustomer extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField5;
     // End of variables declaration//GEN-END:variables
  
-    private String gender;
+    public String gender;
     
         
     //for attach image1

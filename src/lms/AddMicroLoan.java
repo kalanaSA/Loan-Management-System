@@ -498,7 +498,7 @@ public class AddMicroLoan extends javax.swing.JFrame {
                 clearAll();
                 
             }catch(Exception e){
-                JOptionPane.showMessageDialog(null, "Fill the all fields and try again!");
+                JOptionPane.showMessageDialog(null, e);
             }finally{
                 try{
                     rs.close();
@@ -695,13 +695,6 @@ public class AddMicroLoan extends javax.swing.JFrame {
             
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
-        }finally{
-            try{
-                rs.close();
-                pst.close();
-            }catch(Exception e){
-                
-            }
         }
     }//GEN-LAST:event_jComboBox3ActionPerformed
 
